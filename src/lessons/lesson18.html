@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 18: LocalStorage та JSON | HTML та JavaScript</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    
+    <div class="app-container">
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h1>HTML & JS</h1>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <nav>
+                <ul class="lessons-list">
+                    <li class="lesson-item"><a href="lesson01.html" class="lesson-link" data-lesson="lesson01"><span class="lesson-number">01</span><span class="lesson-title">Семантичний HTML5</span></a></li>
+                    <li class="lesson-item"><a href="lesson02.html" class="lesson-link" data-lesson="lesson02"><span class="lesson-number">02</span><span class="lesson-title">Таблиці та списки</span></a></li>
+                    <li class="lesson-item"><a href="lesson03.html" class="lesson-link" data-lesson="lesson03"><span class="lesson-number">03</span><span class="lesson-title">Форми (частина 1)</span></a></li>
+                    <li class="lesson-item"><a href="lesson04.html" class="lesson-link" data-lesson="lesson04"><span class="lesson-number">04</span><span class="lesson-title">Форми (частина 2)</span></a></li>
+                    <li class="lesson-item"><a href="lesson05.html" class="lesson-link" data-lesson="lesson05"><span class="lesson-number">05</span><span class="lesson-title">Мультимедіа</span></a></li>
+                    <li class="lesson-item"><a href="lesson06.html" class="lesson-link" data-lesson="lesson06"><span class="lesson-number">06</span><span class="lesson-title">Meta-теги та SEO</span></a></li>
+                    <li class="lesson-item"><a href="lesson07.html" class="lesson-link" data-lesson="lesson07"><span class="lesson-number">07</span><span class="lesson-title">Посилання та навігація</span></a></li>
+                    <li class="lesson-item"><a href="lesson08.html" class="lesson-link" data-lesson="lesson08"><span class="lesson-number">08</span><span class="lesson-title">Доступність (a11y)</span></a></li>
+                    <li class="lesson-item"><a href="lesson09.html" class="lesson-link" data-lesson="lesson09"><span class="lesson-number">09</span><span class="lesson-title">CSS Flexbox</span></a></li>
+                    <li class="lesson-item"><a href="lesson10.html" class="lesson-link" data-lesson="lesson10"><span class="lesson-number">10</span><span class="lesson-title">CSS Grid</span></a></li>
+                    <li class="lesson-item"><a href="lesson11.html" class="lesson-link" data-lesson="lesson11"><span class="lesson-number">11</span><span class="lesson-title">CSS анімації</span></a></li>
+                    <li class="lesson-item"><a href="lesson12.html" class="lesson-link" data-lesson="lesson12"><span class="lesson-number">12</span><span class="lesson-title">CSS змінні та адаптивність</span></a></li>
+                    <li class="lesson-item"><a href="lesson13.html" class="lesson-link" data-lesson="lesson13"><span class="lesson-number">13</span><span class="lesson-title">Основи JavaScript</span></a></li>
+                    <li class="lesson-item"><a href="lesson14.html" class="lesson-link" data-lesson="lesson14"><span class="lesson-number">14</span><span class="lesson-title">Функції та масиви</span></a></li>
+                    <li class="lesson-item"><a href="lesson15.html" class="lesson-link" data-lesson="lesson15"><span class="lesson-number">15</span><span class="lesson-title">DOM маніпуляції</span></a></li>
+                    <li class="lesson-item"><a href="lesson16.html" class="lesson-link" data-lesson="lesson16"><span class="lesson-number">16</span><span class="lesson-title">Події та обробники</span></a></li>
+                    <li class="lesson-item"><a href="lesson17.html" class="lesson-link" data-lesson="lesson17"><span class="lesson-number">17</span><span class="lesson-title">Робота з формами через JS</span></a></li>
+                    <li class="lesson-item"><a href="lesson18.html" class="lesson-link" data-lesson="lesson18"><span class="lesson-number">18</span><span class="lesson-title">LocalStorage та JSON</span></a></li>
+                    <li class="lesson-item"><a href="lesson19.html" class="lesson-link" data-lesson="lesson19"><span class="lesson-number">19</span><span class="lesson-title">Fetch API та асинхронність</span></a></li>
+                    <li class="lesson-item"><a href="lesson20.html" class="lesson-link" data-lesson="lesson20"><span class="lesson-number">20</span><span class="lesson-title">Фінальний проєкт: TODO</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <div class="lesson-container">
+                <header class="lesson-header">
+                    <h1>Урок 18: LocalStorage та JSON</h1>
+                    <p class="lesson-meta">Збереження даних у браузері: localStorage, sessionStorage, JSON</p>
+                </header>
+                
+                <div class="lesson-content">
+                    <section>
+                        <h2>Що таке Web Storage?</h2>
+                        <p>
+                            Web Storage API дозволяє зберігати дані безпосередньо в браузері користувача. 
+                            Існує два типи сховищ: <code>localStorage</code> (постійне) та <code>sessionStorage</code> (тимчасове).
+                        </p>
+                        
+                        <div class="info-box">
+                            <h4>Основні відмінності Storage</h4>
+                            <ul>
+                                <li><strong>localStorage</strong> - дані зберігаються безстроково, до ~5-10 МБ</li>
+                                <li><strong>sessionStorage</strong> - дані зникають при закритті вкладки</li>
+                                <li>Дані доступні тільки на клієнті (не передаються на сервер автоматично)</li>
+                                <li>Можна зберігати тільки рядки (для об'єктів потрібен JSON)</li>
+                                <li>Синхронний API (блокує виконання коду)</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Основи localStorage</h2>
+                        <div class="code-block">
+                            <pre><code>// Збереження даних
+localStorage.setItem('username', 'Іван');
+localStorage.setItem('age', '25');
+localStorage.setItem('isLoggedIn', 'true');
+
+// Отримання даних
+const username = localStorage.getItem('username');
+console.log(username);  // 'Іван'
+
+// Видалення одного елемента
+localStorage.removeItem('age');
+
+// Очищення всього сховища
+localStorage.clear();
+
+// Перевірка наявності ключа
+if (localStorage.getItem('username') !== null) {
+    console.log('Користувач знайдений');
+}
+
+// Альтернативний синтаксис (не рекомендується)
+localStorage.username = 'Петро';
+const name = localStorage.username;
+delete localStorage.username;
+
+// Кількість збережених елементів
+const itemCount = localStorage.length;
+
+// Отримання ключа за індексом
+for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    const value = localStorage.getItem(key);
+    console.log(key, value);
+}
+
+// Перебір всіх елементів
+for (let key in localStorage) {
+    if (localStorage.hasOwnProperty(key)) {
+        console.log(key, localStorage.getItem(key));
+    }
+}
+
+// sessionStorage працює ідентично
+sessionStorage.setItem('tempData', 'тимчасові дані');
+const tempData = sessionStorage.getItem('tempData');</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="16">// Збереження та отримання даних
+// Збереження
+localStorage.setItem('myName', 'Олена');
+localStorage.setItem('myCity', 'Київ');
+localStorage.setItem('myAge', '30');
+
+console.log('Дані збережено в localStorage');
+
+// Отримання
+const name = localStorage.getItem('myName');
+const city = localStorage.getItem('myCity');
+const age = localStorage.getItem('myAge');
+
+console.log('Ім\'я:', name);
+console.log('Місто:', city);
+console.log('Вік:', age);
+
+// Перебір всіх даних
+console.log('\nВсі дані в localStorage:');
+for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    console.log(`${key}: ${localStorage.getItem(key)}`);
+}
+
+// Видалення одного елемента
+localStorage.removeItem('myAge');
+console.log('\nВік видалено. Кількість елементів:', localStorage.length);</textarea>
+                            <button class="run-button" onclick="runCode(this)">▶ Запустити</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>JSON - серіалізація та десеріалізація</h2>
+                        <div class="code-block">
+                            <pre><code>// JSON (JavaScript Object Notation) - формат для обміну даними
+
+// Об'єкт JavaScript
+const user = {
+    name: 'Іван',
+    age: 25,
+    city: 'Київ',
+    hobbies: ['читання', 'програмування', 'спорт'],
+    isActive: true
+};
+
+// JSON.stringify - конвертує об'єкт в рядок JSON
+const jsonString = JSON.stringify(user);
+console.log(jsonString);
+// '{"name":"Іван","age":25,"city":"Київ",...}'
+
+// З форматуванням (красивий вивід)
+const prettyJson = JSON.stringify(user, null, 2);
+console.log(prettyJson);
+
+// JSON.parse - конвертує рядок JSON в об'єкт
+const parsedUser = JSON.parse(jsonString);
+console.log(parsedUser.name);  // 'Іван'
+
+// Збереження об'єкта в localStorage
+const settings = {
+    theme: 'dark',
+    language: 'uk',
+    notifications: true
+};
+
+localStorage.setItem('settings', JSON.stringify(settings));
+
+// Отримання об'єкта з localStorage
+const savedSettings = JSON.parse(localStorage.getItem('settings'));
+console.log(savedSettings.theme);  // 'dark'
+
+// Збереження масиву
+const todos = [
+    { id: 1, text: 'Купити молоко', done: false },
+    { id: 2, text: 'Вивчити JavaScript', done: true }
+];
+
+localStorage.setItem('todos', JSON.stringify(todos));
+
+// Отримання масиву
+const savedTodos = JSON.parse(localStorage.getItem('todos'));
+console.log(savedTodos[0].text);  // 'Купити молоко'
+
+// Обробка помилок при парсингу
+try {
+    const data = JSON.parse(localStorage.getItem('someKey'));
+} catch (error) {
+    console.error('Помилка парсингу JSON:', error);
+    // Використати значення за замовчуванням
+    const data = { default: true };
+}
+
+// Безпечне отримання з перевіркою
+function getFromStorage(key, defaultValue) {
+    try {
+        const item = localStorage.getItem(key);
+        return item ? JSON.parse(item) : defaultValue;
+    } catch (error) {
+        return defaultValue;
+    }
+}</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="18">// Робота з об'єктами через JSON
+const user = {
+    name: 'Марія',
+    email: 'maria@example.com',
+    age: 28,
+    settings: {
+        theme: 'light',
+        notifications: true
+    },
+    hobbies: ['музика', 'подорожі', 'фотографія']
+};
+
+// Збереження
+const userJson = JSON.stringify(user);
+localStorage.setItem('currentUser', userJson);
+console.log('Користувача збережено');
+console.log('JSON рядок:', userJson);
+
+// Отримання
+const savedUserJson = localStorage.getItem('currentUser');
+const savedUser = JSON.parse(savedUserJson);
+
+console.log('\nОтриманий користувач:');
+console.log('Ім\'я:', savedUser.name);
+console.log('Email:', savedUser.email);
+console.log('Тема:', savedUser.settings.theme);
+console.log('Хобі:', savedUser.hobbies.join(', '));
+
+// Красивий вивід
+console.log('\nКрасивий JSON:');
+console.log(JSON.stringify(savedUser, null, 2));</textarea>
+                            <button class="run-button" onclick="runCode(this)">▶ Запустити</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>CRUD операції з localStorage</h2>
+                        <div class="code-block">
+                            <pre><code>// Create - створення/додавання
+function addTodo(todo) {
+    const todos = getTodos();
+    todos.push({
+        id: Date.now(),
+        text: todo,
+        done: false,
+        createdAt: new Date().toISOString()
+    });
+    saveTodos(todos);
+}
+
+// Read - читання
+function getTodos() {
+    const todos = localStorage.getItem('todos');
+    return todos ? JSON.parse(todos) : [];
+}
+
+function getTodoById(id) {
+    const todos = getTodos();
+    return todos.find(todo => todo.id === id);
+}
+
+// Update - оновлення
+function updateTodo(id, updates) {
+    const todos = getTodos();
+    const index = todos.findIndex(todo => todo.id === id);
+    
+    if (index !== -1) {
+        todos[index] = { ...todos[index], ...updates };
+        saveTodos(todos);
+        return true;
+    }
+    return false;
+}
+
+function toggleTodo(id) {
+    const todos = getTodos();
+    const todo = todos.find(t => t.id === id);
+    
+    if (todo) {
+        todo.done = !todo.done;
+        saveTodos(todos);
+    }
+}
+
+// Delete - видалення
+function deleteTodo(id) {
+    const todos = getTodos();
+    const filtered = todos.filter(todo => todo.id !== id);
+    saveTodos(filtered);
+}
+
+function deleteAllTodos() {
+    localStorage.removeItem('todos');
+}
+
+// Helper функція для збереження
+function saveTodos(todos) {
+    localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+// Приклад використання
+addTodo('Вивчити localStorage');
+addTodo('Створити TODO додаток');
+
+const allTodos = getTodos();
+console.log('Всі завдання:', allTodos);
+
+updateTodo(allTodos[0].id, { text: 'Освоїти localStorage' });
+toggleTodo(allTodos[0].id);
+deleteTodo(allTodos[1].id);
+
+// Пошук та фільтрація
+function searchTodos(query) {
+    const todos = getTodos();
+    return todos.filter(todo => 
+        todo.text.toLowerCase().includes(query.toLowerCase())
+    );
+}
+
+function getCompletedTodos() {
+    const todos = getTodos();
+    return todos.filter(todo => todo.done);
+}
+
+function getActiveTodos() {
+    const todos = getTodos();
+    return todos.filter(todo => !todo.done);
+}</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Інтерактивний приклад:</h4>
+                            <textarea class="code-input" rows="26">// Міні-додаток для нотаток з CRUD операціями
+const container = document.createElement('div');
+container.style.cssText = 'padding: 20px; border: 2px solid #4CAF50; margin: 10px;';
+
+container.innerHTML = `
+    <h3>Мої нотатки</h3>
+    <div style="margin-bottom: 10px;">
+        <input type="text" id="noteInput" placeholder="Введіть нотатку..." style="padding: 8px; width: 70%;">
+        <button id="addNote" style="padding: 8px 15px; cursor: pointer;">Додати</button>
+    </div>
+    <div id="notesList" style="margin-top: 15px;"></div>
+`;
+
+document.body.appendChild(container);
+
+// Функції для роботи з нотатками
+function getNotes() {
+    const notes = localStorage.getItem('myNotes');
+    return notes ? JSON.parse(notes) : [];
+}
+
+function saveNotes(notes) {
+    localStorage.setItem('myNotes', JSON.stringify(notes));
+}
+
+function renderNotes() {
+    const notes = getNotes();
+    const list = document.querySelector('#notesList');
+    
+    if (notes.length === 0) {
+        list.innerHTML = '<p style="color: #999;">Нотаток поки немає</p>';
+        return;
+    }
+    
+    list.innerHTML = notes.map(note => `
+        <div style="padding: 10px; margin: 5px 0; background: #f9f9f9; display: flex; justify-content: space-between; align-items: center;">
+            <span>${note.text}</span>
+            <button onclick="deleteNote(${note.id})" style="padding: 5px 10px; cursor: pointer; background: #f44336; color: white; border: none;">
+                Видалити
+            </button>
+        </div>
+    `).join('');
+}
+
+function addNote(text) {
+    const notes = getNotes();
+    notes.push({
+        id: Date.now(),
+        text: text,
+        createdAt: new Date().toISOString()
+    });
+    saveNotes(notes);
+    renderNotes();
+}
+
+window.deleteNote = function(id) {
+    const notes = getNotes().filter(note => note.id !== id);
+    saveNotes(notes);
+    renderNotes();
+    console.log('Нотатку видалено');
+};
+
+document.querySelector('#addNote').addEventListener('click', () => {
+    const input = document.querySelector('#noteInput');
+    if (input.value.trim()) {
+        addNote(input.value.trim());
+        input.value = '';
+        console.log('Нотатку додано');
+    }
+});
+
+renderNotes();
+console.log('Додаток нотаток готовий!');</textarea>
+                            <button class="run-button" onclick="runHTML(this)">▶ Запустити HTML</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Відстеження змін у Storage</h2>
+                        <div class="code-block">
+                            <pre><code>// Подія storage спрацьовує при зміні localStorage в іншій вкладці/вікні
+window.addEventListener('storage', (e) => {
+    console.log('Storage змінено:');
+    console.log('Ключ:', e.key);
+    console.log('Старе значення:', e.oldValue);
+    console.log('Нове значення:', e.newValue);
+    console.log('URL:', e.url);
+    console.log('Storage:', e.storageArea);
+    
+    // Синхронізація даних між вкладками
+    if (e.key === 'todos') {
+        loadTodos();
+        renderTodos();
+    }
+});
+
+// Власний обробник змін для поточної вкладки
+const originalSetItem = localStorage.setItem;
+
+localStorage.setItem = function(key, value) {
+    const oldValue = localStorage.getItem(key);
+    originalSetItem.apply(this, arguments);
+    
+    // Викликати власний обробник
+    const event = new CustomEvent('localStorageChanged', {
+        detail: { key, oldValue, newValue: value }
+    });
+    window.dispatchEvent(event);
+};
+
+// Використання власної події
+window.addEventListener('localStorageChanged', (e) => {
+    console.log('localStorage змінено локально:', e.detail);
+});
+
+// Приклад: синхронізація теми між вкладками
+window.addEventListener('storage', (e) => {
+    if (e.key === 'theme') {
+        applyTheme(e.newValue);
+    }
+});
+
+function applyTheme(theme) {
+    document.body.className = theme;
+}
+
+// Зберегти тему
+function setTheme(theme) {
+    localStorage.setItem('theme', theme);
+    applyTheme(theme);
+}</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="16">// Моніторинг змін у localStorage
+const container = document.createElement('div');
+container.style.cssText = 'padding: 20px; border: 2px solid #2196F3; margin: 10px;';
+
+container.innerHTML = `
+    <h3>Моніторинг Storage</h3>
+    <button id="changeStorage" style="padding: 10px; cursor: pointer;">Змінити дані</button>
+    <div id="log" style="margin-top: 15px; padding: 10px; background: #f5f5f5; font-family: monospace; font-size: 12px; max-height: 200px; overflow-y: auto;"></div>
+`;
+
+document.body.appendChild(container);
+
+const log = document.querySelector('#log');
+
+function addLog(message) {
+    const time = new Date().toLocaleTimeString();
+    log.innerHTML += `[${time}] ${message}<br>`;
+    log.scrollTop = log.scrollHeight;
+}
+
+// Моніторинг змін (працює між вкладками)
+window.addEventListener('storage', (e) => {
+    addLog(`Storage змінено: ${e.key} = ${e.newValue}`);
+});
+
+document.querySelector('#changeStorage').addEventListener('click', () => {
+    const randomValue = Math.floor(Math.random() * 1000);
+    localStorage.setItem('testKey', randomValue.toString());
+    addLog(`Локально встановлено: testKey = ${randomValue}`);
+    console.log('Дані оновлено. Відкрийте цю сторінку в іншій вкладці щоб побачити синхронізацію.');
+});</textarea>
+                            <button class="run-button" onclick="runHTML(this)">▶ Запустити HTML</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Практичні приклади</h2>
+                        <div class="code-block">
+                            <pre><code>// 1. Збереження налаштувань користувача
+function saveSettings(settings) {
+    localStorage.setItem('userSettings', JSON.stringify(settings));
+}
+
+function loadSettings() {
+    const defaultSettings = {
+        theme: 'light',
+        language: 'uk',
+        fontSize: 16,
+        notifications: true
+    };
+    
+    const saved = localStorage.getItem('userSettings');
+    return saved ? JSON.parse(saved) : defaultSettings;
+}
+
+// 2. Кошик покупок
+const cart = {
+    add(product) {
+        const items = this.getItems();
+        items.push(product);
+        localStorage.setItem('cart', JSON.stringify(items));
+    },
+    
+    getItems() {
+        return JSON.parse(localStorage.getItem('cart') || '[]');
+    },
+    
+    remove(productId) {
+        const items = this.getItems().filter(item => item.id !== productId);
+        localStorage.setItem('cart', JSON.stringify(items));
+    },
+    
+    clear() {
+        localStorage.removeItem('cart');
+    },
+    
+    getTotal() {
+        return this.getItems().reduce((sum, item) => sum + item.price, 0);
+    }
+};
+
+// 3. Історія пошуку
+function addSearchQuery(query) {
+    const history = JSON.parse(localStorage.getItem('searchHistory') || '[]');
+    
+    // Видалити дублікат якщо є
+    const filtered = history.filter(q => q !== query);
+    
+    // Додати на початок
+    filtered.unshift(query);
+    
+    // Обмежити до 10 останніх
+    const limited = filtered.slice(0, 10);
+    
+    localStorage.setItem('searchHistory', JSON.stringify(limited));
+}
+
+// 4. Збереження стану форми
+function saveFormState(formId) {
+    const form = document.querySelector(formId);
+    const data = {};
+    
+    new FormData(form).forEach((value, key) => {
+        data[key] = value;
+    });
+    
+    localStorage.setItem(`form_${formId}`, JSON.stringify(data));
+}
+
+function restoreFormState(formId) {
+    const saved = localStorage.getItem(`form_${formId}`);
+    if (!saved) return;
+    
+    const data = JSON.parse(saved);
+    const form = document.querySelector(formId);
+    
+    Object.keys(data).forEach(key => {
+        const element = form.elements[key];
+        if (element) element.value = data[key];
+    });
+}
+
+// 5. Таймер/Секундомір з збереженням стану
+class Timer {
+    constructor() {
+        this.loadState();
+    }
+    
+    start() {
+        this.startTime = Date.now();
+        this.isRunning = true;
+        this.saveState();
+    }
+    
+    stop() {
+        this.elapsed = this.getElapsed();
+        this.isRunning = false;
+        this.saveState();
+    }
+    
+    getElapsed() {
+        if (this.isRunning) {
+            return this.elapsed + (Date.now() - this.startTime);
+        }
+        return this.elapsed;
+    }
+    
+    saveState() {
+        localStorage.setItem('timerState', JSON.stringify({
+            elapsed: this.elapsed,
+            isRunning: this.isRunning,
+            startTime: this.startTime
+        }));
+    }
+    
+    loadState() {
+        const saved = localStorage.getItem('timerState');
+        const state = saved ? JSON.parse(saved) : {
+            elapsed: 0,
+            isRunning: false
+        };
+        
+        this.elapsed = state.elapsed;
+        this.isRunning = state.isRunning;
+        this.startTime = state.startTime;
+        
+        if (this.isRunning) {
+            this.startTime = Date.now() - this.elapsed;
+        }
+    }
+}</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Інтерактивний приклад - кошик покупок:</h4>
+                            <textarea class="code-input" rows="32">// Повноцінний кошик покупок
+const container = document.createElement('div');
+container.style.cssText = 'padding: 20px; border: 2px solid #FF9800; margin: 10px;';
+
+container.innerHTML = `
+    <h3>🛒 Магазин</h3>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div>
+            <h4>Товари</h4>
+            <div id="products"></div>
+        </div>
+        <div>
+            <h4>Кошик</h4>
+            <div id="cart"></div>
+            <div id="total" style="margin-top: 10px; font-weight: bold;"></div>
+            <button id="clearCart" style="margin-top: 10px; padding: 8px 16px; cursor: pointer;">Очистити кошик</button>
+        </div>
+    </div>
+`;
+
+document.body.appendChild(container);
+
+const products = [
+    { id: 1, name: 'JavaScript книга', price: 500 },
+    { id: 2, name: 'HTML книга', price: 400 },
+    { id: 3, name: 'CSS книга', price: 450 }
+];
+
+// Функції кошика
+function getCart() {
+    return JSON.parse(localStorage.getItem('shoppingCart') || '[]');
+}
+
+function saveCart(cart) {
+    localStorage.setItem('shoppingCart', JSON.stringify(cart));
+}
+
+function addToCart(product) {
+    const cart = getCart();
+    cart.push(product);
+    saveCart(cart);
+    renderCart();
+}
+
+function removeFromCart(index) {
+    const cart = getCart();
+    cart.splice(index, 1);
+    saveCart(cart);
+    renderCart();
+}
+
+function clearCart() {
+    localStorage.removeItem('shoppingCart');
+    renderCart();
+}
+
+function renderProducts() {
+    const html = products.map(p => `
+        <div style="padding: 10px; margin: 5px 0; background: #f9f9f9; display: flex; justify-content: space-between;">
+            <span>${p.name} - ${p.price} грн</span>
+            <button onclick="addToCart(${JSON.stringify(p).replace(/"/g, '&quot;')}); renderCart();" 
+                    style="padding: 5px 10px; cursor: pointer;">Додати</button>
+        </div>
+    `).join('');
+    
+    document.querySelector('#products').innerHTML = html;
+}
+
+window.addToCart = addToCart;
+
+function renderCart() {
+    const cart = getCart();
+    const cartDiv = document.querySelector('#cart');
+    
+    if (cart.length === 0) {
+        cartDiv.innerHTML = '<p style="color: #999;">Кошик порожній</p>';
+        document.querySelector('#total').textContent = '';
+        return;
+    }
+    
+    const html = cart.map((item, index) => `
+        <div style="padding: 10px; margin: 5px 0; background: #e8f5e9; display: flex; justify-content: space-between;">
+            <span>${item.name} - ${item.price} грн</span>
+            <button onclick="removeFromCart(${index})" style="padding: 5px 10px; cursor: pointer; background: #f44336; color: white; border: none;">
+                ✕
+            </button>
+        </div>
+    `).join('');
+    
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+    
+    cartDiv.innerHTML = html;
+    document.querySelector('#total').textContent = `Всього: ${total} грн`;
+}
+
+window.removeFromCart = removeFromCart;
+
+document.querySelector('#clearCart').addEventListener('click', clearCart);
+
+renderProducts();
+renderCart();
+
+console.log('Магазин готовий! Дані зберігаються в localStorage.');</textarea>
+                            <button class="run-button" onclick="runHTML(this)">▶ Запустити HTML</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <div class="info-box success">
+                            <h4>Підсумок</h4>
+                            <p>
+                                Ви навчилися працювати з <code>localStorage</code> та <code>sessionStorage</code>, 
+                                серіалізувати та десеріалізувати дані через <code>JSON</code>, виконувати 
+                                CRUD операції та створювати додатки зі збереженням стану. Ці знання дозволяють 
+                                створювати додатки, які зберігають дані користувача між сесіями.
+                            </p>
+                        </div>
+                    </section>
+                    
+                    <button id="complete-lesson" class="complete-button" data-lesson="lesson18">
+                        Позначити урок як пройдений
+                    </button>
+                    
+                    <nav class="lesson-navigation">
+                        <a href="lesson17.html" class="nav-button prev">Попередній урок</a>
+                        <a href="lesson19.html" class="nav-button next">Наступний урок</a>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 9: CSS Flexbox | HTML та JavaScript</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .flex-demo {
+            border: 2px solid #3498db;
+            padding: 10px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .flex-item {
+            background-color: #3498db;
+            color: white;
+            padding: 20px;
+            margin: 5px;
+            text-align: center;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    
+    <div class="app-container">
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h1>HTML & JS</h1>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <nav>
+                <ul class="lessons-list">
+                    <li class="lesson-item"><a href="lesson01.html" class="lesson-link" data-lesson="lesson01"><span class="lesson-number">01</span><span class="lesson-title">Семантичний HTML5</span></a></li>
+                    <li class="lesson-item"><a href="lesson02.html" class="lesson-link" data-lesson="lesson02"><span class="lesson-number">02</span><span class="lesson-title">Таблиці та списки</span></a></li>
+                    <li class="lesson-item"><a href="lesson03.html" class="lesson-link" data-lesson="lesson03"><span class="lesson-number">03</span><span class="lesson-title">Форми (частина 1)</span></a></li>
+                    <li class="lesson-item"><a href="lesson04.html" class="lesson-link" data-lesson="lesson04"><span class="lesson-number">04</span><span class="lesson-title">Форми (частина 2)</span></a></li>
+                    <li class="lesson-item"><a href="lesson05.html" class="lesson-link" data-lesson="lesson05"><span class="lesson-number">05</span><span class="lesson-title">Мультимедіа</span></a></li>
+                    <li class="lesson-item"><a href="lesson06.html" class="lesson-link" data-lesson="lesson06"><span class="lesson-number">06</span><span class="lesson-title">Meta-теги та SEO</span></a></li>
+                    <li class="lesson-item"><a href="lesson07.html" class="lesson-link" data-lesson="lesson07"><span class="lesson-number">07</span><span class="lesson-title">Посилання та навігація</span></a></li>
+                    <li class="lesson-item"><a href="lesson08.html" class="lesson-link" data-lesson="lesson08"><span class="lesson-number">08</span><span class="lesson-title">Доступність (a11y)</span></a></li>
+                    <li class="lesson-item"><a href="lesson09.html" class="lesson-link" data-lesson="lesson09"><span class="lesson-number">09</span><span class="lesson-title">CSS Flexbox</span></a></li>
+                    <li class="lesson-item"><a href="lesson10.html" class="lesson-link" data-lesson="lesson10"><span class="lesson-number">10</span><span class="lesson-title">CSS Grid</span></a></li>
+                    <li class="lesson-item"><a href="lesson11.html" class="lesson-link" data-lesson="lesson11"><span class="lesson-number">11</span><span class="lesson-title">CSS анімації</span></a></li>
+                    <li class="lesson-item"><a href="lesson12.html" class="lesson-link" data-lesson="lesson12"><span class="lesson-number">12</span><span class="lesson-title">CSS змінні та адаптивність</span></a></li>
+                    <li class="lesson-item"><a href="lesson13.html" class="lesson-link" data-lesson="lesson13"><span class="lesson-number">13</span><span class="lesson-title">Основи JavaScript</span></a></li>
+                    <li class="lesson-item"><a href="lesson14.html" class="lesson-link" data-lesson="lesson14"><span class="lesson-number">14</span><span class="lesson-title">Функції та масиви</span></a></li>
+                    <li class="lesson-item"><a href="lesson15.html" class="lesson-link" data-lesson="lesson15"><span class="lesson-number">15</span><span class="lesson-title">DOM маніпуляції</span></a></li>
+                    <li class="lesson-item"><a href="lesson16.html" class="lesson-link" data-lesson="lesson16"><span class="lesson-number">16</span><span class="lesson-title">Події та обробники</span></a></li>
+                    <li class="lesson-item"><a href="lesson17.html" class="lesson-link" data-lesson="lesson17"><span class="lesson-number">17</span><span class="lesson-title">Робота з формами через JS</span></a></li>
+                    <li class="lesson-item"><a href="lesson18.html" class="lesson-link" data-lesson="lesson18"><span class="lesson-number">18</span><span class="lesson-title">LocalStorage та JSON</span></a></li>
+                    <li class="lesson-item"><a href="lesson19.html" class="lesson-link" data-lesson="lesson19"><span class="lesson-number">19</span><span class="lesson-title">Fetch API та асинхронність</span></a></li>
+                    <li class="lesson-item"><a href="lesson20.html" class="lesson-link" data-lesson="lesson20"><span class="lesson-number">20</span><span class="lesson-title">Фінальний проєкт: TODO</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <div class="lesson-container">
+                <header class="lesson-header">
+                    <h1>Урок 9: CSS Flexbox</h1>
+                    <p class="lesson-meta">Гнучка одновимірна система компонування</p>
+                </header>
+                
+                <div class="lesson-content">
+                    <section>
+                        <h2>Що таке Flexbox?</h2>
+                        <p>
+                            Flexbox (Flexible Box Layout) - це одновимірна система компонування, яка дозволяє 
+                            ефективно розподіляти простір між елементами контейнера і керувати їх вирівнюванням. 
+                            "Одновимірна" означає, що flexbox працює або з рядками, або з колонками за раз.
+                        </p>
+                        
+                        <div class="info-box">
+                            <h4>Основні поняття Flexbox</h4>
+                            <ul>
+                                <li><strong>Flex контейнер</strong> - батьківський елемент з display: flex</li>
+                                <li><strong>Flex елементи</strong> - безпосередні діти flex контейнера</li>
+                                <li><strong>Головна вісь</strong> - основний напрямок (row або column)</li>
+                                <li><strong>Поперечна вісь</strong> - перпендикулярна до головної</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Властивості Flex контейнера</h2>
+                        
+                        <h3>display: flex</h3>
+                        <p>Створює flex контейнер.</p>
+                        <div class="code-block">
+                            <pre><code>.container {
+    display: flex; /* або inline-flex */
+}
+
+/* HTML */
+&lt;div class="container"&gt;
+    &lt;div&gt;Елемент 1&lt;/div&gt;
+    &lt;div&gt;Елемент 2&lt;/div&gt;
+    &lt;div&gt;Елемент 3&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                        
+                        <h3>flex-direction</h3>
+                        <p>Визначає напрямок головної осі.</p>
+                        <div class="code-block">
+                            <pre><code>.container {
+    display: flex;
+    
+    /* Горизонтально зліва направо (за замовчуванням) */
+    flex-direction: row;
+    
+    /* Горизонтально справа наліво */
+    flex-direction: row-reverse;
+    
+    /* Вертикально зверху вниз */
+    flex-direction: column;
+    
+    /* Вертикально знизу вверх */
+    flex-direction: column-reverse;
+}</code></pre>
+                        </div>
+                        
+                        <h3>flex-wrap</h3>
+                        <p>Визначає, чи можуть flex елементи переноситися на новий рядок.</p>
+                        <div class="code-block">
+                            <pre><code>.container {
+    display: flex;
+    
+    /* Всі елементи в одному рядку (за замовчуванням) */
+    flex-wrap: nowrap;
+    
+    /* Перенос на новий рядок */
+    flex-wrap: wrap;
+    
+    /* Перенос у зворотному порядку */
+    flex-wrap: wrap-reverse;
+}
+
+/* Скорочена форма flex-direction + flex-wrap */
+.container {
+    flex-flow: row wrap; /* direction wrap */
+}</code></pre>
+                        </div>
+                        
+                        <h3>justify-content</h3>
+                        <p>Вирівнювання вздовж головної осі.</p>
+                        <div class="code-block">
+                            <pre><code>.container {
+    display: flex;
+    
+    /* На початку (за замовчуванням) */
+    justify-content: flex-start;
+    
+    /* В кінці */
+    justify-content: flex-end;
+    
+    /* По центру */
+    justify-content: center;
+    
+    /* Рівномірно з відступами між */
+    justify-content: space-between;
+    
+    /* Рівномірно з відступами навколо */
+    justify-content: space-around;
+    
+    /* Рівномірно з однаковими відступами */
+    justify-content: space-evenly;
+}</code></pre>
+                        </div>
+                        
+                        <h3>align-items</h3>
+                        <p>Вирівнювання вздовж поперечної осі (для одного рядка).</p>
+                        <div class="code-block">
+                            <pre><code>.container {
+    display: flex;
+    
+    /* Розтягування на всю висоту (за замовчуванням) */
+    align-items: stretch;
+    
+    /* На початку поперечної осі */
+    align-items: flex-start;
+    
+    /* В кінці поперечної осі */
+    align-items: flex-end;
+    
+    /* По центру поперечної осі */
+    align-items: center;
+    
+    /* По базовій лінії тексту */
+    align-items: baseline;
+}</code></pre>
+                        </div>
+                        
+                        <h3>align-content</h3>
+                        <p>Вирівнювання рядків, коли є flex-wrap: wrap і кілька рядків.</p>
+                        <div class="code-block">
+                            <pre><code>.container {
+    display: flex;
+    flex-wrap: wrap;
+    height: 500px; /* Потрібна фіксована висота */
+    
+    /* Розтягування рядків (за замовчуванням) */
+    align-content: stretch;
+    
+    /* Рядки на початку */
+    align-content: flex-start;
+    
+    /* Рядки в кінці */
+    align-content: flex-end;
+    
+    /* Рядки по центру */
+    align-content: center;
+    
+    /* Відступи між рядками */
+    align-content: space-between;
+    
+    /* Відступи навколо рядків */
+    align-content: space-around;
+    
+    /* Рівномірні відступи */
+    align-content: space-evenly;
+}</code></pre>
+                        </div>
+                        
+                        <h3>gap (row-gap, column-gap)</h3>
+                        <p>Відступи між flex елементами.</p>
+                        <div class="code-block">
+                            <pre><code>.container {
+    display: flex;
+    
+    /* Відступ між всіма елементами */
+    gap: 20px;
+    
+    /* Різні відступи для рядків та колонок */
+    gap: 20px 10px; /* row-gap column-gap */
+    
+    /* Або окремо */
+    row-gap: 20px;
+    column-gap: 10px;
+}</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Властивості Flex елементів</h2>
+                        
+                        <h3>flex-grow</h3>
+                        <p>Визначає, скільки вільного простору може зайняти елемент.</p>
+                        <div class="code-block">
+                            <pre><code>.item {
+    /* Не збільшується (за замовчуванням) */
+    flex-grow: 0;
+    
+    /* Може збільшуватися */
+    flex-grow: 1;
+    
+    /* Збільшується вдвічі швидше за інші */
+    flex-grow: 2;
+}
+
+/* Приклад */
+.container {
+    display: flex;
+}
+
+.item-1 {
+    flex-grow: 1; /* Займає 1 частину */
+}
+
+.item-2 {
+    flex-grow: 2; /* Займає 2 частини */
+}
+
+.item-3 {
+    flex-grow: 1; /* Займає 1 частину */
+}
+/* Всього 4 частини, item-2 займе 50% вільного простору */</code></pre>
+                        </div>
+                        
+                        <h3>flex-shrink</h3>
+                        <p>Визначає, як елемент може зменшуватися.</p>
+                        <div class="code-block">
+                            <pre><code>.item {
+    /* Може зменшуватися (за замовчуванням) */
+    flex-shrink: 1;
+    
+    /* Не зменшується */
+    flex-shrink: 0;
+    
+    /* Зменшується швидше */
+    flex-shrink: 2;
+}</code></pre>
+                        </div>
+                        
+                        <h3>flex-basis</h3>
+                        <p>Початковий розмір елемента до розподілу вільного простору.</p>
+                        <div class="code-block">
+                            <pre><code>.item {
+    /* Автоматично (за замовчуванням) */
+    flex-basis: auto;
+    
+    /* Фіксований розмір */
+    flex-basis: 200px;
+    flex-basis: 30%;
+    flex-basis: 20em;
+    
+    /* Розмір контенту */
+    flex-basis: content;
+    
+    /* Нульовий базовий розмір */
+    flex-basis: 0;
+}</code></pre>
+                        </div>
+                        
+                        <h3>flex (скорочення)</h3>
+                        <p>Комбінує flex-grow, flex-shrink і flex-basis.</p>
+                        <div class="code-block">
+                            <pre><code>/* flex: grow shrink basis */
+
+.item {
+    /* grow: 0, shrink: 1, basis: auto (за замовчуванням) */
+    flex: 0 1 auto;
+    
+    /* Скорочення для flex: 1 1 0% */
+    flex: 1;
+    
+    /* Не збільшується, не зменшується */
+    flex: 0 0 200px;
+    
+    /* Поширені варіанти */
+    flex: auto;     /* 1 1 auto */
+    flex: initial;  /* 0 1 auto */
+    flex: none;     /* 0 0 auto */
+}
+
+/* Практичні приклади */
+
+/* Елемент займає весь доступний простір */
+.grow {
+    flex: 1;
+}
+
+/* Фіксований розмір */
+.fixed {
+    flex: 0 0 200px;
+}
+
+/* Мінімальна ширина з можливістю збільшення */
+.min-grow {
+    flex: 1 0 100px;
+}</code></pre>
+                        </div>
+                        
+                        <h3>order</h3>
+                        <p>Змінює порядок відображення елементів.</p>
+                        <div class="code-block">
+                            <pre><code>.item {
+    /* За замовчуванням всі мають order: 0 */
+    order: 0;
+}
+
+.item-1 { order: 2; } /* Відображається третім */
+.item-2 { order: 1; } /* Відображається другим */
+.item-3 { order: 0; } /* Відображається першим */
+.item-4 { order: -1; } /* Відображається самим першим */</code></pre>
+                        </div>
+                        
+                        <h3>align-self</h3>
+                        <p>Перевизначає align-items для окремого елемента.</p>
+                        <div class="code-block">
+                            <pre><code>.container {
+    display: flex;
+    align-items: center; /* Всі по центру */
+}
+
+.item-special {
+    /* Цей елемент буде на початку */
+    align-self: flex-start;
+    
+    /* Інші значення */
+    align-self: flex-end;
+    align-self: center;
+    align-self: stretch;
+    align-self: baseline;
+    align-self: auto; /* Використовує значення з контейнера */
+}</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Практичні приклади компонування</h2>
+                        
+                        <h3>Центрування елемента</h3>
+                        <div class="code-block">
+                            <pre><code>/* Найпростіший спосіб центрування */
+.container {
+    display: flex;
+    justify-content: center; /* Горизонтально */
+    align-items: center;     /* Вертикально */
+    height: 100vh;
+}
+
+/* HTML */
+&lt;div class="container"&gt;
+    &lt;div class="centered-box"&gt;Я по центру!&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Горизонтальна навігація</h3>
+                        <div class="code-block">
+                            <pre><code>.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #333;
+}
+
+.nav-logo {
+    flex: 0 0 auto;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+/* HTML */
+&lt;nav class="navigation"&gt;
+    &lt;div class="nav-logo"&gt;Логотип&lt;/div&gt;
+    &lt;ul class="nav-links"&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Головна&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Про нас&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Контакти&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Карткова сітка</h3>
+                        <div class="code-block">
+                            <pre><code>.card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    flex: 1 1 300px; /* Мінімальна ширина 300px */
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* HTML */
+&lt;div class="card-grid"&gt;
+    &lt;div class="card"&gt;Картка 1&lt;/div&gt;
+    &lt;div class="card"&gt;Картка 2&lt;/div&gt;
+    &lt;div class="card"&gt;Картка 3&lt;/div&gt;
+    &lt;div class="card"&gt;Картка 4&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Sidebar Layout</h3>
+                        <div class="code-block">
+                            <pre><code>.page-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    flex: 0 0 250px;
+    background-color: #f5f5f5;
+    padding: 20px;
+}
+
+.main-content {
+    flex: 1; /* Займає весь залишковий простір */
+    padding: 20px;
+}
+
+/* HTML */
+&lt;div class="page-layout"&gt;
+    &lt;aside class="sidebar"&gt;Sidebar&lt;/aside&gt;
+    &lt;main class="main-content"&gt;Main Content&lt;/main&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Sticky Footer</h3>
+                        <div class="code-block">
+                            <pre><code>body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
+
+header {
+    flex: 0 0 auto;
+    padding: 20px;
+    background-color: #333;
+}
+
+main {
+    flex: 1; /* Займає весь простір між header і footer */
+    padding: 20px;
+}
+
+footer {
+    flex: 0 0 auto;
+    padding: 20px;
+    background-color: #333;
+}
+
+/* HTML */
+&lt;body&gt;
+    &lt;header&gt;Header&lt;/header&gt;
+    &lt;main&gt;Content&lt;/main&gt;
+    &lt;footer&gt;Footer&lt;/footer&gt;
+&lt;/body&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Media Object</h3>
+                        <div class="code-block">
+                            <pre><code>.media {
+    display: flex;
+    gap: 20px;
+}
+
+.media-image {
+    flex: 0 0 100px; /* Фіксована ширина зображення */
+}
+
+.media-image img {
+    width: 100%;
+    height: auto;
+}
+
+.media-content {
+    flex: 1; /* Займає весь залишковий простір */
+}
+
+/* HTML */
+&lt;div class="media"&gt;
+    &lt;div class="media-image"&gt;
+        &lt;img src="avatar.jpg" alt="Avatar"&gt;
+    &lt;/div&gt;
+    &lt;div class="media-content"&gt;
+        &lt;h3&gt;Заголовок&lt;/h3&gt;
+        &lt;p&gt;Опис...&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Рівновисокі колонки</h3>
+                        <div class="code-block">
+                            <pre><code>.columns {
+    display: flex;
+    gap: 20px;
+}
+
+.column {
+    flex: 1; /* Всі колонки однакової ширини */
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+/* Колонки автоматично стають однієї висоти! */
+
+/* HTML */
+&lt;div class="columns"&gt;
+    &lt;div class="column"&gt;
+        &lt;p&gt;Короткий текст&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="column"&gt;
+        &lt;p&gt;Довгий текст...&lt;/p&gt;
+        &lt;p&gt;Більше контенту...&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="column"&gt;
+        &lt;p&gt;Середній текст&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Адаптивний Flexbox</h2>
+                        <div class="code-block">
+                            <pre><code>/* Мобільні: вертикально */
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Планшети: 2 колонки */
+@media (min-width: 768px) {
+    .container {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    
+    .item {
+        flex: 1 1 45%; /* Приблизно 2 в рядку */
+    }
+}
+
+/* Десктоп: 3+ колонки */
+@media (min-width: 1024px) {
+    .item {
+        flex: 1 1 30%; /* Приблизно 3 в рядку */
+    }
+}
+
+/* Великі екрани: 4 колонки */
+@media (min-width: 1440px) {
+    .item {
+        flex: 1 1 22%; /* Приблизно 4 в рядку */
+    }
+}</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Поширені патерни</h2>
+                        
+                        <h3>Holy Grail Layout</h3>
+                        <div class="code-block">
+                            <pre><code>body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header, footer {
+    flex: 0 0 auto;
+}
+
+main {
+    flex: 1;
+    display: flex;
+}
+
+.sidebar-left {
+    flex: 0 0 200px;
+}
+
+.content {
+    flex: 1;
+}
+
+.sidebar-right {
+    flex: 0 0 200px;
+}
+
+@media (max-width: 768px) {
+    main {
+        flex-direction: column;
+    }
+    
+    .sidebar-left,
+    .sidebar-right {
+        flex: 0 0 auto;
+    }
+}</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Flexbox Cheat Sheet</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Властивість</th>
+                                    <th>Застосування</th>
+                                    <th>Значення</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>display</td>
+                                    <td>Контейнер</td>
+                                    <td>flex | inline-flex</td>
+                                </tr>
+                                <tr>
+                                    <td>flex-direction</td>
+                                    <td>Контейнер</td>
+                                    <td>row | row-reverse | column | column-reverse</td>
+                                </tr>
+                                <tr>
+                                    <td>flex-wrap</td>
+                                    <td>Контейнер</td>
+                                    <td>nowrap | wrap | wrap-reverse</td>
+                                </tr>
+                                <tr>
+                                    <td>justify-content</td>
+                                    <td>Контейнер</td>
+                                    <td>flex-start | flex-end | center | space-between | space-around | space-evenly</td>
+                                </tr>
+                                <tr>
+                                    <td>align-items</td>
+                                    <td>Контейнер</td>
+                                    <td>stretch | flex-start | flex-end | center | baseline</td>
+                                </tr>
+                                <tr>
+                                    <td>align-content</td>
+                                    <td>Контейнер</td>
+                                    <td>stretch | flex-start | flex-end | center | space-between | space-around</td>
+                                </tr>
+                                <tr>
+                                    <td>gap</td>
+                                    <td>Контейнер</td>
+                                    <td>&lt;length&gt;</td>
+                                </tr>
+                                <tr>
+                                    <td>flex-grow</td>
+                                    <td>Елемент</td>
+                                    <td>&lt;number&gt;</td>
+                                </tr>
+                                <tr>
+                                    <td>flex-shrink</td>
+                                    <td>Елемент</td>
+                                    <td>&lt;number&gt;</td>
+                                </tr>
+                                <tr>
+                                    <td>flex-basis</td>
+                                    <td>Елемент</td>
+                                    <td>auto | &lt;length&gt;</td>
+                                </tr>
+                                <tr>
+                                    <td>flex</td>
+                                    <td>Елемент</td>
+                                    <td>&lt;grow&gt; &lt;shrink&gt; &lt;basis&gt;</td>
+                                </tr>
+                                <tr>
+                                    <td>order</td>
+                                    <td>Елемент</td>
+                                    <td>&lt;integer&gt;</td>
+                                </tr>
+                                <tr>
+                                    <td>align-self</td>
+                                    <td>Елемент</td>
+                                    <td>auto | flex-start | flex-end | center | baseline | stretch</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                    
+                    <section>
+                        <div class="info-box success">
+                            <h4>Підсумок</h4>
+                            <p>
+                                Flexbox - потужний інструмент для створення гнучких одновимірних макетів. 
+                                Використовуйте його для навігації, карток, вирівнювання контенту та створення 
+                                адаптивних компонентів. Пам'ятайте: flexbox чудово підходить для компонентів та 
+                                одновимірних макетів, для двовимірних сіток краще використовувати CSS Grid 
+                                (наступний урок). Комбінуйте властивості контейнера та елементів для досягнення 
+                                потрібного результату.
+                            </p>
+                        </div>
+                    </section>
+                    
+                    <button id="complete-lesson" class="complete-button" data-lesson="lesson09">
+                        Позначити урок як пройдений
+                    </button>
+                    
+                    <nav class="lesson-navigation">
+                        <a href="lesson08.html" class="nav-button prev">Попередній урок</a>
+                        <a href="lesson10.html" class="nav-button next">Наступний урок</a>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 15: DOM маніпуляції | HTML та JavaScript</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    
+    <div class="app-container">
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h1>HTML & JS</h1>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <nav>
+                <ul class="lessons-list">
+                    <li class="lesson-item"><a href="lesson01.html" class="lesson-link" data-lesson="lesson01"><span class="lesson-number">01</span><span class="lesson-title">Семантичний HTML5</span></a></li>
+                    <li class="lesson-item"><a href="lesson02.html" class="lesson-link" data-lesson="lesson02"><span class="lesson-number">02</span><span class="lesson-title">Таблиці та списки</span></a></li>
+                    <li class="lesson-item"><a href="lesson03.html" class="lesson-link" data-lesson="lesson03"><span class="lesson-number">03</span><span class="lesson-title">Форми (частина 1)</span></a></li>
+                    <li class="lesson-item"><a href="lesson04.html" class="lesson-link" data-lesson="lesson04"><span class="lesson-number">04</span><span class="lesson-title">Форми (частина 2)</span></a></li>
+                    <li class="lesson-item"><a href="lesson05.html" class="lesson-link" data-lesson="lesson05"><span class="lesson-number">05</span><span class="lesson-title">Мультимедіа</span></a></li>
+                    <li class="lesson-item"><a href="lesson06.html" class="lesson-link" data-lesson="lesson06"><span class="lesson-number">06</span><span class="lesson-title">Meta-теги та SEO</span></a></li>
+                    <li class="lesson-item"><a href="lesson07.html" class="lesson-link" data-lesson="lesson07"><span class="lesson-number">07</span><span class="lesson-title">Посилання та навігація</span></a></li>
+                    <li class="lesson-item"><a href="lesson08.html" class="lesson-link" data-lesson="lesson08"><span class="lesson-number">08</span><span class="lesson-title">Доступність (a11y)</span></a></li>
+                    <li class="lesson-item"><a href="lesson09.html" class="lesson-link" data-lesson="lesson09"><span class="lesson-number">09</span><span class="lesson-title">CSS Flexbox</span></a></li>
+                    <li class="lesson-item"><a href="lesson10.html" class="lesson-link" data-lesson="lesson10"><span class="lesson-number">10</span><span class="lesson-title">CSS Grid</span></a></li>
+                    <li class="lesson-item"><a href="lesson11.html" class="lesson-link" data-lesson="lesson11"><span class="lesson-number">11</span><span class="lesson-title">CSS анімації</span></a></li>
+                    <li class="lesson-item"><a href="lesson12.html" class="lesson-link" data-lesson="lesson12"><span class="lesson-number">12</span><span class="lesson-title">CSS змінні та адаптивність</span></a></li>
+                    <li class="lesson-item"><a href="lesson13.html" class="lesson-link" data-lesson="lesson13"><span class="lesson-number">13</span><span class="lesson-title">Основи JavaScript</span></a></li>
+                    <li class="lesson-item"><a href="lesson14.html" class="lesson-link" data-lesson="lesson14"><span class="lesson-number">14</span><span class="lesson-title">Функції та масиви</span></a></li>
+                    <li class="lesson-item"><a href="lesson15.html" class="lesson-link" data-lesson="lesson15"><span class="lesson-number">15</span><span class="lesson-title">DOM маніпуляції</span></a></li>
+                    <li class="lesson-item"><a href="lesson16.html" class="lesson-link" data-lesson="lesson16"><span class="lesson-number">16</span><span class="lesson-title">Події та обробники</span></a></li>
+                    <li class="lesson-item"><a href="lesson17.html" class="lesson-link" data-lesson="lesson17"><span class="lesson-number">17</span><span class="lesson-title">Робота з формами через JS</span></a></li>
+                    <li class="lesson-item"><a href="lesson18.html" class="lesson-link" data-lesson="lesson18"><span class="lesson-number">18</span><span class="lesson-title">LocalStorage та JSON</span></a></li>
+                    <li class="lesson-item"><a href="lesson19.html" class="lesson-link" data-lesson="lesson19"><span class="lesson-number">19</span><span class="lesson-title">Fetch API та асинхронність</span></a></li>
+                    <li class="lesson-item"><a href="lesson20.html" class="lesson-link" data-lesson="lesson20"><span class="lesson-number">20</span><span class="lesson-title">Фінальний проєкт: TODO</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <div class="lesson-container">
+                <header class="lesson-header">
+                    <h1>Урок 15: DOM маніпуляції</h1>
+                    <p class="lesson-meta">Взаємодія з HTML через JavaScript: querySelector, createElement, classList</p>
+                </header>
+                
+                <div class="lesson-content">
+                    <section>
+                        <h2>Що таке DOM?</h2>
+                        <p>
+                            DOM (Document Object Model) — це програмний інтерфейс для HTML документів. 
+                            Він представляє структуру сторінки у вигляді дерева об'єктів, які можна змінювати через JavaScript.
+                        </p>
+                        
+                        <div class="info-box">
+                            <h4>Можливості DOM маніпуляцій</h4>
+                            <ul>
+                                <li>Знаходити та отримувати доступ до елементів</li>
+                                <li>Змінювати текст та HTML вміст</li>
+                                <li>Додавати, видаляти та переміщувати елементи</li>
+                                <li>Змінювати стилі та класи елементів</li>
+                                <li>Отримувати та змінювати атрибути</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Пошук елементів: querySelector</h2>
+                        <p>
+                            Сучасні методи <code>querySelector</code> та <code>querySelectorAll</code> 
+                            використовують CSS-селектори для пошуку елементів.
+                        </p>
+                        
+                        <div class="code-block">
+                            <pre><code>// querySelector - знаходить перший елемент
+const title = document.querySelector('h1');
+const firstButton = document.querySelector('.button');
+const mainContent = document.querySelector('#main-content');
+
+// querySelectorAll - знаходить всі елементи (повертає NodeList)
+const allButtons = document.querySelectorAll('.button');
+const allLinks = document.querySelectorAll('a');
+
+// Складні селектори
+const activeItem = document.querySelector('.item.active');
+const firstListItem = document.querySelector('ul > li:first-child');
+const checkedInputs = document.querySelectorAll('input:checked');
+
+// Пошук усередині елемента
+const container = document.querySelector('.container');
+const childParagraph = container.querySelector('p');
+
+// Старі методи (для довідки, краще використовувати querySelector)
+const byId = document.getElementById('my-id');
+const byClass = document.getElementsByClassName('my-class');
+const byTag = document.getElementsByTagName('div');</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="10">// Знайдіть та виведіть елементи
+const allParagraphs = document.querySelectorAll('p');
+console.log('Кількість параграфів:', allParagraphs.length);
+
+const firstLink = document.querySelector('a');
+if (firstLink) {
+    console.log('Перше посилання:', firstLink.textContent);
+}
+
+const buttons = document.querySelectorAll('.run-button');
+console.log('Кількість кнопок:', buttons.length);</textarea>
+                            <button class="run-button" onclick="runCode(this)">▶ Запустити</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Зміна вмісту елементів</h2>
+                        <div class="code-block">
+                            <pre><code>// textContent - змінює тільки текст (безпечно)
+const heading = document.querySelector('h1');
+heading.textContent = 'Новий заголовок';
+
+// innerHTML - змінює HTML (потенційно небезпечно з користувацькими даними)
+const container = document.querySelector('.container');
+container.innerHTML = '<p>Новий <strong>HTML</strong> вміст</p>';
+
+// innerText - як textContent, але враховує CSS (видимість)
+const paragraph = document.querySelector('p');
+paragraph.innerText = 'Видимий текст';
+
+// Приклад зміни вмісту
+const counter = document.querySelector('#counter');
+let count = 0;
+
+function increment() {
+    count++;
+    counter.textContent = count;
+}
+
+// Додавання до існуючого вмісту
+const list = document.querySelector('ul');
+list.innerHTML += '<li>Новий елемент</li>';
+
+// Безпечніше додавати через += для textContent
+const output = document.querySelector('.output');
+output.textContent += 'Додатковий текст\n';</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Інтерактивний приклад:</h4>
+                            <textarea class="code-input" rows="12">// HTML для тестування
+document.body.innerHTML += `
+    <div id="demo-box" style="padding: 20px; border: 2px solid #4CAF50; margin: 10px;">
+        <h3 id="demo-title">Початковий заголовок</h3>
+        <p id="demo-text">Початковий текст</p>
+        <button onclick="changeContent()">Змінити вміст</button>
+    </div>
+`;
+
+function changeContent() {
+    document.querySelector('#demo-title').textContent = 'Оновлений заголовок!';
+    document.querySelector('#demo-text').innerHTML = 'Текст з <strong>форматуванням</strong>';
+}
+
+console.log('Інтерактивний блок додано!');</textarea>
+                            <button class="run-button" onclick="runHTML(this)">▶ Запустити HTML</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Створення та додавання елементів</h2>
+                        <div class="code-block">
+                            <pre><code>// createElement - створює новий елемент
+const newDiv = document.createElement('div');
+const newParagraph = document.createElement('p');
+const newButton = document.createElement('button');
+
+// Налаштування створеного елемента
+newParagraph.textContent = 'Це новий параграф';
+newParagraph.className = 'text-block';
+newParagraph.id = 'unique-id';
+
+newButton.textContent = 'Натисни мене';
+newButton.onclick = function() {
+    alert('Клік!');
+};
+
+// Додавання елементів
+const container = document.querySelector('.container');
+
+// appendChild - додає в кінець
+container.appendChild(newParagraph);
+
+// append - може додати кілька елементів або текст
+container.append(newButton, ' та текст');
+
+// prepend - додає на початок
+container.prepend(newDiv);
+
+// insertBefore - вставляє перед вказаним елементом
+const reference = document.querySelector('.reference');
+container.insertBefore(newDiv, reference);
+
+// insertAdjacentHTML - вставляє HTML
+container.insertAdjacentHTML('beforeend', '<p>HTML вміст</p>');
+// 'beforebegin' - перед елементом
+// 'afterbegin' - на початок елемента
+// 'beforeend' - в кінець елемента
+// 'afterend' - після елемента
+
+// Створення списку динамічно
+const ul = document.createElement('ul');
+const items = ['Яблуко', 'Банан', 'Апельсин'];
+
+items.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item;
+    ul.appendChild(li);
+});
+
+document.body.appendChild(ul);</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="14">// Створення списку завдань
+const todoContainer = document.createElement('div');
+todoContainer.style.cssText = 'padding: 20px; border: 2px solid #2196F3; margin: 10px;';
+
+const title = document.createElement('h3');
+title.textContent = 'Мої завдання';
+todoContainer.appendChild(title);
+
+const todoList = document.createElement('ul');
+const todos = ['Вивчити DOM', 'Практикувати JavaScript', 'Створити проєкт'];
+
+todos.forEach(todo => {
+    const li = document.createElement('li');
+    li.textContent = todo;
+    li.style.marginBottom = '5px';
+    todoList.appendChild(li);
+});
+
+todoContainer.appendChild(todoList);
+document.body.appendChild(todoContainer);
+
+console.log('Список завдань створено!');</textarea>
+                            <button class="run-button" onclick="runHTML(this)">▶ Запустити HTML</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Видалення елементів</h2>
+                        <div class="code-block">
+                            <pre><code>// remove - видаляє сам елемент
+const element = document.querySelector('.to-remove');
+element.remove();
+
+// removeChild - видаляє дочірній елемент
+const parent = document.querySelector('.parent');
+const child = document.querySelector('.child');
+parent.removeChild(child);
+
+// Видалення всіх дочірніх елементів
+const container = document.querySelector('.container');
+container.innerHTML = ''; // Швидкий спосіб
+
+// Або через цикл
+while (container.firstChild) {
+    container.removeChild(container.firstChild);
+}
+
+// Видалення елемента після кліку
+const buttons = document.querySelectorAll('.delete-btn');
+buttons.forEach(btn => {
+    btn.addEventListener('click', function() {
+        this.parentElement.remove(); // видалити батьківський елемент
+    });
+});</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Інтерактивний приклад:</h4>
+                            <textarea class="code-input" rows="16">// Створення списку з кнопками видалення
+const listContainer = document.createElement('div');
+listContainer.style.cssText = 'padding: 20px; border: 2px solid #f44336; margin: 10px;';
+
+const heading = document.createElement('h3');
+heading.textContent = 'Клікніть щоб видалити';
+listContainer.appendChild(heading);
+
+const list = document.createElement('ul');
+const items = ['Елемент 1', 'Елемент 2', 'Елемент 3', 'Елемент 4'];
+
+items.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item + ' ';
+    li.style.marginBottom = '8px';
+    
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = '❌';
+    deleteBtn.onclick = function() {
+        li.remove();
+    };
+    
+    li.appendChild(deleteBtn);
+    list.appendChild(li);
+});
+
+listContainer.appendChild(list);
+document.body.appendChild(listContainer);
+
+console.log('Список з кнопками видалення створено!');</textarea>
+                            <button class="run-button" onclick="runHTML(this)">▶ Запустити HTML</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Робота з класами: classList</h2>
+                        <div class="code-block">
+                            <pre><code>const element = document.querySelector('.box');
+
+// add - додати клас
+element.classList.add('active');
+element.classList.add('highlight', 'bordered'); // кілька класів
+
+// remove - видалити клас
+element.classList.remove('active');
+
+// toggle - переключити клас (якщо є - видалити, якщо немає - додати)
+element.classList.toggle('visible');
+
+// contains - перевірити наявність класу
+if (element.classList.contains('active')) {
+    console.log('Елемент активний');
+}
+
+// replace - замінити один клас на інший
+element.classList.replace('old-class', 'new-class');
+
+// Приклад: перемикання теми
+const themeToggle = document.querySelector('#theme-toggle');
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-theme');
+});
+
+// Приклад: табуляція
+const tabs = document.querySelectorAll('.tab');
+tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        // Видалити active з усіх
+        tabs.forEach(t => t.classList.remove('active'));
+        // Додати до поточного
+        tab.classList.add('active');
+    });
+});</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Інтерактивний приклад:</h4>
+                            <textarea class="code-input" rows="20">// Створення інтерактивного меню з табами
+const tabContainer = document.createElement('div');
+tabContainer.style.cssText = 'padding: 20px; border: 2px solid #9C27B0; margin: 10px;';
+
+// Створення табів
+const tabButtons = document.createElement('div');
+tabButtons.style.cssText = 'display: flex; gap: 10px; margin-bottom: 15px;';
+
+['Таб 1', 'Таб 2', 'Таб 3'].forEach((tabName, index) => {
+    const btn = document.createElement('button');
+    btn.textContent = tabName;
+    btn.style.cssText = 'padding: 10px 20px; cursor: pointer;';
+    btn.className = 'tab-btn';
+    if (index === 0) btn.classList.add('active');
+    
+    btn.onclick = function() {
+        // Видалити active з усіх кнопок
+        document.querySelectorAll('.tab-btn').forEach(b => {
+            b.classList.remove('active');
+            b.style.background = '';
+        });
+        // Додати до поточної
+        btn.classList.add('active');
+        btn.style.background = '#9C27B0';
+        btn.style.color = 'white';
+        
+        contentDiv.textContent = `Вміст для ${tabName}`;
+    };
+    
+    tabButtons.appendChild(btn);
+});
+
+const contentDiv = document.createElement('div');
+contentDiv.style.cssText = 'padding: 15px; background: #f5f5f5;';
+contentDiv.textContent = 'Вміст для Таб 1';
+
+tabContainer.appendChild(tabButtons);
+tabContainer.appendChild(contentDiv);
+document.body.appendChild(tabContainer);
+
+console.log('Табуляція створена!');</textarea>
+                            <button class="run-button" onclick="runHTML(this)">▶ Запустити HTML</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Робота з атрибутами</h2>
+                        <div class="code-block">
+                            <pre><code>const link = document.querySelector('a');
+const image = document.querySelector('img');
+const input = document.querySelector('input');
+
+// getAttribute - отримати значення атрибута
+const href = link.getAttribute('href');
+const src = image.getAttribute('src');
+
+// setAttribute - встановити атрибут
+link.setAttribute('href', 'https://example.com');
+link.setAttribute('target', '_blank');
+image.setAttribute('alt', 'Опис зображення');
+
+// removeAttribute - видалити атрибут
+link.removeAttribute('target');
+
+// hasAttribute - перевірити наявність атрибута
+if (link.hasAttribute('href')) {
+    console.log('Посилання має атрибут href');
+}
+
+// Пряме звернення до атрибутів (для стандартних атрибутів)
+link.href = 'https://example.com';
+image.src = 'image.jpg';
+input.value = 'текст';
+input.disabled = true;
+
+// data-атрибути
+const element = document.querySelector('.user-card');
+element.dataset.userId = '123';
+element.dataset.userName = 'Іван';
+
+console.log(element.dataset.userId);  // '123'
+console.log(element.getAttribute('data-user-id'));  // '123'</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="14">// Створення інтерактивної картки
+const card = document.createElement('div');
+card.style.cssText = 'padding: 20px; border: 2px solid #FF9800; margin: 10px;';
+card.dataset.productId = '42';
+card.dataset.productName = 'JavaScript Книга';
+
+const title = document.createElement('h3');
+title.textContent = card.dataset.productName;
+
+const info = document.createElement('p');
+info.textContent = `ID товару: ${card.dataset.productId}`;
+
+const link = document.createElement('a');
+link.href = '#';
+link.textContent = 'Детальніше';
+link.setAttribute('target', '_blank');
+
+card.appendChild(title);
+card.appendChild(info);
+card.appendChild(link);
+document.body.appendChild(card);
+
+console.log('Картка створена! data-атрибути:', card.dataset);</textarea>
+                            <button class="run-button" onclick="runHTML(this)">▶ Запустити HTML</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Зміна стилів через JavaScript</h2>
+                        <div class="code-block">
+                            <pre><code>const element = document.querySelector('.box');
+
+// style - пряма зміна CSS властивостей
+element.style.color = 'red';
+element.style.backgroundColor = 'yellow';
+element.style.fontSize = '20px';
+element.style.padding = '10px';
+
+// cssText - встановлення кількох стилів одразу
+element.style.cssText = 'color: blue; background: white; padding: 15px;';
+
+// Отримання значення стилю
+console.log(element.style.color);  // 'blue'
+
+// getComputedStyle - отримати фактичні обчислені стили (включно з CSS)
+const computed = window.getComputedStyle(element);
+console.log(computed.color);        // rgb(0, 0, 255)
+console.log(computed.fontSize);     // 20px
+console.log(computed.display);      // block
+
+// Видалення стилю
+element.style.color = '';  // видаляє inline стиль
+
+// Приклад: зміна кольору при наведенні
+const button = document.querySelector('button');
+button.addEventListener('mouseenter', () => {
+    button.style.backgroundColor = '#4CAF50';
+});
+button.addEventListener('mouseleave', () => {
+    button.style.backgroundColor = '';
+});</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Інтерактивний приклад:</h4>
+                            <textarea class="code-input" rows="18">// Створення кольорового міксера
+const mixer = document.createElement('div');
+mixer.style.cssText = 'padding: 20px; border: 2px solid #607D8B; margin: 10px;';
+
+const colorBox = document.createElement('div');
+colorBox.style.cssText = `
+    width: 200px; 
+    height: 200px; 
+    background: rgb(100, 100, 100);
+    margin-bottom: 15px;
+    transition: all 0.3s;
+`;
+
+const randomBtn = document.createElement('button');
+randomBtn.textContent = 'Випадковий колір';
+randomBtn.onclick = function() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    
+    colorBox.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+    console.log(`Новий колір: rgb(${r}, ${g}, ${b})`);
+};
+
+mixer.appendChild(colorBox);
+mixer.appendChild(randomBtn);
+document.body.appendChild(mixer);
+
+console.log('Кольоровий міксер створено!');</textarea>
+                            <button class="run-button" onclick="runHTML(this)">▶ Запустити HTML</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <div class="info-box success">
+                            <h4>Підсумок</h4>
+                            <p>
+                                Ви навчилися маніпулювати DOM: знаходити елементи через <code>querySelector</code>, 
+                                створювати нові елементи через <code>createElement</code>, змінювати вміст, 
+                                працювати з класами через <code>classList</code>, змінювати атрибути та стилі. 
+                                Ці знання є основою для створення інтерактивних веб-додатків.
+                            </p>
+                        </div>
+                    </section>
+                    
+                    <button id="complete-lesson" class="complete-button" data-lesson="lesson15">
+                        Позначити урок як пройдений
+                    </button>
+                    
+                    <nav class="lesson-navigation">
+                        <a href="lesson14.html" class="nav-button prev">Попередній урок</a>
+                        <a href="lesson16.html" class="nav-button next">Наступний урок</a>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/app.js"></script>
+</body>
+</html>

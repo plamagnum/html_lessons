@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Інтерактивні уроки HTML та JavaScript для початківців та середнього рівня">
+    <title>HTML та JavaScript - Інтерактивні уроки</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Кнопка згортання/розгортання сайдбару -->
+    <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+    
+    <!-- Overlay для мобільних пристроїв -->
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    
+    <div class="app-container">
+        <!-- Бічна панель навігації -->
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h1>HTML & JS</h1>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+            
+            <!-- Прогрес бар -->
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill" style="width: 0%"></div>
+            </div>
+            
+            <!-- Список уроків -->
+            <nav>
+                <ul class="lessons-list">
+                    <!-- HTML блок (1-8) -->
+                    <li class="lesson-item">
+                        <a href="lessons/lesson01.html" class="lesson-link" data-lesson="lesson01">
+                            <span class="lesson-number">01</span>
+                            <span class="lesson-title">Семантичний HTML5</span>
+                        </a>
+                    </li>
+                    <li class="lesson-item">
+                        <a href="lessons/lesson02.html" class="lesson-link" data-lesson="lesson02">
+                            <span class="lesson-number">02</span>
+                            <span class="lesson-title">Таблиці та списки</span>
+                        </a>
+                    </li>
+                    <li class="lesson-item">
+                        <a href="lessons/lesson03.html" class="lesson-link" data-lesson="lesson03">
+                            <span class="lesson-number">03</span>
+                            <span class="lesson-title">Форми (частина 1)</span>
+                        </a>
+                    </li>
+                    <li class="lesson-item">
+                        <a href="lessons/lesson04.html" class="lesson-link" data-lesson="lesson04">
+                            <span class="lesson-number">04</span>
+                            <span class="lesson-title">Форми (частина 2)</span>
+                        </a>
+                    </li>
+                    <li class="lesson-item">
+                        <a href="lessons/lesson05.html" class="lesson-link" data-lesson="lesson05">
+                            <span class="lesson-number">05</span>
+                            <span class="lesson-title">Мультимедіа</span>
+                        </a>
+                    </li>
+                    <li class="lesson-item">
+                        <a href="lessons/lesson06.html" class="lesson-link" data-lesson="lesson06">
+                            <span class="lesson-number">06</span>
+                            <span class="lesson-title">Meta-теги та SEO</span>
+                        </a>
+                    </li>
+                    <li class="lesson-item">
+                        <a href="lessons/lesson07.html" class="lesson-link" data-lesson="lesson07">
+                            <span class="lesson-number">07</span>
+                            <span class="lesson-title">Посилання та навігація</span>
+                        </a>
+                    </li>
+                    <li class="lesson-item">
+                        <a href="lessons/lesson08.html" class="lesson-link" data-lesson="lesson08">
+                            <span class="lesson-number">08</span>
+                            <span class="lesson-title">Доступність (a11y)</span>
+                        </a>
+                    </li>
+                    
+                    <!-- CSS блок (9-12) -->
+                    <li class="lesson-item">
+                        <a href="lessons/lesson09.html" class="lesson-link" data-lesson="lesson09">
+                            <span class="lesson-number">09</span>
+                            <span class="lesson-title">CSS Flexbox</span>
+                        </a>
+                    </li>
+                    <li class="lesson-item">
+                        <a href="lessons/lesson10.html" class="lesson-link" data-lesson="lesson10">
+                            <span class="lesson-number">10</span>
+                            <span class="lesson-title">CSS Grid</span>
+                        </a>
+                    </li>
+                    <li class="lesson-item">
+                        <a href="lessons/lesson11.html" class="lesson-link" data-lesson="lesson11">
+                            <span class="lesson-number">11</span>
+                            <span class="lesson-title">CSS анімації</span>
+                        </a>
+                    </li>
+                    <li class="lesson-item">
+                        <a href="lessons/lesson12.html" class="lesson-link" data-lesson="lesson12">
+                            <span class="lesson-number">12</span>
+                            <span class="lesson-title">CSS змінні та адаптивність</span>
+                        </a>
+                    </li>
+                    
+                    <!-- JavaScript блок (13-20) -->
+                    <li class="lesson-item">
+                        <a href="lessons/lesson13.html" class="lesson-link" data-lesson="lesson13">
+                            <span class="lesson-number">13</span>
+                            <span class="lesson-title">Основи JavaScript</span>
+                        </a>
+                    </li>
+                    <li class="lesson-item">
+                        <a href="lessons/lesson14.html" class="lesson-link" data-lesson="lesson14">
+                            <span class="lesson-number">14</span>
+                            <span class="lesson-title">Функції та масиви</span>
+                        </a>
+                    </li>
+                    <li class="lesson-item">
+                        <a href="lessons/lesson15.html" class="lesson-link" data-lesson="lesson15">
+                            <span class="lesson-number">15</span>
+                            <span class="lesson-title">DOM маніпуляції</span>
+                        </a>
+                    </li>
+                    <li class="lesson-item">
+                        <a href="lessons/lesson16.html" class="lesson-link" data-lesson="lesson16">
+                            <span class="lesson-number">16</span>
+                            <span class="lesson-title">Події та обробники</span>
+                        </a>
+                    </li>
+                    <li class="lesson-item">
+                        <a href="lessons/lesson17.html" class="lesson-link" data-lesson="lesson17">
+                            <span class="lesson-number">17</span>
+                            <span class="lesson-title">Робота з формами через JS</span>
+                        </a>
+                    </li>
+                    <li class="lesson-item">
+                        <a href="lessons/lesson18.html" class="lesson-link" data-lesson="lesson18">
+                            <span class="lesson-number">18</span>
+                            <span class="lesson-title">LocalStorage та JSON</span>
+                        </a>
+                    </li>
+                    <li class="lesson-item">
+                        <a href="lessons/lesson19.html" class="lesson-link" data-lesson="lesson19">
+                            <span class="lesson-number">19</span>
+                            <span class="lesson-title">Fetch API та асинхронність</span>
+                        </a>
+                    </li>
+                    <li class="lesson-item">
+                        <a href="lessons/lesson20.html" class="lesson-link" data-lesson="lesson20">
+                            <span class="lesson-number">20</span>
+                            <span class="lesson-title">Фінальний проєкт: TODO</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <!-- Основний контент -->
+        <main class="main-content">
+            <div class="lesson-container">
+                <header class="lesson-header">
+                    <h1>Вітаємо в інтерактивному курсі HTML та JavaScript!</h1>
+                    <p class="lesson-meta">20 уроків від базового до просунутого рівня</p>
+                </header>
+                
+                <div class="lesson-content">
+                    <section>
+                        <h2>Про курс</h2>
+                        <p>
+                            Цей курс розроблений для тих, хто вже має базове розуміння HTML і хоче поглибити свої знання та навчитися JavaScript. 
+                            Ви пройдете шлях від семантичного HTML5 до створення повноцінного веб-додатку.
+                        </p>
+                    </section>
+                    
+                    <section>
+                        <h2>Структура курсу</h2>
+                        <div class="info-box">
+                            <h4>📚 HTML блок (Уроки 1-8)</h4>
+                            <p>
+                                Семантичний HTML5, таблиці, списки, форми, мультимедіа, SEO та доступність.
+                            </p>
+                        </div>
+                        
+                        <div class="info-box">
+                            <h4>🎨 CSS блок (Уроки 9-12)</h4>
+                            <p>
+                                Flexbox, Grid, анімації, змінні та адаптивний дизайн.
+                            </p>
+                        </div>
+                        
+                        <div class="info-box">
+                            <h4>⚡ JavaScript блок (Уроки 13-20)</h4>
+                            <p>
+                                Від основ JS до роботи з DOM, подіями, формами, LocalStorage, Fetch API та створення фінального проєкту.
+                            </p>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Як користуватися курсом</h2>
+                        <ul>
+                            <li>📖 <strong>Читайте теорію</strong> - кожен урок містить детальні пояснення</li>
+                            <li>💻 <strong>Вивчайте приклади</strong> - всі концепції демонструються на коді</li>
+                            <li>🎯 <strong>Практикуйтеся</strong> - використовуйте інтерактивні блоки "Спробуй сам"</li>
+                            <li>✅ <strong>Відмічайте прогрес</strong> - натискайте кнопку "Позначити як пройдений"</li>
+                            <li>🌓 <strong>Змінюйте тему</strong> - використовуйте перемикач у верхньому правому куті</li>
+                        </ul>
+                    </section>
+                    
+                    <section>
+                        <h2>Починаємо навчання</h2>
+                        <p>
+                            Оберіть урок у лівій панелі навігації або почніть з першого уроку, натиснувши кнопку нижче.
+                        </p>
+                        
+                        <div style="margin-top: 30px;">
+                            <a href="lessons/lesson01.html" class="nav-button next">Почати з першого уроку</a>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="js/app.js"></script>
+</body>
+</html>

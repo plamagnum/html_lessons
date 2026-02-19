@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 20: Фінальний проєкт - TODO додаток | HTML та JavaScript</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    
+    <div class="app-container">
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h1>HTML & JS</h1>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <nav>
+                <ul class="lessons-list">
+                    <li class="lesson-item"><a href="lesson01.html" class="lesson-link" data-lesson="lesson01"><span class="lesson-number">01</span><span class="lesson-title">Семантичний HTML5</span></a></li>
+                    <li class="lesson-item"><a href="lesson02.html" class="lesson-link" data-lesson="lesson02"><span class="lesson-number">02</span><span class="lesson-title">Таблиці та списки</span></a></li>
+                    <li class="lesson-item"><a href="lesson03.html" class="lesson-link" data-lesson="lesson03"><span class="lesson-number">03</span><span class="lesson-title">Форми (частина 1)</span></a></li>
+                    <li class="lesson-item"><a href="lesson04.html" class="lesson-link" data-lesson="lesson04"><span class="lesson-number">04</span><span class="lesson-title">Форми (частина 2)</span></a></li>
+                    <li class="lesson-item"><a href="lesson05.html" class="lesson-link" data-lesson="lesson05"><span class="lesson-number">05</span><span class="lesson-title">Мультимедіа</span></a></li>
+                    <li class="lesson-item"><a href="lesson06.html" class="lesson-link" data-lesson="lesson06"><span class="lesson-number">06</span><span class="lesson-title">Meta-теги та SEO</span></a></li>
+                    <li class="lesson-item"><a href="lesson07.html" class="lesson-link" data-lesson="lesson07"><span class="lesson-number">07</span><span class="lesson-title">Посилання та навігація</span></a></li>
+                    <li class="lesson-item"><a href="lesson08.html" class="lesson-link" data-lesson="lesson08"><span class="lesson-number">08</span><span class="lesson-title">Доступність (a11y)</span></a></li>
+                    <li class="lesson-item"><a href="lesson09.html" class="lesson-link" data-lesson="lesson09"><span class="lesson-number">09</span><span class="lesson-title">CSS Flexbox</span></a></li>
+                    <li class="lesson-item"><a href="lesson10.html" class="lesson-link" data-lesson="lesson10"><span class="lesson-number">10</span><span class="lesson-title">CSS Grid</span></a></li>
+                    <li class="lesson-item"><a href="lesson11.html" class="lesson-link" data-lesson="lesson11"><span class="lesson-number">11</span><span class="lesson-title">CSS анімації</span></a></li>
+                    <li class="lesson-item"><a href="lesson12.html" class="lesson-link" data-lesson="lesson12"><span class="lesson-number">12</span><span class="lesson-title">CSS змінні та адаптивність</span></a></li>
+                    <li class="lesson-item"><a href="lesson13.html" class="lesson-link" data-lesson="lesson13"><span class="lesson-number">13</span><span class="lesson-title">Основи JavaScript</span></a></li>
+                    <li class="lesson-item"><a href="lesson14.html" class="lesson-link" data-lesson="lesson14"><span class="lesson-number">14</span><span class="lesson-title">Функції та масиви</span></a></li>
+                    <li class="lesson-item"><a href="lesson15.html" class="lesson-link" data-lesson="lesson15"><span class="lesson-number">15</span><span class="lesson-title">DOM маніпуляції</span></a></li>
+                    <li class="lesson-item"><a href="lesson16.html" class="lesson-link" data-lesson="lesson16"><span class="lesson-number">16</span><span class="lesson-title">Події та обробники</span></a></li>
+                    <li class="lesson-item"><a href="lesson17.html" class="lesson-link" data-lesson="lesson17"><span class="lesson-number">17</span><span class="lesson-title">Робота з формами через JS</span></a></li>
+                    <li class="lesson-item"><a href="lesson18.html" class="lesson-link" data-lesson="lesson18"><span class="lesson-number">18</span><span class="lesson-title">LocalStorage та JSON</span></a></li>
+                    <li class="lesson-item"><a href="lesson19.html" class="lesson-link" data-lesson="lesson19"><span class="lesson-number">19</span><span class="lesson-title">Fetch API та асинхронність</span></a></li>
+                    <li class="lesson-item"><a href="lesson20.html" class="lesson-link" data-lesson="lesson20"><span class="lesson-number">20</span><span class="lesson-title">Фінальний проєкт: TODO</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <div class="lesson-container">
+                <header class="lesson-header">
+                    <h1>Урок 20: Фінальний проєкт - TODO додаток</h1>
+                    <p class="lesson-meta">Комплексний проєкт із використанням всіх вивчених технологій</p>
+                </header>
+                
+                <div class="lesson-content">
+                    <section>
+                        <h2>Про проєкт</h2>
+                        <p>
+                            Цей фінальний проєкт об'єднує всі знання, отримані в попередніх уроках. 
+                            Ми створимо повноцінний TODO додаток з можливістю додавання, редагування, 
+                            видалення завдань, фільтрацією, пошуком та збереженням даних у localStorage.
+                        </p>
+                        
+                        <div class="info-box">
+                            <h4>Використані технології та концепції</h4>
+                            <ul>
+                                <li><strong>HTML5</strong> - семантична розмітка, форми, атрибути</li>
+                                <li><strong>CSS</strong> - Flexbox, Grid, анімації, адаптивність</li>
+                                <li><strong>JavaScript</strong> - змінні, функції, масиви, об'єкти</li>
+                                <li><strong>DOM</strong> - createElement, querySelector, classList</li>
+                                <li><strong>Події</strong> - addEventListener, делегування, form submit</li>
+                                <li><strong>localStorage</strong> - збереження даних, JSON серіалізація</li>
+                                <li><strong>Додатково</strong> - валідація, фільтрація, пошук, статистика</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Структура проєкту</h2>
+                        <div class="code-block">
+                            <pre><code>// Структура даних завдання
+const todo = {
+    id: Date.now(),
+    text: 'Текст завдання',
+    completed: false,
+    priority: 'medium', // 'low', 'medium', 'high'
+    category: 'work',    // 'work', 'personal', 'shopping', 'other'
+    dueDate: null,       // ISO дата або null
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString()
+};
+
+// Основні функції додатка
+class TodoApp {
+    constructor() {
+        this.todos = this.loadTodos();
+        this.filter = 'all'; // 'all', 'active', 'completed'
+        this.searchQuery = '';
+        this.init();
+    }
+    
+    // Ініціалізація
+    init() {
+        this.render();
+        this.attachEventListeners();
+        this.updateStats();
+    }
+    
+    // CRUD операції
+    addTodo(text, priority, category, dueDate) { }
+    updateTodo(id, updates) { }
+    deleteTodo(id) { }
+    toggleTodo(id) { }
+    
+    // Фільтрація та пошук
+    getFilteredTodos() { }
+    searchTodos(query) { }
+    
+    // Збереження
+    saveTodos() { }
+    loadTodos() { }
+    
+    // Рендеринг
+    render() { }
+    renderTodo(todo) { }
+    updateStats() { }
+}</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Повний код TODO додатка</h2>
+                        <div class="info-box">
+                            <p>
+                                Нижче представлений повний робочий код TODO додатка. Цей код демонструє 
+                                всі ключові концепції, які ми вивчили протягом курсу. Ви можете запустити його 
+                                та вивчити, як працює кожна частина.
+                            </p>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Запустіть повний TODO додаток:</h4>
+                            <textarea class="code-input" rows="50">// 🎯 ПОВНИЙ TODO ДОДАТОК
+// Використовує всі концепції з курсу
+
+const appHTML = `
+<div id="todoApp" style="max-width: 800px; margin: 20px auto; padding: 20px; font-family: system-ui;">
+    <style>
+        #todoApp * { box-sizing: border-box; }
+        .todo-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 10px;
+        }
+        .todo-form {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .todo-input {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        .todo-btn {
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .todo-btn:hover { background: #5568d3; }
+        .todo-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            padding: 8px 16px;
+            border: 2px solid #667eea;
+            background: white;
+            color: #667eea;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+        }
+        .todo-search {
+            flex: 1;
+            min-width: 200px;
+            padding: 8px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+        }
+        .todo-list {
+            list-style: none;
+            padding: 0;
+        }
+        .todo-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background: white;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        .todo-item:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        .todo-item.completed {
+            opacity: 0.6;
+            background: #f0f0f0;
+        }
+        .todo-item.completed .todo-text {
+            text-decoration: line-through;
+        }
+        .todo-checkbox {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+        .todo-text {
+            flex: 1;
+            font-size: 16px;
+        }
+        .priority-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        .priority-high { background: #ff4444; color: white; }
+        .priority-medium { background: #ffaa00; color: white; }
+        .priority-low { background: #4CAF50; color: white; }
+        .todo-actions {
+            display: flex;
+            gap: 5px;
+        }
+        .action-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .edit-btn {
+            background: #2196F3;
+            color: white;
+        }
+        .delete-btn {
+            background: #f44336;
+            color: white;
+        }
+        .todo-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        .stat-card {
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+        }
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .stat-label {
+            color: #666;
+            font-size: 14px;
+        }
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+        .empty-state h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+    </style>
+    
+    <div class="todo-header">
+        <h1>📝 TODO Додаток</h1>
+        <p>Керуйте вашими завданнями ефективно</p>
+    </div>
+    
+    <form id="todoForm" class="todo-form">
+        <input type="text" id="todoInput" class="todo-input" 
+               placeholder="Додайте нове завдання..." required>
+        <select id="prioritySelect" style="padding: 12px; border: 2px solid #ddd; border-radius: 4px;">
+            <option value="low">🟢 Низький</option>
+            <option value="medium" selected>🟡 Середній</option>
+            <option value="high">🔴 Високий</option>
+        </select>
+        <button type="submit" class="todo-btn">Додати</button>
+    </form>
+    
+    <div class="todo-controls">
+        <button class="filter-btn active" data-filter="all">Всі</button>
+        <button class="filter-btn" data-filter="active">Активні</button>
+        <button class="filter-btn" data-filter="completed">Виконані</button>
+        <input type="text" id="searchInput" class="todo-search" 
+               placeholder="🔍 Пошук завдань...">
+        <button class="todo-btn" onclick="todoApp.clearCompleted()" 
+                style="background: #f44336;">Очистити виконані</button>
+    </div>
+    
+    <ul id="todoList" class="todo-list"></ul>
+    
+    <div class="todo-stats" id="todoStats"></div>
+</div>
+`;
+
+document.body.innerHTML += appHTML;
+
+// TODO APP CLASS
+class TodoApp {
+    constructor() {
+        this.todos = this.loadTodos();
+        this.filter = 'all';
+        this.searchQuery = '';
+        this.init();
+    }
+    
+    init() {
+        this.attachEventListeners();
+        this.render();
+    }
+    
+    attachEventListeners() {
+        // Форма додавання
+        document.getElementById('todoForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const input = document.getElementById('todoInput');
+            const priority = document.getElementById('prioritySelect').value;
+            
+            if (input.value.trim()) {
+                this.addTodo(input.value.trim(), priority);
+                input.value = '';
+            }
+        });
+        
+        // Фільтри
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-btn').forEach(b => 
+                    b.classList.remove('active'));
+                e.target.classList.add('active');
+                this.filter = e.target.dataset.filter;
+                this.render();
+            });
+        });
+        
+        // Пошук
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            this.searchQuery = e.target.value.toLowerCase();
+            this.render();
+        });
+        
+        // Делегування для списку
+        document.getElementById('todoList').addEventListener('click', (e) => {
+            const todoItem = e.target.closest('.todo-item');
+            if (!todoItem) return;
+            
+            const id = parseInt(todoItem.dataset.id);
+            
+            if (e.target.classList.contains('todo-checkbox')) {
+                this.toggleTodo(id);
+            } else if (e.target.classList.contains('delete-btn')) {
+                this.deleteTodo(id);
+            } else if (e.target.classList.contains('edit-btn')) {
+                this.editTodo(id);
+            }
+        });
+    }
+    
+    addTodo(text, priority = 'medium') {
+        const todo = {
+            id: Date.now(),
+            text,
+            completed: false,
+            priority,
+            createdAt: new Date().toISOString()
+        };
+        
+        this.todos.unshift(todo);
+        this.saveTodos();
+        this.render();
+        console.log('✅ Додано:', text);
+    }
+    
+    toggleTodo(id) {
+        const todo = this.todos.find(t => t.id === id);
+        if (todo) {
+            todo.completed = !todo.completed;
+            this.saveTodos();
+            this.render();
+        }
+    }
+    
+    deleteTodo(id) {
+        this.todos = this.todos.filter(t => t.id !== id);
+        this.saveTodos();
+        this.render();
+        console.log('🗑️ Видалено завдання');
+    }
+    
+    editTodo(id) {
+        const todo = this.todos.find(t => t.id === id);
+        if (todo) {
+            const newText = prompt('Редагувати завдання:', todo.text);
+            if (newText && newText.trim()) {
+                todo.text = newText.trim();
+                this.saveTodos();
+                this.render();
+            }
+        }
+    }
+    
+    clearCompleted() {
+        this.todos = this.todos.filter(t => !t.completed);
+        this.saveTodos();
+        this.render();
+        console.log('🧹 Очищено виконані завдання');
+    }
+    
+    getFilteredTodos() {
+        let filtered = this.todos;
+        
+        // Фільтр по статусу
+        if (this.filter === 'active') {
+            filtered = filtered.filter(t => !t.completed);
+        } else if (this.filter === 'completed') {
+            filtered = filtered.filter(t => t.completed);
+        }
+        
+        // Пошук
+        if (this.searchQuery) {
+            filtered = filtered.filter(t => 
+                t.text.toLowerCase().includes(this.searchQuery)
+            );
+        }
+        
+        return filtered;
+    }
+    
+    render() {
+        const list = document.getElementById('todoList');
+        const filtered = this.getFilteredTodos();
+        
+        if (filtered.length === 0) {
+            list.innerHTML = `
+                <div class="empty-state">
+                    <h3>📭</h3>
+                    <h3>Немає завдань</h3>
+                    <p>Додайте нове завдання щоб почати</p>
+                </div>
+            `;
+        } else {
+            list.innerHTML = filtered.map(todo => `
+                <li class="todo-item ${todo.completed ? 'completed' : ''}" data-id="${todo.id}">
+                    <input type="checkbox" class="todo-checkbox" 
+                           ${todo.completed ? 'checked' : ''}>
+                    <span class="priority-badge priority-${todo.priority}">
+                        ${todo.priority === 'high' ? '🔴' : todo.priority === 'medium' ? '🟡' : '🟢'}
+                    </span>
+                    <span class="todo-text">${todo.text}</span>
+                    <div class="todo-actions">
+                        <button class="action-btn edit-btn">✏️</button>
+                        <button class="action-btn delete-btn">🗑️</button>
+                    </div>
+                </li>
+            `).join('');
+        }
+        
+        this.updateStats();
+    }
+    
+    updateStats() {
+        const total = this.todos.length;
+        const completed = this.todos.filter(t => t.completed).length;
+        const active = total - completed;
+        const percentage = total > 0 ? Math.round((completed / total) * 100) : 0;
+        
+        document.getElementById('todoStats').innerHTML = `
+            <div class="stat-card">
+                <div class="stat-number">${total}</div>
+                <div class="stat-label">Всього</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">${active}</div>
+                <div class="stat-label">Активних</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">${completed}</div>
+                <div class="stat-label">Виконано</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">${percentage}%</div>
+                <div class="stat-label">Прогрес</div>
+            </div>
+        `;
+    }
+    
+    saveTodos() {
+        localStorage.setItem('todos', JSON.stringify(this.todos));
+    }
+    
+    loadTodos() {
+        const saved = localStorage.getItem('todos');
+        return saved ? JSON.parse(saved) : [];
+    }
+}
+
+// Ініціалізація
+const todoApp = new TodoApp();
+console.log('🚀 TODO додаток готовий до роботи!');</textarea>
+                            <button class="run-button" onclick="runHTML(this)">▶ Запустити TODO додаток</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Розбір ключових моментів</h2>
+                        <div class="code-block">
+                            <pre><code>// 1. Структура даних (Об'єкти, Масиви)
+const todos = [
+    { id: 1, text: 'Завдання', completed: false, priority: 'high' }
+];
+
+// 2. DOM маніпуляції (createElement, querySelector)
+const todoItem = document.createElement('li');
+todoItem.className = 'todo-item';
+list.appendChild(todoItem);
+
+// 3. Події (addEventListener, делегування)
+list.addEventListener('click', (e) => {
+    if (e.target.classList.contains('delete-btn')) {
+        deleteTodo(id);
+    }
+});
+
+// 4. LocalStorage (JSON, збереження)
+function saveTodos() {
+    localStorage.setItem('todos', JSON.stringify(todos));
+}
+
+function loadTodos() {
+    return JSON.parse(localStorage.getItem('todos') || '[]');
+}
+
+// 5. Фільтрація та пошук (масиви)
+function getFilteredTodos() {
+    return todos.filter(t => {
+        const matchesFilter = filter === 'all' || 
+                            (filter === 'active' && !t.completed) ||
+                            (filter === 'completed' && t.completed);
+        
+        const matchesSearch = t.text.toLowerCase().includes(searchQuery);
+        
+        return matchesFilter && matchesSearch;
+    });
+}
+
+// 6. Оновлення UI (render функція)
+function render() {
+    const filtered = getFilteredTodos();
+    list.innerHTML = filtered.map(todo => renderTodo(todo)).join('');
+    updateStats();
+}
+
+// 7. Валідація форми
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const input = form.elements.text;
+    if (input.value.trim().length < 3) {
+        showError('Мінімум 3 символи');
+        return;
+    }
+    
+    addTodo(input.value.trim());
+    input.value = '';
+});
+
+// 8. Обчислення статистики
+function getStats() {
+    const total = todos.length;
+    const completed = todos.filter(t => t.completed).length;
+    const active = total - completed;
+    const percentage = total > 0 ? (completed / total) * 100 : 0;
+    
+    return { total, completed, active, percentage };
+}</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Можливості для розширення</h2>
+                        <div class="info-box">
+                            <h4>Ідеї для покращення додатка</h4>
+                            <ul>
+                                <li><strong>Категорії</strong> - додайте категорії завдань (робота, особисте, покупки)</li>
+                                <li><strong>Терміни виконання</strong> - встановлення дедлайнів для завдань</li>
+                                <li><strong>Підзавдання</strong> - можливість створювати підзавдання</li>
+                                <li><strong>Drag & Drop</strong> - перетягування для зміни порядку</li>
+                                <li><strong>Теми оформлення</strong> - світла/темна тема</li>
+                                <li><strong>Експорт/Імпорт</strong> - збереження у файл JSON</li>
+                                <li><strong>Сортування</strong> - за датою, пріоритетом, алфавітом</li>
+                                <li><strong>Нотифікації</strong> - нагадування про завдання</li>
+                                <li><strong>Синхронізація</strong> - збереження на сервері через API</li>
+                                <li><strong>Статистика</strong> - графіки продуктивності</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Завдання для самостійної роботи</h2>
+                        <div class="code-block">
+                            <pre><code>// Завдання 1: Додайте категорії
+// Додайте можливість призначати категорії завданням
+// та фільтрувати по категоріях
+
+// Завдання 2: Сортування
+// Реалізуйте сортування завдань за:
+// - датою створення
+// - пріоритетом
+// - алфавітом
+
+// Завдання 3: Терміни виконання
+// Додайте поле з датою виконання
+// Підсвічуйте прострочені завдання
+
+// Завдання 4: Drag & Drop
+// Реалізуйте можливість змінювати порядок завдань
+// перетягуванням миші
+
+// Завдання 5: Експорт даних
+// Додайте кнопку для експорту всіх завдань у JSON файл
+function exportTodos() {
+    const dataStr = JSON.stringify(todos, null, 2);
+    const dataUri = 'data:application/json;charset=utf-8,' + 
+                    encodeURIComponent(dataStr);
+    
+    const link = document.createElement('a');
+    link.setAttribute('href', dataUri);
+    link.setAttribute('download', 'todos.json');
+    link.click();
+}
+
+// Завдання 6: Імпорт даних
+// Додайте можливість завантажити файл з завданнями
+function importTodos(file) {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        try {
+            const imported = JSON.parse(e.target.result);
+            todos = [...todos, ...imported];
+            saveTodos();
+            render();
+        } catch (error) {
+            alert('Помилка імпорту файлу');
+        }
+    };
+    reader.readAsText(file);
+}
+
+// Завдання 7: Темна тема
+// Додайте перемикач темної/світлої теми
+function toggleTheme() {
+    document.body.classList.toggle('dark-theme');
+    const theme = document.body.classList.contains('dark-theme') 
+                  ? 'dark' : 'light';
+    localStorage.setItem('theme', theme);
+}
+
+// Завдання 8: Статистика за період
+// Покажіть скільки завдань виконано за:
+// - сьогодні
+// - цей тиждень
+// - цей місяць
+
+function getCompletedToday() {
+    const today = new Date().toDateString();
+    return todos.filter(t => {
+        if (!t.completedAt) return false;
+        return new Date(t.completedAt).toDateString() === today;
+    }).length;
+}</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <div class="info-box success">
+                            <h4>🎉 Вітаємо з завершенням курсу!</h4>
+                            <p>
+                                Ви створили повноцінний TODO додаток, використовуючи всі основні концепції 
+                                веб-розробки: HTML, CSS та JavaScript. Ви вмієте працювати з DOM, обробляти 
+                                події, зберігати дані, створювати інтерактивні інтерфейси та багато іншого.
+                            </p>
+                            <p style="margin-top: 15px;">
+                                <strong>Що далі?</strong> Продовжуйте практикуватися, створюйте власні проєкти, 
+                                вивчайте фреймворки (React, Vue, Angular), поглиблюйте знання JavaScript, 
+                                вивчайте backend технології. Успіхів у розробці! 🚀
+                            </p>
+                        </div>
+                    </section>
+                    
+                    <button id="complete-lesson" class="complete-button" data-lesson="lesson20">
+                        Завершити курс
+                    </button>
+                    
+                    <nav class="lesson-navigation">
+                        <a href="lesson19.html" class="nav-button prev">Попередній урок</a>
+                        <a href="lesson01.html" class="nav-button next">Почати спочатку</a>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/app.js"></script>
+</body>
+</html>

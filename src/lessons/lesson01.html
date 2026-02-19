@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 1: Семантичний HTML5 | HTML та JavaScript</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    
+    <div class="app-container">
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h1>HTML & JS</h1>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <nav>
+                <ul class="lessons-list">
+                    <li class="lesson-item"><a href="lesson01.html" class="lesson-link" data-lesson="lesson01"><span class="lesson-number">01</span><span class="lesson-title">Семантичний HTML5</span></a></li>
+                    <li class="lesson-item"><a href="lesson02.html" class="lesson-link" data-lesson="lesson02"><span class="lesson-number">02</span><span class="lesson-title">Таблиці та списки</span></a></li>
+                    <li class="lesson-item"><a href="lesson03.html" class="lesson-link" data-lesson="lesson03"><span class="lesson-number">03</span><span class="lesson-title">Форми (частина 1)</span></a></li>
+                    <li class="lesson-item"><a href="lesson04.html" class="lesson-link" data-lesson="lesson04"><span class="lesson-number">04</span><span class="lesson-title">Форми (частина 2)</span></a></li>
+                    <li class="lesson-item"><a href="lesson05.html" class="lesson-link" data-lesson="lesson05"><span class="lesson-number">05</span><span class="lesson-title">Мультимедіа</span></a></li>
+                    <li class="lesson-item"><a href="lesson06.html" class="lesson-link" data-lesson="lesson06"><span class="lesson-number">06</span><span class="lesson-title">Meta-теги та SEO</span></a></li>
+                    <li class="lesson-item"><a href="lesson07.html" class="lesson-link" data-lesson="lesson07"><span class="lesson-number">07</span><span class="lesson-title">Посилання та навігація</span></a></li>
+                    <li class="lesson-item"><a href="lesson08.html" class="lesson-link" data-lesson="lesson08"><span class="lesson-number">08</span><span class="lesson-title">Доступність (a11y)</span></a></li>
+                    <li class="lesson-item"><a href="lesson09.html" class="lesson-link" data-lesson="lesson09"><span class="lesson-number">09</span><span class="lesson-title">CSS Flexbox</span></a></li>
+                    <li class="lesson-item"><a href="lesson10.html" class="lesson-link" data-lesson="lesson10"><span class="lesson-number">10</span><span class="lesson-title">CSS Grid</span></a></li>
+                    <li class="lesson-item"><a href="lesson11.html" class="lesson-link" data-lesson="lesson11"><span class="lesson-number">11</span><span class="lesson-title">CSS анімації</span></a></li>
+                    <li class="lesson-item"><a href="lesson12.html" class="lesson-link" data-lesson="lesson12"><span class="lesson-number">12</span><span class="lesson-title">CSS змінні та адаптивність</span></a></li>
+                    <li class="lesson-item"><a href="lesson13.html" class="lesson-link" data-lesson="lesson13"><span class="lesson-number">13</span><span class="lesson-title">Основи JavaScript</span></a></li>
+                    <li class="lesson-item"><a href="lesson14.html" class="lesson-link" data-lesson="lesson14"><span class="lesson-number">14</span><span class="lesson-title">Функції та масиви</span></a></li>
+                    <li class="lesson-item"><a href="lesson15.html" class="lesson-link" data-lesson="lesson15"><span class="lesson-number">15</span><span class="lesson-title">DOM маніпуляції</span></a></li>
+                    <li class="lesson-item"><a href="lesson16.html" class="lesson-link" data-lesson="lesson16"><span class="lesson-number">16</span><span class="lesson-title">Події та обробники</span></a></li>
+                    <li class="lesson-item"><a href="lesson17.html" class="lesson-link" data-lesson="lesson17"><span class="lesson-number">17</span><span class="lesson-title">Робота з формами через JS</span></a></li>
+                    <li class="lesson-item"><a href="lesson18.html" class="lesson-link" data-lesson="lesson18"><span class="lesson-number">18</span><span class="lesson-title">LocalStorage та JSON</span></a></li>
+                    <li class="lesson-item"><a href="lesson19.html" class="lesson-link" data-lesson="lesson19"><span class="lesson-number">19</span><span class="lesson-title">Fetch API та асинхронність</span></a></li>
+                    <li class="lesson-item"><a href="lesson20.html" class="lesson-link" data-lesson="lesson20"><span class="lesson-number">20</span><span class="lesson-title">Фінальний проєкт: TODO</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <div class="lesson-container">
+                <header class="lesson-header">
+                    <h1>Урок 1: Семантичний HTML5</h1>
+                    <p class="lesson-meta">Розуміння та використання семантичних тегів</p>
+                </header>
+                
+                <div class="lesson-content">
+                    <section>
+                        <h2>Що таке семантичний HTML?</h2>
+                        <p>
+                            Семантичний HTML означає використання HTML-тегів, які чітко описують своє призначення та зміст. 
+                            Замість того, щоб використовувати загальні теги як <code>&lt;div&gt;</code> та <code>&lt;span&gt;</code> 
+                            для всього, ми використовуємо специфічні теги, що описують структуру документа.
+                        </p>
+                        
+                        <div class="info-box">
+                            <h4>Чому семантика важлива?</h4>
+                            <ul>
+                                <li><strong>SEO:</strong> Пошукові системи краще розуміють структуру вашого контенту</li>
+                                <li><strong>Доступність:</strong> Скрін-рідери можуть краще навігувати по сторінці</li>
+                                <li><strong>Читабельність коду:</strong> Розробникам легше розуміти структуру сторінки</li>
+                                <li><strong>Підтримка:</strong> Код стає більш зрозумілим та легшим у підтримці</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Основні семантичні теги HTML5</h2>
+                        
+                        <h3>&lt;header&gt; - Шапка сторінки або секції</h3>
+                        <p>Містить вступну інформацію, логотип, навігацію тощо.</p>
+                        <div class="code-block">
+                            <pre><code>&lt;header&gt;
+    &lt;h1&gt;Моя веб-сторінка&lt;/h1&gt;
+    &lt;nav&gt;
+        &lt;a href="#home"&gt;Головна&lt;/a&gt;
+        &lt;a href="#about"&gt;Про нас&lt;/a&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;</code></pre>
+                        </div>
+                        
+                        <h3>&lt;nav&gt; - Навігаційна секція</h3>
+                        <p>Використовується для основних навігаційних посилань.</p>
+                        <div class="code-block">
+                            <pre><code>&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="/"&gt;Головна&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/products"&gt;Продукти&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/contact"&gt;Контакти&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+                        
+                        <h3>&lt;main&gt; - Головний контент</h3>
+                        <p>Містить основний унікальний контент документа. На сторінці має бути тільки один тег <code>&lt;main&gt;</code>.</p>
+                        <div class="code-block">
+                            <pre><code>&lt;main&gt;
+    &lt;h1&gt;Заголовок статті&lt;/h1&gt;
+    &lt;p&gt;Основний контент статті...&lt;/p&gt;
+&lt;/main&gt;</code></pre>
+                        </div>
+                        
+                        <h3>&lt;section&gt; - Тематична секція</h3>
+                        <p>Групує пов'язаний контент. Зазвичай має власний заголовок.</p>
+                        <div class="code-block">
+                            <pre><code>&lt;section&gt;
+    &lt;h2&gt;Наші послуги&lt;/h2&gt;
+    &lt;p&gt;Опис послуг...&lt;/p&gt;
+&lt;/section&gt;</code></pre>
+                        </div>
+                        
+                        <h3>&lt;article&gt; - Незалежна стаття</h3>
+                        <p>Самостійний контент, який може бути розповсюджений окремо (стаття блогу, новина, коментар).</p>
+                        <div class="code-block">
+                            <pre><code>&lt;article&gt;
+    &lt;h2&gt;Назва статті&lt;/h2&gt;
+    &lt;p&gt;Автор: Іван Іваненко&lt;/p&gt;
+    &lt;p&gt;Текст статті...&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+                        </div>
+                        
+                        <h3>&lt;aside&gt; - Додатковий контент</h3>
+                        <p>Контент, пов'язаний з основним, але може існувати окремо (sidebar, реклама, пов'язані статті).</p>
+                        <div class="code-block">
+                            <pre><code>&lt;aside&gt;
+    &lt;h3&gt;Пов'язані статті&lt;/h3&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Стаття 1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#"&gt;Стаття 2&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/aside&gt;</code></pre>
+                        </div>
+                        
+                        <h3>&lt;footer&gt; - Підвал сторінки або секції</h3>
+                        <p>Містить інформацію про автора, копірайт, посилання на документи тощо.</p>
+                        <div class="code-block">
+                            <pre><code>&lt;footer&gt;
+    &lt;p&gt;&copy; 2024 Моя компанія. Всі права захищені.&lt;/p&gt;
+    &lt;p&gt;Контакт: info@example.com&lt;/p&gt;
+&lt;/footer&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Повний приклад семантичної структури</h2>
+                        <div class="code-block">
+                            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="uk"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Семантична сторінка&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;header&gt;
+        &lt;h1&gt;Мій блог&lt;/h1&gt;
+        &lt;nav&gt;
+            &lt;a href="#home"&gt;Головна&lt;/a&gt;
+            &lt;a href="#blog"&gt;Блог&lt;/a&gt;
+            &lt;a href="#contact"&gt;Контакт&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    
+    &lt;main&gt;
+        &lt;article&gt;
+            &lt;h2&gt;Вивчаємо HTML5&lt;/h2&gt;
+            &lt;p&gt;Опубліковано: 1 січня 2024&lt;/p&gt;
+            &lt;section&gt;
+                &lt;h3&gt;Вступ&lt;/h3&gt;
+                &lt;p&gt;HTML5 приніс багато нових можливостей...&lt;/p&gt;
+            &lt;/section&gt;
+            &lt;section&gt;
+                &lt;h3&gt;Семантичні теги&lt;/h3&gt;
+                &lt;p&gt;Використання правильних тегів важливе...&lt;/p&gt;
+            &lt;/section&gt;
+        &lt;/article&gt;
+        
+        &lt;aside&gt;
+            &lt;h3&gt;Рекомендовані статті&lt;/h3&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="#"&gt;CSS для початківців&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#"&gt;JavaScript основи&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/aside&gt;
+    &lt;/main&gt;
+    
+    &lt;footer&gt;
+        &lt;p&gt;&copy; 2024 Мій блог&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Додаткові семантичні теги</h2>
+                        
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Тег</th>
+                                    <th>Призначення</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>&lt;figure&gt;</td>
+                                    <td>Контейнер для ілюстрацій, діаграм, фото з підписом</td>
+                                </tr>
+                                <tr>
+                                    <td>&lt;figcaption&gt;</td>
+                                    <td>Підпис до figure</td>
+                                </tr>
+                                <tr>
+                                    <td>&lt;time&gt;</td>
+                                    <td>Дата або час</td>
+                                </tr>
+                                <tr>
+                                    <td>&lt;mark&gt;</td>
+                                    <td>Виділений (підсвічений) текст</td>
+                                </tr>
+                                <tr>
+                                    <td>&lt;details&gt;</td>
+                                    <td>Деталі, які користувач може показати або сховати</td>
+                                </tr>
+                                <tr>
+                                    <td>&lt;summary&gt;</td>
+                                    <td>Видимий заголовок для details</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                    
+                    <section>
+                        <div class="info-box success">
+                            <h4>Підсумок</h4>
+                            <p>
+                                Семантичний HTML робить ваш код більш структурованим, зрозумілим та доступним. 
+                                Використовуйте відповідні теги для відповідного контенту, і ваші веб-сторінки будуть краще 
+                                індексуватися пошуковими системами та будуть доступнішими для всіх користувачів.
+                            </p>
+                        </div>
+                    </section>
+                    
+                    <button id="complete-lesson" class="complete-button" data-lesson="lesson01">
+                        Позначити урок як пройдений
+                    </button>
+                    
+                    <nav class="lesson-navigation">
+                        <a href="../index.html" class="nav-button prev">На головну</a>
+                        <a href="lesson02.html" class="nav-button next">Наступний урок</a>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/app.js"></script>
+</body>
+</html>

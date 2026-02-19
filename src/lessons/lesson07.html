@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 7: Посилання та навігація | HTML та JavaScript</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    
+    <div class="app-container">
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h1>HTML & JS</h1>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <nav>
+                <ul class="lessons-list">
+                    <li class="lesson-item"><a href="lesson01.html" class="lesson-link" data-lesson="lesson01"><span class="lesson-number">01</span><span class="lesson-title">Семантичний HTML5</span></a></li>
+                    <li class="lesson-item"><a href="lesson02.html" class="lesson-link" data-lesson="lesson02"><span class="lesson-number">02</span><span class="lesson-title">Таблиці та списки</span></a></li>
+                    <li class="lesson-item"><a href="lesson03.html" class="lesson-link" data-lesson="lesson03"><span class="lesson-number">03</span><span class="lesson-title">Форми (частина 1)</span></a></li>
+                    <li class="lesson-item"><a href="lesson04.html" class="lesson-link" data-lesson="lesson04"><span class="lesson-number">04</span><span class="lesson-title">Форми (частина 2)</span></a></li>
+                    <li class="lesson-item"><a href="lesson05.html" class="lesson-link" data-lesson="lesson05"><span class="lesson-number">05</span><span class="lesson-title">Мультимедіа</span></a></li>
+                    <li class="lesson-item"><a href="lesson06.html" class="lesson-link" data-lesson="lesson06"><span class="lesson-number">06</span><span class="lesson-title">Meta-теги та SEO</span></a></li>
+                    <li class="lesson-item"><a href="lesson07.html" class="lesson-link" data-lesson="lesson07"><span class="lesson-number">07</span><span class="lesson-title">Посилання та навігація</span></a></li>
+                    <li class="lesson-item"><a href="lesson08.html" class="lesson-link" data-lesson="lesson08"><span class="lesson-number">08</span><span class="lesson-title">Доступність (a11y)</span></a></li>
+                    <li class="lesson-item"><a href="lesson09.html" class="lesson-link" data-lesson="lesson09"><span class="lesson-number">09</span><span class="lesson-title">CSS Flexbox</span></a></li>
+                    <li class="lesson-item"><a href="lesson10.html" class="lesson-link" data-lesson="lesson10"><span class="lesson-number">10</span><span class="lesson-title">CSS Grid</span></a></li>
+                    <li class="lesson-item"><a href="lesson11.html" class="lesson-link" data-lesson="lesson11"><span class="lesson-number">11</span><span class="lesson-title">CSS анімації</span></a></li>
+                    <li class="lesson-item"><a href="lesson12.html" class="lesson-link" data-lesson="lesson12"><span class="lesson-number">12</span><span class="lesson-title">CSS змінні та адаптивність</span></a></li>
+                    <li class="lesson-item"><a href="lesson13.html" class="lesson-link" data-lesson="lesson13"><span class="lesson-number">13</span><span class="lesson-title">Основи JavaScript</span></a></li>
+                    <li class="lesson-item"><a href="lesson14.html" class="lesson-link" data-lesson="lesson14"><span class="lesson-number">14</span><span class="lesson-title">Функції та масиви</span></a></li>
+                    <li class="lesson-item"><a href="lesson15.html" class="lesson-link" data-lesson="lesson15"><span class="lesson-number">15</span><span class="lesson-title">DOM маніпуляції</span></a></li>
+                    <li class="lesson-item"><a href="lesson16.html" class="lesson-link" data-lesson="lesson16"><span class="lesson-number">16</span><span class="lesson-title">Події та обробники</span></a></li>
+                    <li class="lesson-item"><a href="lesson17.html" class="lesson-link" data-lesson="lesson17"><span class="lesson-number">17</span><span class="lesson-title">Робота з формами через JS</span></a></li>
+                    <li class="lesson-item"><a href="lesson18.html" class="lesson-link" data-lesson="lesson18"><span class="lesson-number">18</span><span class="lesson-title">LocalStorage та JSON</span></a></li>
+                    <li class="lesson-item"><a href="lesson19.html" class="lesson-link" data-lesson="lesson19"><span class="lesson-number">19</span><span class="lesson-title">Fetch API та асинхронність</span></a></li>
+                    <li class="lesson-item"><a href="lesson20.html" class="lesson-link" data-lesson="lesson20"><span class="lesson-number">20</span><span class="lesson-title">Фінальний проєкт: TODO</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <div class="lesson-container">
+                <header class="lesson-header">
+                    <h1>Урок 7: Посилання та навігація</h1>
+                    <p class="lesson-meta">Якірні посилання, шляхи, атрибути та навігаційні патерни</p>
+                </header>
+                
+                <div class="lesson-content">
+                    <section>
+                        <h2>Основи посилань</h2>
+                        <p>
+                            Елемент <code>&lt;a&gt;</code> (anchor) створює гіперпосилання - основу навігації в інтернеті.
+                        </p>
+                        
+                        <h3>Базовий синтаксис</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Просте посилання --&gt;
+&lt;a href="https://example.com"&gt;Відвідати сайт&lt;/a&gt;
+
+&lt;!-- Посилання з підказкою --&gt;
+&lt;a href="https://example.com" title="Перейти на example.com"&gt;
+    Відвідати сайт
+&lt;/a&gt;
+
+&lt;!-- Посилання на email --&gt;
+&lt;a href="mailto:info@example.com"&gt;Написати нам&lt;/a&gt;
+
+&lt;!-- Посилання на телефон --&gt;
+&lt;a href="tel:+380123456789"&gt;+380 12 345 67 89&lt;/a&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Абсолютні та відносні шляхи</h2>
+                        
+                        <h3>Абсолютні URL</h3>
+                        <p>Повний шлях до ресурсу, включаючи протокол та домен.</p>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Зовнішнє посилання --&gt;
+&lt;a href="https://www.google.com"&gt;Google&lt;/a&gt;
+
+&lt;!-- З портом --&gt;
+&lt;a href="http://localhost:3000/api"&gt;API&lt;/a&gt;
+
+&lt;!-- Безпечне з'єднання --&gt;
+&lt;a href="https://secure.example.com/login"&gt;Вхід&lt;/a&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Відносні URL</h3>
+                        <p>Шлях відносно поточного документа або кореневої директорії.</p>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Відносно поточної сторінки --&gt;
+&lt;a href="about.html"&gt;Про нас&lt;/a&gt;
+&lt;a href="pages/contact.html"&gt;Контакти&lt;/a&gt;
+
+&lt;!-- Повернутися на рівень вище --&gt;
+&lt;a href="../index.html"&gt;Головна&lt;/a&gt;
+&lt;a href="../../docs/guide.pdf"&gt;Гід&lt;/a&gt;
+
+&lt;!-- Відносно кореня сайту (починається з /) --&gt;
+&lt;a href="/products"&gt;Продукти&lt;/a&gt;
+&lt;a href="/blog/article-1"&gt;Стаття&lt;/a&gt;
+
+&lt;!-- Поточна директорія --&gt;
+&lt;a href="./page.html"&gt;Сторінка&lt;/a&gt;</code></pre>
+                        </div>
+                        
+                        <div class="info-box">
+                            <h4>Коли використовувати який шлях?</h4>
+                            <ul>
+                                <li><strong>Абсолютні:</strong> посилання на інші сайти</li>
+                                <li><strong>Відносні від кореня (/):</strong> навігація всередині сайту</li>
+                                <li><strong>Відносні:</strong> посилання на сусідні файли</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Якірні посилання (Anchors)</h2>
+                        <p>Посилання на конкретні місця на сторінці за допомогою ID.</p>
+                        
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Посилання на якір --&gt;
+&lt;a href="#section1"&gt;Перейти до секції 1&lt;/a&gt;
+&lt;a href="#contacts"&gt;До контактів&lt;/a&gt;
+
+&lt;!-- Якір на тій же сторінці --&gt;
+&lt;nav&gt;
+    &lt;a href="#about"&gt;Про нас&lt;/a&gt;
+    &lt;a href="#services"&gt;Послуги&lt;/a&gt;
+    &lt;a href="#portfolio"&gt;Портфоліо&lt;/a&gt;
+    &lt;a href="#contacts"&gt;Контакти&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;!-- Секції з ID --&gt;
+&lt;section id="about"&gt;
+    &lt;h2&gt;Про нас&lt;/h2&gt;
+    &lt;p&gt;Контент...&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;section id="services"&gt;
+    &lt;h2&gt;Послуги&lt;/h2&gt;
+    &lt;p&gt;Контент...&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;!-- Повернутися до початку --&gt;
+&lt;a href="#"&gt;Вгору&lt;/a&gt;
+&lt;a href="#top"&gt;До початку&lt;/a&gt;
+
+&lt;!-- Якір на іншій сторінці --&gt;
+&lt;a href="page2.html#section3"&gt;Секція 3 на сторінці 2&lt;/a&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Атрибут target</h2>
+                        <p>Визначає, де відкриється посилання.</p>
+                        
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Відкрити в новій вкладці --&gt;
+&lt;a href="https://example.com" target="_blank"&gt;
+    Зовнішнє посилання
+&lt;/a&gt;
+
+&lt;!-- Відкрити в тому ж вікні (за замовчуванням) --&gt;
+&lt;a href="page.html" target="_self"&gt;Та ж вкладка&lt;/a&gt;
+
+&lt;!-- Відкрити в батьківському фреймі --&gt;
+&lt;a href="page.html" target="_parent"&gt;Батьківський фрейм&lt;/a&gt;
+
+&lt;!-- Відкрити в повному вікні --&gt;
+&lt;a href="page.html" target="_top"&gt;Повне вікно&lt;/a&gt;
+
+&lt;!-- Відкрити в іменованому вікні/вкладці --&gt;
+&lt;a href="page.html" target="myWindow"&gt;Нове вікно&lt;/a&gt;</code></pre>
+                        </div>
+                        
+                        <div class="info-box">
+                            <h4>Безпека з target="_blank"</h4>
+                            <p>При використанні <code>target="_blank"</code> додавайте <code>rel="noopener noreferrer"</code> для безпеки:</p>
+                            <pre><code>&lt;a href="https://external-site.com" 
+   target="_blank" 
+   rel="noopener noreferrer"&gt;
+    Безпечне зовнішнє посилання
+&lt;/a&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Атрибут rel</h2>
+                        <p>Визначає відношення між поточним документом та ресурсом.</p>
+                        
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Зовнішнє посилання --&gt;
+&lt;a href="https://example.com" rel="external"&gt;Зовнішній сайт&lt;/a&gt;
+
+&lt;!-- Не передавати реферер --&gt;
+&lt;a href="https://example.com" rel="noreferrer"&gt;Без реферера&lt;/a&gt;
+
+&lt;!-- Не впливати на SEO --&gt;
+&lt;a href="https://example.com" rel="nofollow"&gt;Посилання nofollow&lt;/a&gt;
+
+&lt;!-- Безпека для нової вкладки --&gt;
+&lt;a href="https://example.com" 
+   target="_blank" 
+   rel="noopener noreferrer"&gt;
+    Безпечне посилання
+&lt;/a&gt;
+
+&lt;!-- Спонсорське посилання --&gt;
+&lt;a href="https://sponsor.com" rel="sponsored"&gt;Спонсор&lt;/a&gt;
+
+&lt;!-- UGC (User Generated Content) --&gt;
+&lt;a href="https://user-site.com" rel="ugc"&gt;Посилання користувача&lt;/a&gt;
+
+&lt;!-- Комбінація --&gt;
+&lt;a href="https://example.com" 
+   rel="nofollow noopener noreferrer external"&gt;
+    Посилання з кількома rel
+&lt;/a&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Атрибут download</h2>
+                        <p>Пропонує завантажити файл замість відкриття.</p>
+                        
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Завантажити файл з оригінальним ім'ям --&gt;
+&lt;a href="/files/document.pdf" download&gt;
+    Завантажити PDF
+&lt;/a&gt;
+
+&lt;!-- Завантажити з новим ім'ям --&gt;
+&lt;a href="/files/report-2024.xlsx" download="financial-report.xlsx"&gt;
+    Завантажити звіт
+&lt;/a&gt;
+
+&lt;!-- Завантажити зображення --&gt;
+&lt;a href="/images/photo.jpg" download="my-photo.jpg"&gt;
+    Завантажити фото
+&lt;/a&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Email та телефонні посилання</h2>
+                        
+                        <h3>Mailto посилання</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Простий email --&gt;
+&lt;a href="mailto:info@example.com"&gt;Написати нам&lt;/a&gt;
+
+&lt;!-- З темою --&gt;
+&lt;a href="mailto:support@example.com?subject=Підтримка"&gt;
+    Техпідтримка
+&lt;/a&gt;
+
+&lt;!-- З темою та текстом --&gt;
+&lt;a href="mailto:sales@example.com?subject=Запит&amp;body=Доброго дня!"&gt;
+    Запит продажу
+&lt;/a&gt;
+
+&lt;!-- З копіями --&gt;
+&lt;a href="mailto:info@example.com?cc=manager@example.com&amp;bcc=archive@example.com"&gt;
+    З копіями
+&lt;/a&gt;
+
+&lt;!-- Повний приклад --&gt;
+&lt;a href="mailto:contact@example.com?subject=Питання%20про%20продукт&amp;body=Доброго%20дня!%0A%0AХочу%20дізнатися..."&gt;
+    Запитати про продукт
+&lt;/a&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Телефонні посилання</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Простий телефон --&gt;
+&lt;a href="tel:+380123456789"&gt;+380 12 345 67 89&lt;/a&gt;
+
+&lt;!-- Без пробілів та дефісів в href --&gt;
+&lt;a href="tel:+380987654321"&gt;+380 98 765 43 21&lt;/a&gt;
+
+&lt;!-- З додатковим номером --&gt;
+&lt;a href="tel:+380123456789,123"&gt;+380 12 345 67 89 (доб. 123)&lt;/a&gt;</code></pre>
+                        </div>
+                        
+                        <h3>SMS посилання</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- SMS --&gt;
+&lt;a href="sms:+380123456789"&gt;Надіслати SMS&lt;/a&gt;
+
+&lt;!-- SMS з текстом --&gt;
+&lt;a href="sms:+380123456789?body=Доброго%20дня!"&gt;
+    Швидке SMS
+&lt;/a&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Навігаційні патерни</h2>
+                        
+                        <h3>Головна навігація</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;header&gt;
+    &lt;nav aria-label="Головна навігація"&gt;
+        &lt;ul&gt;
+            &lt;li&gt;&lt;a href="/" aria-current="page"&gt;Головна&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="/about"&gt;Про нас&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="/services"&gt;Послуги&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="/portfolio"&gt;Портфоліо&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="/contact"&gt;Контакти&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/nav&gt;
+&lt;/header&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Навігація з підменю</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;
+            &lt;a href="/products"&gt;Продукти&lt;/a&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="/products/web"&gt;Веб-розробка&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/products/mobile"&gt;Мобільні додатки&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/products/design"&gt;Дизайн&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href="/services"&gt;Послуги&lt;/a&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="/services/consulting"&gt;Консалтинг&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/services/training"&gt;Навчання&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Хлібні крихти (Breadcrumbs)</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;nav aria-label="Breadcrumb"&gt;
+    &lt;ol&gt;
+        &lt;li&gt;&lt;a href="/"&gt;Головна&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/products"&gt;Продукти&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/products/laptops"&gt;Ноутбуки&lt;/a&gt;&lt;/li&gt;
+        &lt;li aria-current="page"&gt;MacBook Pro 16&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Пагінація</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;nav aria-label="Пагінація"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="/blog?page=1" aria-label="Попередня сторінка"&gt;«&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/blog?page=1"&gt;1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/blog?page=2" aria-current="page"&gt;2&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/blog?page=3"&gt;3&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/blog?page=4"&gt;4&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/blog?page=5"&gt;5&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="/blog?page=3" aria-label="Наступна сторінка"&gt;»&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Футер навігація</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;footer&gt;
+    &lt;nav aria-label="Футер навігація"&gt;
+        &lt;div&gt;
+            &lt;h3&gt;Компанія&lt;/h3&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="/about"&gt;Про нас&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/team"&gt;Команда&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/careers"&gt;Кар'єра&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;h3&gt;Ресурси&lt;/h3&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="/blog"&gt;Блог&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/docs"&gt;Документація&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/faq"&gt;FAQ&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+        &lt;div&gt;
+            &lt;h3&gt;Юридичне&lt;/h3&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="/privacy"&gt;Конфіденційність&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/terms"&gt;Умови&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/nav&gt;
+&lt;/footer&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Стилізація посилань</h2>
+                        <div class="code-block">
+                            <pre><code>/* Стани посилань */
+a:link {
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #9b59b6;
+}
+
+a:hover {
+    color: #2980b9;
+    text-decoration: underline;
+}
+
+a:active {
+    color: #e74c3c;
+}
+
+a:focus {
+    outline: 2px solid #3498db;
+    outline-offset: 2px;
+}
+
+/* Кнопка-посилання */
+.button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.button-link:hover {
+    background-color: #2980b9;
+    text-decoration: none;
+}
+
+/* Зовнішні посилання з іконкою */
+a[target="_blank"]::after {
+    content: " ↗";
+    font-size: 0.8em;
+}
+
+/* Посилання для завантаження */
+a[download]::before {
+    content: "⬇ ";
+}</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Повний приклад навігації</h2>
+                        <div class="code-block">
+                            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="uk"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Приклад навігації&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Skip to content для доступності --&gt;
+    &lt;a href="#main-content" class="skip-link"&gt;Перейти до контенту&lt;/a&gt;
+    
+    &lt;header&gt;
+        &lt;nav aria-label="Головна навігація"&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="/"&gt;Головна&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/about"&gt;Про нас&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/services"&gt;Послуги&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/contact"&gt;Контакти&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    
+    &lt;nav aria-label="Breadcrumb"&gt;
+        &lt;ol&gt;
+            &lt;li&gt;&lt;a href="/"&gt;Головна&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="/services"&gt;Послуги&lt;/a&gt;&lt;/li&gt;
+            &lt;li aria-current="page"&gt;Веб-розробка&lt;/li&gt;
+        &lt;/ol&gt;
+    &lt;/nav&gt;
+    
+    &lt;main id="main-content"&gt;
+        &lt;article&gt;
+            &lt;h1&gt;Веб-розробка&lt;/h1&gt;
+            
+            &lt;!-- Зміст статті --&gt;
+            &lt;nav aria-label="Зміст сторінки"&gt;
+                &lt;h2&gt;Зміст&lt;/h2&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;&lt;a href="#intro"&gt;Вступ&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#technologies"&gt;Технології&lt;/a&gt;&lt;/li&gt;
+                    &lt;li&gt;&lt;a href="#pricing"&gt;Ціни&lt;/a&gt;&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/nav&gt;
+            
+            &lt;section id="intro"&gt;
+                &lt;h2&gt;Вступ&lt;/h2&gt;
+                &lt;p&gt;Контент...&lt;/p&gt;
+            &lt;/section&gt;
+            
+            &lt;!-- Посилання на ресурси --&gt;
+            &lt;aside&gt;
+                &lt;h3&gt;Корисні ресурси&lt;/h3&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;
+                        &lt;a href="https://developer.mozilla.org" 
+                           target="_blank" 
+                           rel="noopener noreferrer"&gt;
+                            MDN Web Docs
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                    &lt;li&gt;
+                        &lt;a href="/docs/guide.pdf" download&gt;
+                            Завантажити гід (PDF)
+                        &lt;/a&gt;
+                    &lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/aside&gt;
+            
+            &lt;!-- Контактна інформація --&gt;
+            &lt;section&gt;
+                &lt;h3&gt;Зв'язатися з нами&lt;/h3&gt;
+                &lt;p&gt;
+                    Email: &lt;a href="mailto:info@example.com"&gt;info@example.com&lt;/a&gt;&lt;br&gt;
+                    Телефон: &lt;a href="tel:+380123456789"&gt;+380 12 345 67 89&lt;/a&gt;
+                &lt;/p&gt;
+            &lt;/section&gt;
+        &lt;/article&gt;
+    &lt;/main&gt;
+    
+    &lt;footer&gt;
+        &lt;p&gt;&copy; 2024 Моя компанія&lt;/p&gt;
+        &lt;nav aria-label="Футер"&gt;
+            &lt;a href="/privacy"&gt;Конфіденційність&lt;/a&gt;
+            &lt;a href="/terms"&gt;Умови&lt;/a&gt;
+        &lt;/nav&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <div class="info-box success">
+                            <h4>Підсумок</h4>
+                            <p>
+                                Посилання - основа веб-навігації. Використовуйте відповідні шляхи (абсолютні/відносні), 
+                                додавайте <code>rel="noopener noreferrer"</code> до зовнішніх посилань з 
+                                <code>target="_blank"</code>, створюйте якірні посилання для навігації по сторінці, 
+                                використовуйте семантичні елементи <code>&lt;nav&gt;</code> та атрибути 
+                                <code>aria-label</code> для доступності. Правильна навігаційна структура покращує 
+                                користувацький досвід та SEO.
+                            </p>
+                        </div>
+                    </section>
+                    
+                    <button id="complete-lesson" class="complete-button" data-lesson="lesson07">
+                        Позначити урок як пройдений
+                    </button>
+                    
+                    <nav class="lesson-navigation">
+                        <a href="lesson06.html" class="nav-button prev">Попередній урок</a>
+                        <a href="lesson08.html" class="nav-button next">Наступний урок</a>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/app.js"></script>
+</body>
+</html>

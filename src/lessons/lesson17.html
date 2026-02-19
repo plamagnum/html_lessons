@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 17: Робота з формами через JS | HTML та JavaScript</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    
+    <div class="app-container">
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h1>HTML & JS</h1>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <nav>
+                <ul class="lessons-list">
+                    <li class="lesson-item"><a href="lesson01.html" class="lesson-link" data-lesson="lesson01"><span class="lesson-number">01</span><span class="lesson-title">Семантичний HTML5</span></a></li>
+                    <li class="lesson-item"><a href="lesson02.html" class="lesson-link" data-lesson="lesson02"><span class="lesson-number">02</span><span class="lesson-title">Таблиці та списки</span></a></li>
+                    <li class="lesson-item"><a href="lesson03.html" class="lesson-link" data-lesson="lesson03"><span class="lesson-number">03</span><span class="lesson-title">Форми (частина 1)</span></a></li>
+                    <li class="lesson-item"><a href="lesson04.html" class="lesson-link" data-lesson="lesson04"><span class="lesson-number">04</span><span class="lesson-title">Форми (частина 2)</span></a></li>
+                    <li class="lesson-item"><a href="lesson05.html" class="lesson-link" data-lesson="lesson05"><span class="lesson-number">05</span><span class="lesson-title">Мультимедіа</span></a></li>
+                    <li class="lesson-item"><a href="lesson06.html" class="lesson-link" data-lesson="lesson06"><span class="lesson-number">06</span><span class="lesson-title">Meta-теги та SEO</span></a></li>
+                    <li class="lesson-item"><a href="lesson07.html" class="lesson-link" data-lesson="lesson07"><span class="lesson-number">07</span><span class="lesson-title">Посилання та навігація</span></a></li>
+                    <li class="lesson-item"><a href="lesson08.html" class="lesson-link" data-lesson="lesson08"><span class="lesson-number">08</span><span class="lesson-title">Доступність (a11y)</span></a></li>
+                    <li class="lesson-item"><a href="lesson09.html" class="lesson-link" data-lesson="lesson09"><span class="lesson-number">09</span><span class="lesson-title">CSS Flexbox</span></a></li>
+                    <li class="lesson-item"><a href="lesson10.html" class="lesson-link" data-lesson="lesson10"><span class="lesson-number">10</span><span class="lesson-title">CSS Grid</span></a></li>
+                    <li class="lesson-item"><a href="lesson11.html" class="lesson-link" data-lesson="lesson11"><span class="lesson-number">11</span><span class="lesson-title">CSS анімації</span></a></li>
+                    <li class="lesson-item"><a href="lesson12.html" class="lesson-link" data-lesson="lesson12"><span class="lesson-number">12</span><span class="lesson-title">CSS змінні та адаптивність</span></a></li>
+                    <li class="lesson-item"><a href="lesson13.html" class="lesson-link" data-lesson="lesson13"><span class="lesson-number">13</span><span class="lesson-title">Основи JavaScript</span></a></li>
+                    <li class="lesson-item"><a href="lesson14.html" class="lesson-link" data-lesson="lesson14"><span class="lesson-number">14</span><span class="lesson-title">Функції та масиви</span></a></li>
+                    <li class="lesson-item"><a href="lesson15.html" class="lesson-link" data-lesson="lesson15"><span class="lesson-number">15</span><span class="lesson-title">DOM маніпуляції</span></a></li>
+                    <li class="lesson-item"><a href="lesson16.html" class="lesson-link" data-lesson="lesson16"><span class="lesson-number">16</span><span class="lesson-title">Події та обробники</span></a></li>
+                    <li class="lesson-item"><a href="lesson17.html" class="lesson-link" data-lesson="lesson17"><span class="lesson-number">17</span><span class="lesson-title">Робота з формами через JS</span></a></li>
+                    <li class="lesson-item"><a href="lesson18.html" class="lesson-link" data-lesson="lesson18"><span class="lesson-number">18</span><span class="lesson-title">LocalStorage та JSON</span></a></li>
+                    <li class="lesson-item"><a href="lesson19.html" class="lesson-link" data-lesson="lesson19"><span class="lesson-number">19</span><span class="lesson-title">Fetch API та асинхронність</span></a></li>
+                    <li class="lesson-item"><a href="lesson20.html" class="lesson-link" data-lesson="lesson20"><span class="lesson-number">20</span><span class="lesson-title">Фінальний проєкт: TODO</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <div class="lesson-container">
+                <header class="lesson-header">
+                    <h1>Урок 17: Робота з формами через JS</h1>
+                    <p class="lesson-meta">Отримання даних, валідація, FormData, динамічні форми</p>
+                </header>
+                
+                <div class="lesson-content">
+                    <section>
+                        <h2>Основи роботи з формами</h2>
+                        <p>
+                            Форми — це основний спосіб отримання даних від користувача. JavaScript дозволяє 
+                            отримувати значення полів, валідувати дані перед відправкою та створювати динамічні форми.
+                        </p>
+                        
+                        <div class="info-box">
+                            <h4>Основні задачі при роботі з формами</h4>
+                            <ul>
+                                <li>Отримання значень з полів форми</li>
+                                <li>Валідація даних на стороні клієнта</li>
+                                <li>Запобігання відправки форми (preventDefault)</li>
+                                <li>Динамічне додавання/видалення полів</li>
+                                <li>Робота з FormData API</li>
+                                <li>Відображення помилок валідації</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Отримання значень з форми</h2>
+                        <div class="code-block">
+                            <pre><code>// Доступ до форми
+const form = document.querySelector('#myForm');
+
+// Через querySelector
+const nameInput = document.querySelector('#name');
+const emailInput = document.querySelector('#email');
+const value = nameInput.value;
+
+// Через form.elements (рекомендується)
+const name = form.elements.name.value;
+const email = form.elements.email.value;
+
+// Через form.name (для елементів з атрибутом name)
+const name2 = form.name.value;
+
+// Checkbox
+const agreeCheckbox = form.elements.agree;
+const isChecked = agreeCheckbox.checked;  // true або false
+
+// Radio buttons
+const genderRadios = form.elements.gender;
+let selectedGender;
+for (let radio of genderRadios) {
+    if (radio.checked) {
+        selectedGender = radio.value;
+        break;
+    }
+}
+
+// Select (dropdown)
+const countrySelect = form.elements.country;
+const selectedCountry = countrySelect.value;
+const selectedIndex = countrySelect.selectedIndex;
+const selectedText = countrySelect.options[selectedIndex].text;
+
+// Multiple select
+const hobbiesSelect = form.elements.hobbies;
+const selectedHobbies = Array.from(hobbiesSelect.selectedOptions)
+    .map(option => option.value);
+
+// Textarea
+const messageTextarea = form.elements.message;
+const message = messageTextarea.value;
+
+// Встановлення значень
+nameInput.value = 'Іван';
+emailInput.value = 'ivan@example.com';
+agreeCheckbox.checked = true;</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="22">// Форма з виведенням значень
+const container = document.createElement('div');
+container.style.cssText = 'padding: 20px; border: 2px solid #4CAF50; margin: 10px;';
+
+container.innerHTML = `
+    <form id="testForm">
+        <div style="margin-bottom: 10px;">
+            <label>Ім'я: <input type="text" name="name" value="Іван"></label>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label>Email: <input type="email" name="email" value="ivan@example.com"></label>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label><input type="checkbox" name="subscribe" checked> Підписатися на новини</label>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label>Країна: 
+                <select name="country">
+                    <option value="ua">Україна</option>
+                    <option value="pl">Польща</option>
+                    <option value="de">Німеччина</option>
+                </select>
+            </label>
+        </div>
+        <button type="button" id="showValues">Показати значення</button>
+    </form>
+    <div id="output" style="margin-top: 15px; padding: 10px; background: #f5f5f5;"></div>
+`;
+
+document.body.appendChild(container);
+
+const form = document.querySelector('#testForm');
+const output = document.querySelector('#output');
+
+document.querySelector('#showValues').addEventListener('click', () => {
+    const data = {
+        name: form.elements.name.value,
+        email: form.elements.email.value,
+        subscribe: form.elements.subscribe.checked,
+        country: form.elements.country.value
+    };
+    
+    output.innerHTML = '<pre>' + JSON.stringify(data, null, 2) + '</pre>';
+    console.log('Дані форми:', data);
+});</textarea>
+                            <button class="run-button" onclick="runHTML(this)">▶ Запустити HTML</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Обробка відправки форми</h2>
+                        <div class="code-block">
+                            <pre><code>const form = document.querySelector('#myForm');
+
+// Подія submit спрацьовує при відправці форми
+form.addEventListener('submit', (e) => {
+    // Запобігти стандартній відправці форми
+    e.preventDefault();
+    
+    // Отримати дані
+    const formData = {
+        name: form.elements.name.value,
+        email: form.elements.email.value,
+        message: form.elements.message.value
+    };
+    
+    console.log('Дані форми:', formData);
+    
+    // Тут можна відправити дані на сервер
+    // fetch('/api/submit', { method: 'POST', body: JSON.stringify(formData) })
+});
+
+// Програмна відправка форми
+form.submit();  // Викликає submit без перевірок
+
+// Програмне натискання кнопки submit
+const submitButton = form.querySelector('button[type="submit"]');
+submitButton.click();  // Викликає submit з перевірками
+
+// Скидання форми
+form.reset();  // Очищає всі поля
+
+// Приклад: повна обробка форми
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    // Отримати дані
+    const data = new FormData(form);
+    
+    // Показати індикатор завантаження
+    const submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Відправка...';
+    
+    try {
+        // Відправити дані
+        const response = await fetch('/api/submit', {
+            method: 'POST',
+            body: data
+        });
+        
+        if (response.ok) {
+            alert('Форма успішно відправлена!');
+            form.reset();
+        } else {
+            alert('Помилка відправки');
+        }
+    } catch (error) {
+        console.error('Помилка:', error);
+        alert('Помилка з\'єднання');
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Відправити';
+    }
+});</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Інтерактивний приклад:</h4>
+                            <textarea class="code-input" rows="24">// Форма з обробкою відправки
+const container = document.createElement('div');
+container.style.cssText = 'padding: 20px; border: 2px solid #2196F3; margin: 10px;';
+
+container.innerHTML = `
+    <form id="contactForm">
+        <h3>Форма зворотного зв'язку</h3>
+        <div style="margin-bottom: 10px;">
+            <label>Ім'я:<br><input type="text" name="name" required style="width: 100%; padding: 5px;"></label>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label>Email:<br><input type="email" name="email" required style="width: 100%; padding: 5px;"></label>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label>Повідомлення:<br><textarea name="message" required style="width: 100%; padding: 5px; height: 80px;"></textarea></label>
+        </div>
+        <button type="submit" style="padding: 10px 20px; cursor: pointer;">Відправити</button>
+    </form>
+    <div id="result" style="margin-top: 15px;"></div>
+`;
+
+document.body.appendChild(container);
+
+const form = document.querySelector('#contactForm');
+const result = document.querySelector('#result');
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const data = {
+        name: form.elements.name.value,
+        email: form.elements.email.value,
+        message: form.elements.message.value
+    };
+    
+    result.innerHTML = `
+        <div style="padding: 15px; background: #4CAF50; color: white; border-radius: 4px;">
+            <strong>✓ Форму відправлено!</strong><br>
+            Дякуємо, ${data.name}! Ми зв'яжемося з вами на ${data.email}
+        </div>
+    `;
+    
+    console.log('Відправлені дані:', data);
+    
+    form.reset();
+});</textarea>
+                            <button class="run-button" onclick="runHTML(this)">▶ Запустити HTML</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Валідація форм</h2>
+                        <div class="code-block">
+                            <pre><code>// HTML5 валідація (атрибути)
+// required, minlength, maxlength, pattern, type="email", type="url" тощо
+
+// JavaScript валідація
+function validateForm(form) {
+    const errors = [];
+    
+    // Перевірка імені
+    const name = form.elements.name.value.trim();
+    if (name.length < 2) {
+        errors.push('Ім\'я повинно містити мінімум 2 символи');
+    }
+    
+    // Перевірка email
+    const email = form.elements.email.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+        errors.push('Некоректний email');
+    }
+    
+    // Перевірка телефону
+    const phone = form.elements.phone.value.trim();
+    const phoneRegex = /^\+?[\d\s\-\(\)]+$/;
+    if (phone && !phoneRegex.test(phone)) {
+        errors.push('Некоректний номер телефону');
+    }
+    
+    // Перевірка пароля
+    const password = form.elements.password.value;
+    if (password.length < 8) {
+        errors.push('Пароль повинен містити мінімум 8 символів');
+    }
+    
+    // Перевірка підтвердження пароля
+    const passwordConfirm = form.elements.passwordConfirm.value;
+    if (password !== passwordConfirm) {
+        errors.push('Паролі не збігаються');
+    }
+    
+    // Перевірка checkbox
+    const agree = form.elements.agree.checked;
+    if (!agree) {
+        errors.push('Необхідно прийняти умови');
+    }
+    
+    return errors;
+}
+
+// Використання
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const errors = validateForm(form);
+    
+    if (errors.length > 0) {
+        showErrors(errors);
+    } else {
+        // Відправити форму
+        submitForm(form);
+    }
+});
+
+// Показ помилок
+function showErrors(errors) {
+    const errorContainer = document.querySelector('.errors');
+    errorContainer.innerHTML = errors
+        .map(err => `<div class="error">${err}</div>`)
+        .join('');
+}
+
+// Валідація в реальному часі
+const emailInput = form.elements.email;
+emailInput.addEventListener('blur', () => {
+    const email = emailInput.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    if (!emailRegex.test(email)) {
+        emailInput.classList.add('invalid');
+        showFieldError(emailInput, 'Некоректний email');
+    } else {
+        emailInput.classList.remove('invalid');
+        hideFieldError(emailInput);
+    }
+});
+
+// Constraint Validation API
+const input = form.elements.email;
+
+// Перевірка валідності
+if (!input.validity.valid) {
+    console.log('Поле не валідне');
+    console.log(input.validationMessage);  // Повідомлення про помилку
+}
+
+// Власне повідомлення про помилку
+input.setCustomValidity('Цей email вже використовується');
+
+// Скасувати власне повідомлення
+input.setCustomValidity('');</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="32">// Форма реєстрації з валідацією
+const container = document.createElement('div');
+container.style.cssText = 'padding: 20px; border: 2px solid #9C27B0; margin: 10px;';
+
+container.innerHTML = `
+    <form id="registerForm">
+        <h3>Реєстрація</h3>
+        <div style="margin-bottom: 10px;">
+            <label>Ім'я:<br><input type="text" name="name" style="width: 100%; padding: 5px;"></label>
+            <div class="field-error" style="color: red; font-size: 12px; display: none;"></div>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label>Email:<br><input type="email" name="email" style="width: 100%; padding: 5px;"></label>
+            <div class="field-error" style="color: red; font-size: 12px; display: none;"></div>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label>Пароль:<br><input type="password" name="password" style="width: 100%; padding: 5px;"></label>
+            <div class="field-error" style="color: red; font-size: 12px; display: none;"></div>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label>Підтвердження:<br><input type="password" name="passwordConfirm" style="width: 100%; padding: 5px;"></label>
+            <div class="field-error" style="color: red; font-size: 12px; display: none;"></div>
+        </div>
+        <button type="submit" style="padding: 10px 20px; cursor: pointer;">Зареєструватись</button>
+    </form>
+    <div id="result" style="margin-top: 15px;"></div>
+`;
+
+document.body.appendChild(container);
+
+const form = document.querySelector('#registerForm');
+
+function showFieldError(input, message) {
+    const error = input.parentElement.querySelector('.field-error');
+    error.textContent = message;
+    error.style.display = 'block';
+    input.style.borderColor = 'red';
+}
+
+function hideFieldError(input) {
+    const error = input.parentElement.querySelector('.field-error');
+    error.style.display = 'none';
+    input.style.borderColor = '';
+}
+
+function validateField(input) {
+    const name = input.name;
+    const value = input.value.trim();
+    
+    if (name === 'name' && value.length < 2) {
+        showFieldError(input, 'Мінімум 2 символи');
+        return false;
+    }
+    
+    if (name === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+        showFieldError(input, 'Некоректний email');
+        return false;
+    }
+    
+    if (name === 'password' && value.length < 6) {
+        showFieldError(input, 'Мінімум 6 символів');
+        return false;
+    }
+    
+    if (name === 'passwordConfirm') {
+        const password = form.elements.password.value;
+        if (value !== password) {
+            showFieldError(input, 'Паролі не збігаються');
+            return false;
+        }
+    }
+    
+    hideFieldError(input);
+    return true;
+}
+
+// Валідація при втраті фокусу
+form.querySelectorAll('input').forEach(input => {
+    input.addEventListener('blur', () => validateField(input));
+});
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    let isValid = true;
+    form.querySelectorAll('input').forEach(input => {
+        if (!validateField(input)) isValid = false;
+    });
+    
+    if (isValid) {
+        document.querySelector('#result').innerHTML = `
+            <div style="padding: 15px; background: #4CAF50; color: white;">
+                ✓ Реєстрація успішна!
+            </div>
+        `;
+        console.log('Форма валідна!');
+    }
+});</textarea>
+                            <button class="run-button" onclick="runHTML(this)">▶ Запустити HTML</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>FormData API</h2>
+                        <div class="code-block">
+                            <pre><code>// FormData - зручний спосіб збору даних форми
+const form = document.querySelector('#myForm');
+
+// Створення FormData з форми
+const formData = new FormData(form);
+
+// Або створення порожньої FormData
+const data = new FormData();
+
+// Додавання даних
+data.append('name', 'Іван');
+data.append('email', 'ivan@example.com');
+data.append('age', 25);
+
+// Додавання файлу
+const fileInput = document.querySelector('#avatar');
+data.append('avatar', fileInput.files[0]);
+
+// Отримання значення
+const name = data.get('name');  // 'Іван'
+
+// Перевірка наявності поля
+if (data.has('email')) {
+    console.log('Email присутній');
+}
+
+// Видалення поля
+data.delete('age');
+
+// Встановлення значення (замінює існуюче)
+data.set('name', 'Петро');
+
+// Отримання всіх значень поля (для полів з однаковими іменами)
+const hobbies = data.getAll('hobby');
+
+// Перебір даних
+for (let [key, value] of data.entries()) {
+    console.log(key, value);
+}
+
+// Конвертація FormData в об'єкт
+const obj = Object.fromEntries(data.entries());
+console.log(obj);
+
+// Відправка FormData через fetch
+fetch('/api/submit', {
+    method: 'POST',
+    body: formData  // не потрібно встановлювати Content-Type
+});
+
+// FormData з файлами
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(form);
+    
+    // Додати додаткові дані
+    formData.append('timestamp', Date.now());
+    formData.append('userId', '123');
+    
+    try {
+        const response = await fetch('/api/upload', {
+            method: 'POST',
+            body: formData
+        });
+        
+        const result = await response.json();
+        console.log('Результат:', result);
+    } catch (error) {
+        console.error('Помилка:', error);
+    }
+});</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="20">// Форма з використанням FormData
+const container = document.createElement('div');
+container.style.cssText = 'padding: 20px; border: 2px solid #FF9800; margin: 10px;';
+
+container.innerHTML = `
+    <form id="profileForm">
+        <h3>Профіль користувача</h3>
+        <div style="margin-bottom: 10px;">
+            <label>Ім'я: <input type="text" name="name" value="Іван"></label>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label>Вік: <input type="number" name="age" value="25"></label>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label>Місто: <input type="text" name="city" value="Київ"></label>
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label><input type="checkbox" name="premium" checked> Преміум акаунт</label>
+        </div>
+        <button type="submit" style="padding: 8px 16px; cursor: pointer;">Зберегти</button>
+    </form>
+    <div id="output" style="margin-top: 15px; padding: 10px; background: #f5f5f5;"></div>
+`;
+
+document.body.appendChild(container);
+
+document.querySelector('#profileForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target);
+    
+    // Додати додаткові дані
+    formData.append('timestamp', new Date().toISOString());
+    formData.append('userId', '12345');
+    
+    // Конвертувати в об'єкт
+    const data = {};
+    for (let [key, value] of formData.entries()) {
+        data[key] = value;
+    }
+    
+    document.querySelector('#output').innerHTML = `
+        <strong>Дані для відправки:</strong>
+        <pre>${JSON.stringify(data, null, 2)}</pre>
+    `;
+    
+    console.log('FormData:', data);
+});</textarea>
+                            <button class="run-button" onclick="runHTML(this)">▶ Запустити HTML</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Динамічні форми</h2>
+                        <div class="code-block">
+                            <pre><code>// Додавання полів динамічно
+const addFieldButton = document.querySelector('#add-field');
+const fieldsContainer = document.querySelector('#fields-container');
+
+addFieldButton.addEventListener('click', () => {
+    const fieldDiv = document.createElement('div');
+    fieldDiv.className = 'field-group';
+    fieldDiv.innerHTML = `
+        <input type="text" name="hobby[]" placeholder="Хобі">
+        <button type="button" class="remove-field">✕</button>
+    `;
+    
+    fieldsContainer.appendChild(fieldDiv);
+});
+
+// Видалення полів
+fieldsContainer.addEventListener('click', (e) => {
+    if (e.target.classList.contains('remove-field')) {
+        e.target.parentElement.remove();
+    }
+});
+
+// Приклад: динамічний список завдань
+const todoContainer = document.querySelector('#todo-list');
+const addTodoBtn = document.querySelector('#add-todo');
+
+let todoCount = 0;
+
+addTodoBtn.addEventListener('click', () => {
+    todoCount++;
+    
+    const todoDiv = document.createElement('div');
+    todoDiv.className = 'todo-item';
+    todoDiv.innerHTML = `
+        <input type="text" name="todo_${todoCount}" placeholder="Завдання ${todoCount}">
+        <input type="date" name="date_${todoCount}">
+        <button type="button" class="remove-todo">Видалити</button>
+    `;
+    
+    todoContainer.appendChild(todoDiv);
+});
+
+// Умовні поля
+const userTypeSelect = document.querySelector('#user-type');
+const companyFields = document.querySelector('#company-fields');
+
+userTypeSelect.addEventListener('change', (e) => {
+    if (e.target.value === 'business') {
+        companyFields.style.display = 'block';
+        // Зробити поля обов'язковими
+        companyFields.querySelectorAll('input').forEach(input => {
+            input.required = true;
+        });
+    } else {
+        companyFields.style.display = 'none';
+        companyFields.querySelectorAll('input').forEach(input => {
+            input.required = false;
+        });
+    }
+});
+
+// Автозаповнення
+const cityInput = document.querySelector('#city');
+const suggestions = document.querySelector('#city-suggestions');
+const cities = ['Київ', 'Харків', 'Одеса', 'Дніпро', 'Львів'];
+
+cityInput.addEventListener('input', (e) => {
+    const value = e.target.value.toLowerCase();
+    
+    if (value.length > 0) {
+        const matches = cities.filter(city => 
+            city.toLowerCase().includes(value)
+        );
+        
+        suggestions.innerHTML = matches
+            .map(city => `<div class="suggestion">${city}</div>`)
+            .join('');
+        suggestions.style.display = 'block';
+    } else {
+        suggestions.style.display = 'none';
+    }
+});
+
+suggestions.addEventListener('click', (e) => {
+    if (e.target.classList.contains('suggestion')) {
+        cityInput.value = e.target.textContent;
+        suggestions.style.display = 'none';
+    }
+});</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Інтерактивний приклад:</h4>
+                            <textarea class="code-input" rows="28">// Динамічна форма зі списком телефонів
+const container = document.createElement('div');
+container.style.cssText = 'padding: 20px; border: 2px solid #00BCD4; margin: 10px;';
+
+container.innerHTML = `
+    <form id="dynamicForm">
+        <h3>Контактна інформація</h3>
+        <div style="margin-bottom: 10px;">
+            <label>Ім'я: <input type="text" name="name" required></label>
+        </div>
+        <div id="phones-container"></div>
+        <button type="button" id="addPhone" style="padding: 5px 10px; margin-bottom: 10px; cursor: pointer;">
+            ➕ Додати телефон
+        </button>
+        <br>
+        <button type="submit" style="padding: 10px 20px; cursor: pointer;">Зберегти</button>
+    </form>
+    <div id="result" style="margin-top: 15px;"></div>
+`;
+
+document.body.appendChild(container);
+
+const phonesContainer = document.querySelector('#phones-container');
+let phoneCount = 0;
+
+document.querySelector('#addPhone').addEventListener('click', () => {
+    phoneCount++;
+    
+    const phoneDiv = document.createElement('div');
+    phoneDiv.style.cssText = 'margin-bottom: 10px; display: flex; gap: 5px;';
+    phoneDiv.innerHTML = `
+        <input type="tel" name="phone_${phoneCount}" placeholder="+380..." style="flex: 1; padding: 5px;">
+        <button type="button" class="remove-phone" style="padding: 5px 10px; cursor: pointer;">❌</button>
+    `;
+    
+    phonesContainer.appendChild(phoneDiv);
+});
+
+phonesContainer.addEventListener('click', (e) => {
+    if (e.target.classList.contains('remove-phone')) {
+        e.target.parentElement.remove();
+    }
+});
+
+document.querySelector('#dynamicForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+    
+    document.querySelector('#result').innerHTML = `
+        <div style="padding: 15px; background: #e3f2fd;">
+            <strong>Збережені дані:</strong>
+            <pre>${JSON.stringify(data, null, 2)}</pre>
+        </div>
+    `;
+    
+    console.log('Дані:', data);
+});</textarea>
+                            <button class="run-button" onclick="runHTML(this)">▶ Запустити HTML</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <div class="info-box success">
+                            <h4>Підсумок</h4>
+                            <p>
+                                Ви навчилися працювати з формами через JavaScript: отримувати значення полів, 
+                                обробляти відправку форми, валідувати дані, використовувати <code>FormData API</code> 
+                                та створювати динамічні форми. Ці навички необхідні для створення інтерактивних 
+                                веб-додатків з якісним користувацьким досвідом.
+                            </p>
+                        </div>
+                    </section>
+                    
+                    <button id="complete-lesson" class="complete-button" data-lesson="lesson17">
+                        Позначити урок як пройдений
+                    </button>
+                    
+                    <nav class="lesson-navigation">
+                        <a href="lesson16.html" class="nav-button prev">Попередній урок</a>
+                        <a href="lesson18.html" class="nav-button next">Наступний урок</a>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/app.js"></script>
+</body>
+</html>

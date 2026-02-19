@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 4: Форми (частина 2) | HTML та JavaScript</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    
+    <div class="app-container">
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h1>HTML & JS</h1>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <nav>
+                <ul class="lessons-list">
+                    <li class="lesson-item"><a href="lesson01.html" class="lesson-link" data-lesson="lesson01"><span class="lesson-number">01</span><span class="lesson-title">Семантичний HTML5</span></a></li>
+                    <li class="lesson-item"><a href="lesson02.html" class="lesson-link" data-lesson="lesson02"><span class="lesson-number">02</span><span class="lesson-title">Таблиці та списки</span></a></li>
+                    <li class="lesson-item"><a href="lesson03.html" class="lesson-link" data-lesson="lesson03"><span class="lesson-number">03</span><span class="lesson-title">Форми (частина 1)</span></a></li>
+                    <li class="lesson-item"><a href="lesson04.html" class="lesson-link" data-lesson="lesson04"><span class="lesson-number">04</span><span class="lesson-title">Форми (частина 2)</span></a></li>
+                    <li class="lesson-item"><a href="lesson05.html" class="lesson-link" data-lesson="lesson05"><span class="lesson-number">05</span><span class="lesson-title">Мультимедіа</span></a></li>
+                    <li class="lesson-item"><a href="lesson06.html" class="lesson-link" data-lesson="lesson06"><span class="lesson-number">06</span><span class="lesson-title">Meta-теги та SEO</span></a></li>
+                    <li class="lesson-item"><a href="lesson07.html" class="lesson-link" data-lesson="lesson07"><span class="lesson-number">07</span><span class="lesson-title">Посилання та навігація</span></a></li>
+                    <li class="lesson-item"><a href="lesson08.html" class="lesson-link" data-lesson="lesson08"><span class="lesson-number">08</span><span class="lesson-title">Доступність (a11y)</span></a></li>
+                    <li class="lesson-item"><a href="lesson09.html" class="lesson-link" data-lesson="lesson09"><span class="lesson-number">09</span><span class="lesson-title">CSS Flexbox</span></a></li>
+                    <li class="lesson-item"><a href="lesson10.html" class="lesson-link" data-lesson="lesson10"><span class="lesson-number">10</span><span class="lesson-title">CSS Grid</span></a></li>
+                    <li class="lesson-item"><a href="lesson11.html" class="lesson-link" data-lesson="lesson11"><span class="lesson-number">11</span><span class="lesson-title">CSS анімації</span></a></li>
+                    <li class="lesson-item"><a href="lesson12.html" class="lesson-link" data-lesson="lesson12"><span class="lesson-number">12</span><span class="lesson-title">CSS змінні та адаптивність</span></a></li>
+                    <li class="lesson-item"><a href="lesson13.html" class="lesson-link" data-lesson="lesson13"><span class="lesson-number">13</span><span class="lesson-title">Основи JavaScript</span></a></li>
+                    <li class="lesson-item"><a href="lesson14.html" class="lesson-link" data-lesson="lesson14"><span class="lesson-number">14</span><span class="lesson-title">Функції та масиви</span></a></li>
+                    <li class="lesson-item"><a href="lesson15.html" class="lesson-link" data-lesson="lesson15"><span class="lesson-number">15</span><span class="lesson-title">DOM маніпуляції</span></a></li>
+                    <li class="lesson-item"><a href="lesson16.html" class="lesson-link" data-lesson="lesson16"><span class="lesson-number">16</span><span class="lesson-title">Події та обробники</span></a></li>
+                    <li class="lesson-item"><a href="lesson17.html" class="lesson-link" data-lesson="lesson17"><span class="lesson-number">17</span><span class="lesson-title">Робота з формами через JS</span></a></li>
+                    <li class="lesson-item"><a href="lesson18.html" class="lesson-link" data-lesson="lesson18"><span class="lesson-number">18</span><span class="lesson-title">LocalStorage та JSON</span></a></li>
+                    <li class="lesson-item"><a href="lesson19.html" class="lesson-link" data-lesson="lesson19"><span class="lesson-number">19</span><span class="lesson-title">Fetch API та асинхронність</span></a></li>
+                    <li class="lesson-item"><a href="lesson20.html" class="lesson-link" data-lesson="lesson20"><span class="lesson-number">20</span><span class="lesson-title">Фінальний проєкт: TODO</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <div class="lesson-container">
+                <header class="lesson-header">
+                    <h1>Урок 4: Форми (частина 2)</h1>
+                    <p class="lesson-meta">Валідація форм, select, textarea та datalist</p>
+                </header>
+                
+                <div class="lesson-content">
+                    <section>
+                        <h2>Валідація форм у HTML5</h2>
+                        <p>
+                            HTML5 надає вбудовані механізми валідації, які працюють без JavaScript. 
+                            Браузер автоматично перевіряє дані перед відправкою форми.
+                        </p>
+                        
+                        <h3>Атрибут required</h3>
+                        <p>Робить поле обов'язковим для заповнення.</p>
+                        <div class="code-block">
+                            <pre><code>&lt;label for="username"&gt;Ім'я користувача:&lt;/label&gt;
+&lt;input type="text" id="username" name="username" required&gt;
+
+&lt;label for="email"&gt;Email:&lt;/label&gt;
+&lt;input type="email" id="email" name="email" required&gt;
+
+&lt;label&gt;
+    &lt;input type="checkbox" name="terms" required&gt;
+    Я приймаю умови використання
+&lt;/label&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Атрибути min, max та step</h3>
+                        <p>Визначають діапазон та крок для числових полів та дат.</p>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Вік від 18 до 100 --&gt;
+&lt;label for="age"&gt;Вік:&lt;/label&gt;
+&lt;input type="number" id="age" name="age" 
+       min="18" max="100" required&gt;
+
+&lt;!-- Ціна з кроком 0.01 --&gt;
+&lt;label for="price"&gt;Ціна:&lt;/label&gt;
+&lt;input type="number" id="price" name="price" 
+       min="0" max="10000" step="0.01"&gt;
+
+&lt;!-- Дата не раніше 2020 року --&gt;
+&lt;label for="start-date"&gt;Дата початку:&lt;/label&gt;
+&lt;input type="date" id="start-date" name="start-date" 
+       min="2020-01-01" required&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Атрибути minlength та maxlength</h3>
+                        <p>Визначають мінімальну та максимальну довжину тексту.</p>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Пароль від 8 до 20 символів --&gt;
+&lt;label for="password"&gt;Пароль:&lt;/label&gt;
+&lt;input type="password" id="password" name="password" 
+       minlength="8" maxlength="20" required&gt;
+
+&lt;!-- Коментар до 200 символів --&gt;
+&lt;label for="comment"&gt;Коментар:&lt;/label&gt;
+&lt;textarea id="comment" name="comment" 
+          maxlength="200"&gt;&lt;/textarea&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Валідація за допомогою pattern (регулярні вирази)</h2>
+                        <p>
+                            Атрибут <code>pattern</code> дозволяє задати власний шаблон валідації 
+                            за допомогою регулярних виразів.
+                        </p>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Український номер телефону --&gt;
+&lt;label for="phone"&gt;Телефон:&lt;/label&gt;
+&lt;input type="tel" id="phone" name="phone" 
+       pattern="^\+380\d{9}$"
+       placeholder="+380XXXXXXXXX"
+       title="Формат: +380XXXXXXXXX"&gt;
+
+&lt;!-- Тільки латинські літери --&gt;
+&lt;label for="username"&gt;Username:&lt;/label&gt;
+&lt;input type="text" id="username" name="username" 
+       pattern="[A-Za-z]{3,16}"
+       title="3-16 латинських літер"&gt;
+
+&lt;!-- Поштовий індекс --&gt;
+&lt;label for="zipcode"&gt;Індекс:&lt;/label&gt;
+&lt;input type="text" id="zipcode" name="zipcode" 
+       pattern="\d{5}"
+       placeholder="01001"
+       title="5 цифр"&gt;
+
+&lt;!-- Hex колір --&gt;
+&lt;label for="hexcolor"&gt;Колір (HEX):&lt;/label&gt;
+&lt;input type="text" id="hexcolor" name="hexcolor" 
+       pattern="^#[0-9A-Fa-f]{6}$"
+       placeholder="#FF5733"
+       title="Формат: #RRGGBB"&gt;</code></pre>
+                        </div>
+                        
+                        <div class="info-box">
+                            <h4>Корисні регулярні вирази</h4>
+                            <ul>
+                                <li><code>[A-Za-z]+</code> - тільки латинські літери</li>
+                                <li><code>\d+</code> - тільки цифри</li>
+                                <li><code>[А-Яа-яІіЇїЄєҐґ]+</code> - українські літери</li>
+                                <li><code>^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$</code> - email</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Textarea - багаторядкове текстове поле</h2>
+                        <p>
+                            Елемент <code>&lt;textarea&gt;</code> використовується для введення 
+                            багаторядкового тексту.
+                        </p>
+                        <div class="code-block">
+                            <pre><code>&lt;label for="message"&gt;Повідомлення:&lt;/label&gt;
+&lt;textarea id="message" name="message" 
+          rows="5" cols="50"
+          placeholder="Введіть ваше повідомлення тут..."
+          maxlength="500"&gt;&lt;/textarea&gt;
+
+&lt;!-- З початковим текстом --&gt;
+&lt;label for="bio"&gt;Біографія:&lt;/label&gt;
+&lt;textarea id="bio" name="bio" rows="10"&gt;Розкажіть про себе...&lt;/textarea&gt;</code></pre>
+                        </div>
+                        
+                        <div class="info-box">
+                            <h4>Атрибути textarea</h4>
+                            <ul>
+                                <li><code>rows</code> - кількість видимих рядків</li>
+                                <li><code>cols</code> - ширина в символах</li>
+                                <li><code>wrap</code> - як переносити текст (soft/hard)</li>
+                                <li><code>resize</code> (CSS) - дозволяє зміну розміру</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Select - випадаючий список</h2>
+                        <p>
+                            Елемент <code>&lt;select&gt;</code> створює випадаючий список опцій.
+                        </p>
+                        
+                        <h3>Простий select</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;label for="country"&gt;Країна:&lt;/label&gt;
+&lt;select id="country" name="country" required&gt;
+    &lt;option value=""&gt;Оберіть країну&lt;/option&gt;
+    &lt;option value="ua"&gt;Україна&lt;/option&gt;
+    &lt;option value="pl"&gt;Польща&lt;/option&gt;
+    &lt;option value="de"&gt;Німеччина&lt;/option&gt;
+    &lt;option value="us" selected&gt;США&lt;/option&gt;
+&lt;/select&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Групування опцій за допомогою optgroup</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;label for="car"&gt;Автомобіль:&lt;/label&gt;
+&lt;select id="car" name="car"&gt;
+    &lt;optgroup label="Японські"&gt;
+        &lt;option value="toyota"&gt;Toyota&lt;/option&gt;
+        &lt;option value="honda"&gt;Honda&lt;/option&gt;
+        &lt;option value="nissan"&gt;Nissan&lt;/option&gt;
+    &lt;/optgroup&gt;
+    &lt;optgroup label="Німецькі"&gt;
+        &lt;option value="bmw"&gt;BMW&lt;/option&gt;
+        &lt;option value="mercedes"&gt;Mercedes-Benz&lt;/option&gt;
+        &lt;option value="audi"&gt;Audi&lt;/option&gt;
+    &lt;/optgroup&gt;
+    &lt;optgroup label="Американські"&gt;
+        &lt;option value="ford"&gt;Ford&lt;/option&gt;
+        &lt;option value="chevrolet"&gt;Chevrolet&lt;/option&gt;
+    &lt;/optgroup&gt;
+&lt;/select&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Множинний вибір</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;label for="skills"&gt;Навички (виберіть кілька):&lt;/label&gt;
+&lt;select id="skills" name="skills" multiple size="5"&gt;
+    &lt;option value="html"&gt;HTML&lt;/option&gt;
+    &lt;option value="css"&gt;CSS&lt;/option&gt;
+    &lt;option value="js"&gt;JavaScript&lt;/option&gt;
+    &lt;option value="react"&gt;React&lt;/option&gt;
+    &lt;option value="node"&gt;Node.js&lt;/option&gt;
+    &lt;option value="python"&gt;Python&lt;/option&gt;
+&lt;/select&gt;
+&lt;small&gt;Утримуйте Ctrl (Cmd на Mac) для вибору кількох&lt;/small&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Datalist - автодоповнення</h2>
+                        <p>
+                            Елемент <code>&lt;datalist&gt;</code> надає список варіантів для автодоповнення, 
+                            але дозволяє вводити власні значення.
+                        </p>
+                        <div class="code-block">
+                            <pre><code>&lt;label for="browser"&gt;Ваш браузер:&lt;/label&gt;
+&lt;input type="text" id="browser" name="browser" 
+       list="browsers" placeholder="Почніть вводити..."&gt;
+
+&lt;datalist id="browsers"&gt;
+    &lt;option value="Google Chrome"&gt;
+    &lt;option value="Mozilla Firefox"&gt;
+    &lt;option value="Safari"&gt;
+    &lt;option value="Microsoft Edge"&gt;
+    &lt;option value="Opera"&gt;
+&lt;/datalist&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Datalist з описами</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;label for="city"&gt;Місто:&lt;/label&gt;
+&lt;input type="text" id="city" name="city" list="cities"&gt;
+
+&lt;datalist id="cities"&gt;
+    &lt;option value="Київ"&gt;Столиця України&lt;/option&gt;
+    &lt;option value="Львів"&gt;Культурна столиця&lt;/option&gt;
+    &lt;option value="Одеса"&gt;Перлина біля моря&lt;/option&gt;
+    &lt;option value="Харків"&gt;Східна столиця&lt;/option&gt;
+    &lt;option value="Дніпро"&gt;Серце України&lt;/option&gt;
+&lt;/datalist&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Завантаження файлів</h2>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Один файл --&gt;
+&lt;label for="avatar"&gt;Аватар:&lt;/label&gt;
+&lt;input type="file" id="avatar" name="avatar" 
+       accept="image/png, image/jpeg"&gt;
+
+&lt;!-- Кілька файлів --&gt;
+&lt;label for="documents"&gt;Документи:&lt;/label&gt;
+&lt;input type="file" id="documents" name="documents" 
+       multiple accept=".pdf,.doc,.docx"&gt;
+
+&lt;!-- Лише зображення --&gt;
+&lt;label for="photos"&gt;Фото:&lt;/label&gt;
+&lt;input type="file" id="photos" name="photos" 
+       multiple accept="image/*"&gt;</code></pre>
+                        </div>
+                        
+                        <div class="info-box">
+                            <h4>Типи MIME для accept</h4>
+                            <ul>
+                                <li><code>image/*</code> - всі зображення</li>
+                                <li><code>video/*</code> - всі відео</li>
+                                <li><code>audio/*</code> - всі аудіо</li>
+                                <li><code>.pdf</code> - PDF файли</li>
+                                <li><code>.doc,.docx</code> - Word документи</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Повна форма з валідацією</h2>
+                        <div class="code-block">
+                            <pre><code>&lt;form action="/submit" method="POST" enctype="multipart/form-data"&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;Форма заявки на роботу&lt;/legend&gt;
+        
+        &lt;div&gt;
+            &lt;label for="fullname"&gt;ПІБ:&lt;/label&gt;
+            &lt;input type="text" id="fullname" name="fullname" 
+                   required minlength="5" maxlength="100"&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label for="email"&gt;Email:&lt;/label&gt;
+            &lt;input type="email" id="email" name="email" required&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label for="phone"&gt;Телефон:&lt;/label&gt;
+            &lt;input type="tel" id="phone" name="phone" 
+                   pattern="^\+380\d{9}$"
+                   placeholder="+380XXXXXXXXX"
+                   title="Формат: +380XXXXXXXXX" required&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label for="birthdate"&gt;Дата народження:&lt;/label&gt;
+            &lt;input type="date" id="birthdate" name="birthdate" 
+                   min="1950-01-01" max="2006-12-31" required&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label for="position"&gt;Посада:&lt;/label&gt;
+            &lt;select id="position" name="position" required&gt;
+                &lt;option value=""&gt;Оберіть посаду&lt;/option&gt;
+                &lt;optgroup label="IT"&gt;
+                    &lt;option value="developer"&gt;Розробник&lt;/option&gt;
+                    &lt;option value="designer"&gt;Дизайнер&lt;/option&gt;
+                    &lt;option value="qa"&gt;QA Engineer&lt;/option&gt;
+                &lt;/optgroup&gt;
+                &lt;optgroup label="Менеджмент"&gt;
+                    &lt;option value="pm"&gt;Project Manager&lt;/option&gt;
+                    &lt;option value="hr"&gt;HR Manager&lt;/option&gt;
+                &lt;/optgroup&gt;
+            &lt;/select&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label for="experience"&gt;Досвід роботи (роки):&lt;/label&gt;
+            &lt;input type="number" id="experience" name="experience" 
+                   min="0" max="50" step="0.5" required&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label for="skills"&gt;Навички:&lt;/label&gt;
+            &lt;input type="text" id="skills" name="skills" 
+                   list="skill-list" placeholder="Почніть вводити..."&gt;
+            &lt;datalist id="skill-list"&gt;
+                &lt;option value="JavaScript"&gt;
+                &lt;option value="Python"&gt;
+                &lt;option value="React"&gt;
+                &lt;option value="Node.js"&gt;
+                &lt;option value="SQL"&gt;
+            &lt;/datalist&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label for="salary"&gt;Очікувана зарплата (грн):&lt;/label&gt;
+            &lt;input type="number" id="salary" name="salary" 
+                   min="15000" max="500000" step="1000"&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label for="resume"&gt;Резюме (PDF):&lt;/label&gt;
+            &lt;input type="file" id="resume" name="resume" 
+                   accept=".pdf" required&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label for="cover-letter"&gt;Супровідний лист:&lt;/label&gt;
+            &lt;textarea id="cover-letter" name="cover-letter" 
+                      rows="6" maxlength="1000" 
+                      placeholder="Розкажіть, чому ви підходите на цю посаду..."
+                      required&gt;&lt;/textarea&gt;
+        &lt;/div&gt;
+        
+        &lt;fieldset&gt;
+            &lt;legend&gt;Формат роботи&lt;/legend&gt;
+            &lt;label&gt;
+                &lt;input type="radio" name="work-format" value="office" required&gt;
+                В офісі
+            &lt;/label&gt;
+            &lt;label&gt;
+                &lt;input type="radio" name="work-format" value="remote"&gt;
+                Віддалено
+            &lt;/label&gt;
+            &lt;label&gt;
+                &lt;input type="radio" name="work-format" value="hybrid"&gt;
+                Гібридний
+            &lt;/label&gt;
+        &lt;/fieldset&gt;
+        
+        &lt;div&gt;
+            &lt;label&gt;
+                &lt;input type="checkbox" name="newsletter" value="yes"&gt;
+                Отримувати розсилку про вакансії
+            &lt;/label&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label&gt;
+                &lt;input type="checkbox" name="privacy" value="accepted" required&gt;
+                Я погоджуюся з політикою конфіденційності
+            &lt;/label&gt;
+        &lt;/div&gt;
+        
+        &lt;button type="submit"&gt;Надіслати заявку&lt;/button&gt;
+        &lt;button type="reset"&gt;Очистити&lt;/button&gt;
+    &lt;/fieldset&gt;
+&lt;/form&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>CSS псевдокласи для валідації</h2>
+                        <p>Браузери надають псевдокласи для стилізації валідних та невалідних полів.</p>
+                        <div class="code-block">
+                            <pre><code>/* Валідне поле */
+input:valid {
+    border-color: green;
+}
+
+/* Невалідне поле */
+input:invalid {
+    border-color: red;
+}
+
+/* Поле з фокусом */
+input:focus {
+    outline: 2px solid blue;
+}
+
+/* Обов'язкове поле */
+input:required {
+    border-left: 3px solid orange;
+}
+
+/* Необов'язкове поле */
+input:optional {
+    border-left: 3px solid gray;
+}</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <div class="info-box success">
+                            <h4>Підсумок</h4>
+                            <p>
+                                HTML5 валідація надає потужні інструменти для перевірки даних на стороні клієнта. 
+                                Використовуйте <code>required</code>, <code>pattern</code>, <code>min/max</code> 
+                                для валідації полів. Елементи <code>&lt;select&gt;</code>, <code>&lt;textarea&gt;</code> 
+                                та <code>&lt;datalist&gt;</code> розширюють можливості збору інформації від користувачів. 
+                                Завжди додавайте також серверну валідацію для безпеки.
+                            </p>
+                        </div>
+                    </section>
+                    
+                    <button id="complete-lesson" class="complete-button" data-lesson="lesson04">
+                        Позначити урок як пройдений
+                    </button>
+                    
+                    <nav class="lesson-navigation">
+                        <a href="lesson03.html" class="nav-button prev">Попередній урок</a>
+                        <a href="lesson05.html" class="nav-button next">Наступний урок</a>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 8: Доступність (a11y) | HTML та JavaScript</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    
+    <div class="app-container">
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h1>HTML & JS</h1>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <nav>
+                <ul class="lessons-list">
+                    <li class="lesson-item"><a href="lesson01.html" class="lesson-link" data-lesson="lesson01"><span class="lesson-number">01</span><span class="lesson-title">Семантичний HTML5</span></a></li>
+                    <li class="lesson-item"><a href="lesson02.html" class="lesson-link" data-lesson="lesson02"><span class="lesson-number">02</span><span class="lesson-title">Таблиці та списки</span></a></li>
+                    <li class="lesson-item"><a href="lesson03.html" class="lesson-link" data-lesson="lesson03"><span class="lesson-number">03</span><span class="lesson-title">Форми (частина 1)</span></a></li>
+                    <li class="lesson-item"><a href="lesson04.html" class="lesson-link" data-lesson="lesson04"><span class="lesson-number">04</span><span class="lesson-title">Форми (частина 2)</span></a></li>
+                    <li class="lesson-item"><a href="lesson05.html" class="lesson-link" data-lesson="lesson05"><span class="lesson-number">05</span><span class="lesson-title">Мультимедіа</span></a></li>
+                    <li class="lesson-item"><a href="lesson06.html" class="lesson-link" data-lesson="lesson06"><span class="lesson-number">06</span><span class="lesson-title">Meta-теги та SEO</span></a></li>
+                    <li class="lesson-item"><a href="lesson07.html" class="lesson-link" data-lesson="lesson07"><span class="lesson-number">07</span><span class="lesson-title">Посилання та навігація</span></a></li>
+                    <li class="lesson-item"><a href="lesson08.html" class="lesson-link" data-lesson="lesson08"><span class="lesson-number">08</span><span class="lesson-title">Доступність (a11y)</span></a></li>
+                    <li class="lesson-item"><a href="lesson09.html" class="lesson-link" data-lesson="lesson09"><span class="lesson-number">09</span><span class="lesson-title">CSS Flexbox</span></a></li>
+                    <li class="lesson-item"><a href="lesson10.html" class="lesson-link" data-lesson="lesson10"><span class="lesson-number">10</span><span class="lesson-title">CSS Grid</span></a></li>
+                    <li class="lesson-item"><a href="lesson11.html" class="lesson-link" data-lesson="lesson11"><span class="lesson-number">11</span><span class="lesson-title">CSS анімації</span></a></li>
+                    <li class="lesson-item"><a href="lesson12.html" class="lesson-link" data-lesson="lesson12"><span class="lesson-number">12</span><span class="lesson-title">CSS змінні та адаптивність</span></a></li>
+                    <li class="lesson-item"><a href="lesson13.html" class="lesson-link" data-lesson="lesson13"><span class="lesson-number">13</span><span class="lesson-title">Основи JavaScript</span></a></li>
+                    <li class="lesson-item"><a href="lesson14.html" class="lesson-link" data-lesson="lesson14"><span class="lesson-number">14</span><span class="lesson-title">Функції та масиви</span></a></li>
+                    <li class="lesson-item"><a href="lesson15.html" class="lesson-link" data-lesson="lesson15"><span class="lesson-number">15</span><span class="lesson-title">DOM маніпуляції</span></a></li>
+                    <li class="lesson-item"><a href="lesson16.html" class="lesson-link" data-lesson="lesson16"><span class="lesson-number">16</span><span class="lesson-title">Події та обробники</span></a></li>
+                    <li class="lesson-item"><a href="lesson17.html" class="lesson-link" data-lesson="lesson17"><span class="lesson-number">17</span><span class="lesson-title">Робота з формами через JS</span></a></li>
+                    <li class="lesson-item"><a href="lesson18.html" class="lesson-link" data-lesson="lesson18"><span class="lesson-number">18</span><span class="lesson-title">LocalStorage та JSON</span></a></li>
+                    <li class="lesson-item"><a href="lesson19.html" class="lesson-link" data-lesson="lesson19"><span class="lesson-number">19</span><span class="lesson-title">Fetch API та асинхронність</span></a></li>
+                    <li class="lesson-item"><a href="lesson20.html" class="lesson-link" data-lesson="lesson20"><span class="lesson-number">20</span><span class="lesson-title">Фінальний проєкт: TODO</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <div class="lesson-container">
+                <header class="lesson-header">
+                    <h1>Урок 8: Доступність (a11y)</h1>
+                    <p class="lesson-meta">ARIA атрибути, role, aria-label та доступна навігація</p>
+                </header>
+                
+                <div class="lesson-content">
+                    <section>
+                        <h2>Що таке доступність?</h2>
+                        <p>
+                            Веб-доступність (a11y - accessibility) означає створення веб-сайтів, які можуть 
+                            використовувати всі люди, включно з людьми з обмеженими можливостями. 
+                            Це не лише етична необхідність, але й юридична вимога в багатьох країнах.
+                        </p>
+                        
+                        <div class="info-box">
+                            <h4>Хто користується допоміжними технологіями?</h4>
+                            <ul>
+                                <li>Люди з порушеннями зору (скрін-рідери)</li>
+                                <li>Люди з обмеженою мобільністю (клавіатурна навігація)</li>
+                                <li>Люди з порушеннями слуху (субтитри, транскрипти)</li>
+                                <li>Люди з когнітивними особливостями</li>
+                                <li>Тимчасові обмеження (зламана рука, яскраве сонце)</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Семантичний HTML - основа доступності</h2>
+                        <p>
+                            Використання правильних HTML елементів автоматично надає багато доступності.
+                        </p>
+                        
+                        <div class="code-block">
+                            <pre><code>&lt;!-- ПОГАНО:Div як кнопка --&gt;
+&lt;div onclick="submitForm()"&gt;Надіслати&lt;/div&gt;
+
+&lt;!-- ДОБРЕ: Справжня кнопка --&gt;
+&lt;button type="submit"&gt;Надіслати&lt;/button&gt;
+
+&lt;!-- ПОГАНО: Span як посилання --&gt;
+&lt;span onclick="location.href='/page'"&gt;Перейти&lt;/span&gt;
+
+&lt;!-- ДОБРЕ: Справжнє посилання --&gt;
+&lt;a href="/page"&gt;Перейти&lt;/a&gt;
+
+&lt;!-- ПОГАНО: Div для навігації --&gt;
+&lt;div class="navigation"&gt;
+    &lt;a href="/"&gt;Головна&lt;/a&gt;
+&lt;/div&gt;
+
+&lt;!-- ДОБРЕ: Семантична навігація --&gt;
+&lt;nav aria-label="Головна навігація"&gt;
+    &lt;a href="/"&gt;Головна&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Атрибут alt для зображень</h2>
+                        <p>
+                            Кожне змістовне зображення повинно мати альтернативний текст.
+                        </p>
+                        
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Змістовне зображення --&gt;
+&lt;img src="chart.png" 
+     alt="Графік продажів за 2024 рік показує зростання на 25%"&gt;
+
+&lt;!-- Декоративне зображення (порожній alt) --&gt;
+&lt;img src="decorative-line.png" alt=""&gt;
+
+&lt;!-- Логотип з текстом --&gt;
+&lt;img src="logo.png" alt="Назва компанії"&gt;
+
+&lt;!-- Функціональне зображення (іконка в посиланні) --&gt;
+&lt;a href="/search"&gt;
+    &lt;img src="search-icon.svg" alt="Пошук"&gt;
+&lt;/a&gt;
+
+&lt;!-- Складне зображення --&gt;
+&lt;figure&gt;
+    &lt;img src="complex-diagram.png" 
+         alt="Діаграма процесу розробки"
+         aria-describedby="diagram-description"&gt;
+    &lt;figcaption id="diagram-description"&gt;
+        Детальний опис: Процес складається з 5 етапів...
+    &lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+                        </div>
+                        
+                        <div class="info-box">
+                            <h4>Правила написання alt-тексту</h4>
+                            <ul>
+                                <li>Описуйте зміст та функцію, не зовнішній вигляд</li>
+                                <li>Будьте лаконічні (до 125 символів)</li>
+                                <li>Не починайте з "Зображення..." або "Картинка..."</li>
+                                <li>Декоративні зображення мають порожній alt=""</li>
+                                <li>Для складних зображень використовуйте довгі описи</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>ARIA (Accessible Rich Internet Applications)</h2>
+                        <p>
+                            ARIA додає додаткову семантику до HTML елементів для покращення доступності 
+                            динамічного контенту.
+                        </p>
+                        
+                        <h3>ARIA Roles</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Основні landmark roles --&gt;
+&lt;div role="banner"&gt;Шапка сайту&lt;/div&gt;
+&lt;div role="navigation"&gt;Навігація&lt;/div&gt;
+&lt;div role="main"&gt;Головний контент&lt;/div&gt;
+&lt;div role="complementary"&gt;Додатковий контент&lt;/div&gt;
+&lt;div role="contentinfo"&gt;Футер&lt;/div&gt;
+
+&lt;!-- Widget roles --&gt;
+&lt;div role="button"&gt;Кнопка&lt;/div&gt;
+&lt;div role="checkbox" aria-checked="true"&gt;Чекбокс&lt;/div&gt;
+&lt;div role="tab"&gt;Вкладка&lt;/div&gt;
+&lt;div role="tabpanel"&gt;Панель вкладки&lt;/div&gt;
+&lt;div role="dialog"&gt;Діалог&lt;/div&gt;
+&lt;div role="alert"&gt;Сповіщення&lt;/div&gt;
+
+&lt;!-- Document structure roles --&gt;
+&lt;div role="article"&gt;Стаття&lt;/div&gt;
+&lt;div role="list"&gt;
+    &lt;div role="listitem"&gt;Елемент списку&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                        
+                        <div class="info-box">
+                            <h4>Важливо!</h4>
+                            <p>
+                                Краще використовувати нативні HTML елементи, ніж div з ARIA role. 
+                                Наприклад, <code>&lt;button&gt;</code> краще, ніж 
+                                <code>&lt;div role="button"&gt;</code>.
+                            </p>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>ARIA Labels та Descriptions</h2>
+                        
+                        <h3>aria-label</h3>
+                        <p>Надає мітку елементу, яка не відображається візуально.</p>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Кнопка з іконкою без тексту --&gt;
+&lt;button aria-label="Закрити діалог"&gt;
+    &lt;svg&gt;...&lt;/svg&gt;
+&lt;/button&gt;
+
+&lt;!-- Навігація --&gt;
+&lt;nav aria-label="Головна навігація"&gt;
+    &lt;a href="/"&gt;Головна&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;!-- Пошук --&gt;
+&lt;form role="search" aria-label="Пошук по сайту"&gt;
+    &lt;input type="search" placeholder="Пошук..."&gt;
+&lt;/form&gt;
+
+&lt;!-- Соціальні мережі --&gt;
+&lt;a href="https://facebook.com/..." aria-label="Facebook"&gt;
+    &lt;svg&gt;...&lt;/svg&gt;
+&lt;/a&gt;</code></pre>
+                        </div>
+                        
+                        <h3>aria-labelledby</h3>
+                        <p>Вказує на інший елемент, який є міткою.</p>
+                        <div class="code-block">
+                            <pre><code>&lt;h2 id="section-title"&gt;Контактна інформація&lt;/h2&gt;
+&lt;section aria-labelledby="section-title"&gt;
+    &lt;p&gt;Контент секції...&lt;/p&gt;
+&lt;/section&gt;
+
+&lt;!-- Діалог --&gt;
+&lt;div role="dialog" aria-labelledby="dialog-title"&gt;
+    &lt;h2 id="dialog-title"&gt;Підтвердження видалення&lt;/h2&gt;
+    &lt;p&gt;Ви впевнені?&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                        
+                        <h3>aria-describedby</h3>
+                        <p>Посилається на елемент з додатковим описом.</p>
+                        <div class="code-block">
+                            <pre><code>&lt;label for="password"&gt;Пароль&lt;/label&gt;
+&lt;input type="password" 
+       id="password" 
+       aria-describedby="password-help"&gt;
+&lt;small id="password-help"&gt;
+    Мінімум 8 символів, включно з цифрою та спецсимволом
+&lt;/small&gt;
+
+&lt;!-- Кнопка з описом --&gt;
+&lt;button aria-describedby="delete-description"&gt;
+    Видалити
+&lt;/button&gt;
+&lt;span id="delete-description" hidden&gt;
+    Видалення є незворотнім
+&lt;/span&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>ARIA States та Properties</h2>
+                        
+                        <h3>aria-hidden</h3>
+                        <p>Приховує елемент від скрін-рідерів.</p>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Декоративна іконка --&gt;
+&lt;span aria-hidden="true"&gt;★&lt;/span&gt;
+&lt;span&gt;Рейтинг 5/5&lt;/span&gt;
+
+&lt;!-- Font icon --&gt;
+&lt;i class="fa fa-home" aria-hidden="true"&gt;&lt;/i&gt;
+&lt;span class="sr-only"&gt;Головна&lt;/span&gt;</code></pre>
+                        </div>
+                        
+                        <h3>aria-expanded</h3>
+                        <p>Показує, чи розгорнутий елемент.</p>
+                        <div class="code-block">
+                            <pre><code>&lt;button aria-expanded="false" 
+        aria-controls="menu"&gt;
+    Меню
+&lt;/button&gt;
+&lt;ul id="menu" hidden&gt;
+    &lt;li&gt;Пункт 1&lt;/li&gt;
+    &lt;li&gt;Пункт 2&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                        </div>
+                        
+                        <h3>aria-current</h3>
+                        <p>Вказує поточний елемент у наборі.</p>
+                        <div class="code-block">
+                            <pre><code>&lt;nav&gt;
+    &lt;a href="/" aria-current="page"&gt;Головна&lt;/a&gt;
+    &lt;a href="/about"&gt;Про нас&lt;/a&gt;
+    &lt;a href="/contact"&gt;Контакти&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;!-- Кроки --&gt;
+&lt;ol&gt;
+    &lt;li aria-current="step"&gt;Крок 1: Завершено&lt;/li&gt;
+    &lt;li&gt;Крок 2: В процесі&lt;/li&gt;
+    &lt;li&gt;Крок 3: Не почато&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                        </div>
+                        
+                        <h3>aria-live</h3>
+                        <p>Оголошує динамічні зміни користувачу.</p>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Важливі оновлення --&gt;
+&lt;div role="alert" aria-live="assertive"&gt;
+    Помилка: Невірний пароль
+&lt;/div&gt;
+
+&lt;!-- Неважливі оновлення --&gt;
+&lt;div aria-live="polite"&gt;
+    Завантажується...
+&lt;/div&gt;
+
+&lt;!-- Статус --&gt;
+&lt;div role="status" aria-live="polite"&gt;
+    Файл успішно завантажено
+&lt;/div&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Інші корисні атрибути</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- aria-disabled --&gt;
+&lt;button aria-disabled="true"&gt;Недоступна кнопка&lt;/button&gt;
+
+&lt;!-- aria-checked --&gt;
+&lt;div role="checkbox" aria-checked="true"&gt;Згоден&lt;/div&gt;
+
+&lt;!-- aria-selected --&gt;
+&lt;div role="tab" aria-selected="true"&gt;Активна вкладка&lt;/div&gt;
+
+&lt;!-- aria-required --&gt;
+&lt;input type="text" aria-required="true"&gt;
+
+&lt;!-- aria-invalid --&gt;
+&lt;input type="email" aria-invalid="true" aria-describedby="email-error"&gt;
+&lt;span id="email-error"&gt;Невірний формат email&lt;/span&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Клавіатурна навігація</h2>
+                        <p>
+                            Всі інтерактивні елементи повинні бути доступні з клавіатури.
+                        </p>
+                        
+                        <h3>tabindex</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- tabindex="0" - природний порядок табуляції --&gt;
+&lt;div tabindex="0" role="button"&gt;Доступно з клавіатури&lt;/div&gt;
+
+&lt;!-- tabindex="-1" - програмно фокусований, але не в tab order --&gt;
+&lt;div tabindex="-1" id="skip-target"&gt;Контент&lt;/div&gt;
+
+&lt;!-- ПОГАНО: позитивні значення (не використовуйте) --&gt;
+&lt;input tabindex="1"&gt; &lt;!-- Не робіть так --&gt;
+
+&lt;!-- Skip link --&gt;
+&lt;a href="#main-content" class="skip-link"&gt;
+    Перейти до контенту
+&lt;/a&gt;
+&lt;main id="main-content" tabindex="-1"&gt;
+    Основний контент
+&lt;/main&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Кастомні елементи з клавіатурою</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Кнопка з клавіатурою --&gt;
+&lt;div role="button" 
+     tabindex="0"
+     onkeydown="if(event.key === 'Enter' || event.key === ' ') handleClick()"
+     onclick="handleClick()"&gt;
+    Натисніть мене
+&lt;/div&gt;
+
+&lt;script&gt;
+function handleClick() {
+    console.log('Clicked!');
+}
+&lt;/script&gt;</code></pre>
+                        </div>
+                        
+                        <div class="info-box">
+                            <h4>Основні клавіші навігації</h4>
+                            <ul>
+                                <li><kbd>Tab</kbd> - переміщення вперед</li>
+                                <li><kbd>Shift + Tab</kbd> - переміщення назад</li>
+                                <li><kbd>Enter</kbd> - активація посилань та кнопок</li>
+                                <li><kbd>Space</kbd> - активація кнопок, чекбоксів</li>
+                                <li><kbd>Arrow keys</kbd> - навігація в меню, списках</li>
+                                <li><kbd>Esc</kbd> - закриття діалогів</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Візуально прихований текст</h2>
+                        <p>Текст для скрін-рідерів, який не відображається візуально.</p>
+                        
+                        <div class="code-block">
+                            <pre><code>&lt;!-- CSS клас для скрін-рідерів --&gt;
+&lt;style&gt;
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+&lt;/style&gt;
+
+&lt;!-- Використання --&gt;
+&lt;button&gt;
+    &lt;svg aria-hidden="true"&gt;...&lt;/svg&gt;
+    &lt;span class="sr-only"&gt;Закрити&lt;/span&gt;
+&lt;/button&gt;
+
+&lt;a href="/"&gt;
+    &lt;img src="logo.png" alt=""&gt;
+    &lt;span class="sr-only"&gt;Головна сторінка&lt;/span&gt;
+&lt;/a&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Доступні форми</h2>
+                        <div class="code-block">
+                            <pre><code>&lt;form&gt;
+    &lt;!-- Завжди використовуйте label --&gt;
+    &lt;label for="username"&gt;Ім'я користувача:&lt;/label&gt;
+    &lt;input type="text" 
+           id="username" 
+           name="username"
+           required
+           aria-required="true"
+           aria-describedby="username-help"&gt;
+    &lt;small id="username-help"&gt;Мінімум 3 символи&lt;/small&gt;
+    
+    &lt;!-- Група радіо-кнопок --&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;Оберіть спосіб доставки&lt;/legend&gt;
+        &lt;label&gt;
+            &lt;input type="radio" name="delivery" value="courier"&gt;
+            Кур'єр
+        &lt;/label&gt;
+        &lt;label&gt;
+            &lt;input type="radio" name="delivery" value="pickup"&gt;
+            Самовивіз
+        &lt;/label&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;!-- Помилка валідації --&gt;
+    &lt;label for="email"&gt;Email:&lt;/label&gt;
+    &lt;input type="email" 
+           id="email"
+           aria-invalid="true"
+           aria-describedby="email-error"&gt;
+    &lt;span id="email-error" role="alert"&gt;
+        Невірний формат email
+    &lt;/span&gt;
+&lt;/form&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Повний доступний приклад</h2>
+                        <div class="code-block">
+                            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="uk"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Доступний сайт&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Skip link --&gt;
+    &lt;a href="#main-content" class="skip-link"&gt;
+        Перейти до основного контенту
+    &lt;/a&gt;
+    
+    &lt;header role="banner"&gt;
+        &lt;h1&gt;Назва сайту&lt;/h1&gt;
+        
+        &lt;nav aria-label="Головна навігація"&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="/" aria-current="page"&gt;Головна&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/about"&gt;Про нас&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/contact"&gt;Контакти&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/header&gt;
+    
+    &lt;main id="main-content" tabindex="-1"&gt;
+        &lt;article&gt;
+            &lt;h2&gt;Заголовок статті&lt;/h2&gt;
+            
+            &lt;img src="photo.jpg" 
+                 alt="Опис важливого зображення"&gt;
+            
+            &lt;p&gt;Контент статті...&lt;/p&gt;
+            
+            &lt;!-- Інтерактивний елемент --&gt;
+            &lt;button aria-expanded="false" 
+                    aria-controls="details"&gt;
+                Показати деталі
+            &lt;/button&gt;
+            
+            &lt;div id="details" hidden&gt;
+                &lt;p&gt;Додаткова інформація...&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/article&gt;
+        
+        &lt;!-- Live region для оновлень --&gt;
+        &lt;div role="status" aria-live="polite" aria-atomic="true"&gt;
+            &lt;!-- Динамічний контент --&gt;
+        &lt;/div&gt;
+    &lt;/main&gt;
+    
+    &lt;aside role="complementary" aria-label="Пов'язаний контент"&gt;
+        &lt;h2&gt;Схожі статті&lt;/h2&gt;
+        &lt;nav aria-label="Схожі статті"&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="/article1"&gt;Стаття 1&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="/article2"&gt;Стаття 2&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/nav&gt;
+    &lt;/aside&gt;
+    
+    &lt;footer role="contentinfo"&gt;
+        &lt;p&gt;&copy; 2024 Назва компанії&lt;/p&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Інструменти тестування доступності</h2>
+                        <div class="info-box">
+                            <h4>Рекомендовані інструменти</h4>
+                            <ul>
+                                <li><strong>WAVE</strong> - розширення браузера для аналізу доступності</li>
+                                <li><strong>axe DevTools</strong> - інструменти розробника</li>
+                                <li><strong>Lighthouse</strong> - вбудовано в Chrome DevTools</li>
+                                <li><strong>NVDA/JAWS</strong> - скрін-рідери для тестування</li>
+                                <li><strong>Keyboard navigation</strong> - тестуйте лише клавіатурою</li>
+                                <li><strong>Color contrast checker</strong> - перевірка контрастності</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <div class="info-box success">
+                            <h4>Підсумок</h4>
+                            <p>
+                                Доступність - не додаткова функція, а фундаментальна частина веб-розробки. 
+                                Використовуйте семантичний HTML, додавайте ARIA атрибути де потрібно, 
+                                забезпечте клавіатурну навігацію, надавайте альтернативний текст для зображень, 
+                                тестуйте з допоміжними технологіями. Доступний сайт краще для всіх користувачів 
+                                і має кращі показники SEO.
+                            </p>
+                        </div>
+                    </section>
+                    
+                    <button id="complete-lesson" class="complete-button" data-lesson="lesson08">
+                        Позначити урок як пройдений
+                    </button>
+                    
+                    <nav class="lesson-navigation">
+                        <a href="lesson07.html" class="nav-button prev">Попередній урок</a>
+                        <a href="lesson09.html" class="nav-button next">Наступний урок</a>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/app.js"></script>
+</body>
+</html>

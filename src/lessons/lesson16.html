@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 16: Події та обробники | HTML та JavaScript</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    
+    <div class="app-container">
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h1>HTML & JS</h1>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <nav>
+                <ul class="lessons-list">
+                    <li class="lesson-item"><a href="lesson01.html" class="lesson-link" data-lesson="lesson01"><span class="lesson-number">01</span><span class="lesson-title">Семантичний HTML5</span></a></li>
+                    <li class="lesson-item"><a href="lesson02.html" class="lesson-link" data-lesson="lesson02"><span class="lesson-number">02</span><span class="lesson-title">Таблиці та списки</span></a></li>
+                    <li class="lesson-item"><a href="lesson03.html" class="lesson-link" data-lesson="lesson03"><span class="lesson-number">03</span><span class="lesson-title">Форми (частина 1)</span></a></li>
+                    <li class="lesson-item"><a href="lesson04.html" class="lesson-link" data-lesson="lesson04"><span class="lesson-number">04</span><span class="lesson-title">Форми (частина 2)</span></a></li>
+                    <li class="lesson-item"><a href="lesson05.html" class="lesson-link" data-lesson="lesson05"><span class="lesson-number">05</span><span class="lesson-title">Мультимедіа</span></a></li>
+                    <li class="lesson-item"><a href="lesson06.html" class="lesson-link" data-lesson="lesson06"><span class="lesson-number">06</span><span class="lesson-title">Meta-теги та SEO</span></a></li>
+                    <li class="lesson-item"><a href="lesson07.html" class="lesson-link" data-lesson="lesson07"><span class="lesson-number">07</span><span class="lesson-title">Посилання та навігація</span></a></li>
+                    <li class="lesson-item"><a href="lesson08.html" class="lesson-link" data-lesson="lesson08"><span class="lesson-number">08</span><span class="lesson-title">Доступність (a11y)</span></a></li>
+                    <li class="lesson-item"><a href="lesson09.html" class="lesson-link" data-lesson="lesson09"><span class="lesson-number">09</span><span class="lesson-title">CSS Flexbox</span></a></li>
+                    <li class="lesson-item"><a href="lesson10.html" class="lesson-link" data-lesson="lesson10"><span class="lesson-number">10</span><span class="lesson-title">CSS Grid</span></a></li>
+                    <li class="lesson-item"><a href="lesson11.html" class="lesson-link" data-lesson="lesson11"><span class="lesson-number">11</span><span class="lesson-title">CSS анімації</span></a></li>
+                    <li class="lesson-item"><a href="lesson12.html" class="lesson-link" data-lesson="lesson12"><span class="lesson-number">12</span><span class="lesson-title">CSS змінні та адаптивність</span></a></li>
+                    <li class="lesson-item"><a href="lesson13.html" class="lesson-link" data-lesson="lesson13"><span class="lesson-number">13</span><span class="lesson-title">Основи JavaScript</span></a></li>
+                    <li class="lesson-item"><a href="lesson14.html" class="lesson-link" data-lesson="lesson14"><span class="lesson-number">14</span><span class="lesson-title">Функції та масиви</span></a></li>
+                    <li class="lesson-item"><a href="lesson15.html" class="lesson-link" data-lesson="lesson15"><span class="lesson-number">15</span><span class="lesson-title">DOM маніпуляції</span></a></li>
+                    <li class="lesson-item"><a href="lesson16.html" class="lesson-link" data-lesson="lesson16"><span class="lesson-number">16</span><span class="lesson-title">Події та обробники</span></a></li>
+                    <li class="lesson-item"><a href="lesson17.html" class="lesson-link" data-lesson="lesson17"><span class="lesson-number">17</span><span class="lesson-title">Робота з формами через JS</span></a></li>
+                    <li class="lesson-item"><a href="lesson18.html" class="lesson-link" data-lesson="lesson18"><span class="lesson-number">18</span><span class="lesson-title">LocalStorage та JSON</span></a></li>
+                    <li class="lesson-item"><a href="lesson19.html" class="lesson-link" data-lesson="lesson19"><span class="lesson-number">19</span><span class="lesson-title">Fetch API та асинхронність</span></a></li>
+                    <li class="lesson-item"><a href="lesson20.html" class="lesson-link" data-lesson="lesson20"><span class="lesson-number">20</span><span class="lesson-title">Фінальний проєкт: TODO</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <div class="lesson-container">
+                <header class="lesson-header">
+                    <h1>Урок 16: Події та обробники</h1>
+                    <p class="lesson-meta">Обробка взаємодії користувача: click, input, submit, делегування подій</p>
+                </header>
+                
+                <div class="lesson-content">
+                    <section>
+                        <h2>Що таке події?</h2>
+                        <p>
+                            Події (Events) — це сигнали про те, що щось відбулося: користувач клікнув мишею, 
+                            натиснув клавішу, завантажилась сторінка тощо. JavaScript дозволяє реагувати на ці події.
+                        </p>
+                        
+                        <div class="info-box">
+                            <h4>Популярні типи подій</h4>
+                            <ul>
+                                <li><strong>click</strong> - клік мишею</li>
+                                <li><strong>dblclick</strong> - подвійний клік</li>
+                                <li><strong>mouseenter, mouseleave</strong> - наведення/відведення миші</li>
+                                <li><strong>keydown, keyup</strong> - натискання клавіш</li>
+                                <li><strong>input, change</strong> - зміна значення в полі</li>
+                                <li><strong>submit</strong> - відправка форми</li>
+                                <li><strong>focus, blur</strong> - фокус на елементі/втрата фокусу</li>
+                                <li><strong>scroll</strong> - прокрутка сторінки</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>addEventListener - сучасний спосіб</h2>
+                        <p>
+                            Метод <code>addEventListener</code> — це найкращий спосіб додавати обробники подій. 
+                            Він дозволяє додавати кілька обробників на одну подію.
+                        </p>
+                        
+                        <div class="code-block">
+                            <pre><code>// Базовий синтаксис
+element.addEventListener('event', handler);
+
+// Приклад: обробка кліку
+const button = document.querySelector('.my-button');
+
+button.addEventListener('click', function() {
+    console.log('Кнопку натиснуто!');
+});
+
+// З arrow function
+button.addEventListener('click', () => {
+    console.log('Натиснуто!');
+});
+
+// З іменованою функцією
+function handleClick() {
+    console.log('Клік оброблено!');
+}
+button.addEventListener('click', handleClick);
+
+// Видалення обробника (працює тільки з іменованими функціями)
+button.removeEventListener('click', handleClick);
+
+// Кілька обробників на одну подію
+button.addEventListener('click', () => console.log('Обробник 1'));
+button.addEventListener('click', () => console.log('Обробник 2'));
+button.addEventListener('click', () => console.log('Обробник 3'));
+
+// Опції addEventListener
+button.addEventListener('click', handler, {
+    once: true,      // виконати тільки один раз
+    capture: false,  // фаза перехоплення
+    passive: true    // не викликатиме preventDefault
+});</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="16">// Створення інтерактивної кнопки з лічильником
+const container = document.createElement('div');
+container.style.cssText = 'padding: 20px; border: 2px solid #4CAF50; margin: 10px;';
+
+let clickCount = 0;
+
+const counter = document.createElement('h3');
+counter.textContent = `Кліків: ${clickCount}`;
+
+const clickBtn = document.createElement('button');
+clickBtn.textContent = 'Натисни мене!';
+clickBtn.style.cssText = 'padding: 10px 20px; cursor: pointer; margin: 10px;';
+
+clickBtn.addEventListener('click', () => {
+    clickCount++;
+    counter.textContent = `Кліків: ${clickCount}`;
+    console.log(`Клік #${clickCount}`);
+});
+
+const resetBtn = document.createElement('button');
+resetBtn.textContent = 'Скинути';
+resetBtn.style.cssText = 'padding: 10px 20px; cursor: pointer;';
+
+resetBtn.addEventListener('click', () => {
+    clickCount = 0;
+    counter.textContent = `Кліків: ${clickCount}`;
+    console.log('Лічильник скинуто');
+});
+
+container.appendChild(counter);
+container.appendChild(clickBtn);
+container.appendChild(resetBtn);
+document.body.appendChild(container);</textarea>
+                            <button class="run-button" onclick="runHTML(this)">▶ Запустити HTML</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Об'єкт події (Event Object)</h2>
+                        <div class="code-block">
+                            <pre><code>// Кожен обробник отримує об'єкт події як параметр
+button.addEventListener('click', function(event) {
+    console.log(event);  // об'єкт події
+});
+
+// Корисні властивості об'єкта події
+element.addEventListener('click', (e) => {
+    // Елемент, на якому відбулась подія
+    console.log(e.target);
+    
+    // Елемент, до якого прикріплений обробник
+    console.log(e.currentTarget);
+    
+    // Тип події
+    console.log(e.type);  // 'click'
+    
+    // Координати миші
+    console.log(e.clientX, e.clientY);  // відносно вікна
+    console.log(e.pageX, e.pageY);      // відносно документа
+    
+    // Клавіші-модифікатори
+    console.log(e.ctrlKey);   // Ctrl натиснуто?
+    console.log(e.shiftKey);  // Shift натиснуто?
+    console.log(e.altKey);    // Alt натиснуто?
+});
+
+// Події клавіатури
+input.addEventListener('keydown', (e) => {
+    console.log(e.key);      // яка клавіша натиснута
+    console.log(e.code);     // фізичний код клавіші
+    console.log(e.keyCode);  // застарілий спосіб
+});
+
+// Запобігання стандартної поведінки
+link.addEventListener('click', (e) => {
+    e.preventDefault();  // посилання не спрацює
+    console.log('Перехід заблоковано');
+});
+
+form.addEventListener('submit', (e) => {
+    e.preventDefault();  // форма не відправиться
+    console.log('Обробка форми');
+});
+
+// Зупинка спливання події
+element.addEventListener('click', (e) => {
+    e.stopPropagation();  // подія не піде до батьківських елементів
+});</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Інтерактивний приклад:</h4>
+                            <textarea class="code-input" rows="20">// Відстеження координат миші та клавіш
+const tracker = document.createElement('div');
+tracker.style.cssText = `
+    padding: 20px; 
+    border: 2px solid #2196F3; 
+    margin: 10px;
+    height: 200px;
+    background: #f0f0f0;
+    cursor: crosshair;
+`;
+
+const info = document.createElement('div');
+info.style.cssText = 'font-family: monospace; font-size: 14px;';
+
+tracker.addEventListener('mousemove', (e) => {
+    const x = e.clientX - tracker.offsetLeft;
+    const y = e.clientY - tracker.offsetTop;
+    
+    info.innerHTML = `
+        <strong>Координати:</strong> X: ${e.clientX}, Y: ${e.clientY}<br>
+        <strong>Відносно блоку:</strong> X: ${Math.floor(x)}, Y: ${Math.floor(y)}<br>
+        <strong>Ctrl:</strong> ${e.ctrlKey} | <strong>Shift:</strong> ${e.shiftKey} | <strong>Alt:</strong> ${e.altKey}
+    `;
+});
+
+tracker.addEventListener('click', (e) => {
+    console.log('Клік! Координати:', e.clientX, e.clientY);
+});
+
+tracker.appendChild(info);
+document.body.appendChild(tracker);
+
+console.log('Рухайте мишею по блоку!');</textarea>
+                            <button class="run-button" onclick="runHTML(this)">▶ Запустити HTML</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Події input та change</h2>
+                        <div class="code-block">
+                            <pre><code>// input - спрацьовує при кожній зміні
+const textInput = document.querySelector('input[type="text"]');
+textInput.addEventListener('input', (e) => {
+    console.log('Поточне значення:', e.target.value);
+});
+
+// change - спрацьовує при втраті фокусу (якщо значення змінилось)
+textInput.addEventListener('change', (e) => {
+    console.log('Фінальне значення:', e.target.value);
+});
+
+// Приклад: живий пошук
+const searchInput = document.querySelector('#search');
+const results = document.querySelector('#results');
+
+searchInput.addEventListener('input', (e) => {
+    const query = e.target.value.toLowerCase();
+    
+    if (query.length > 0) {
+        // Виконати пошук
+        results.textContent = `Пошук: ${query}`;
+    } else {
+        results.textContent = '';
+    }
+});
+
+// Приклад: валідація при введенні
+const emailInput = document.querySelector('#email');
+const errorMsg = document.querySelector('.error');
+
+emailInput.addEventListener('input', (e) => {
+    const email = e.target.value;
+    const isValid = email.includes('@');
+    
+    if (isValid) {
+        emailInput.style.borderColor = 'green';
+        errorMsg.textContent = '';
+    } else {
+        emailInput.style.borderColor = 'red';
+        errorMsg.textContent = 'Введіть коректний email';
+    }
+});
+
+// checkbox та radio
+const checkbox = document.querySelector('#agree');
+checkbox.addEventListener('change', (e) => {
+    console.log('Checkbox:', e.target.checked);
+});
+
+// select (dropdown)
+const select = document.querySelector('select');
+select.addEventListener('change', (e) => {
+    console.log('Обрано:', e.target.value);
+});</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="22">// Живий текстовий редактор з підрахунком символів
+const editor = document.createElement('div');
+editor.style.cssText = 'padding: 20px; border: 2px solid #9C27B0; margin: 10px;';
+
+const textarea = document.createElement('textarea');
+textarea.style.cssText = 'width: 100%; min-height: 100px; padding: 10px; font-size: 14px;';
+textarea.placeholder = 'Введіть текст...';
+
+const stats = document.createElement('div');
+stats.style.cssText = 'margin-top: 10px; color: #666;';
+
+function updateStats() {
+    const text = textarea.value;
+    const chars = text.length;
+    const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+    const lines = text.split('\n').length;
+    
+    stats.textContent = `Символів: ${chars} | Слів: ${words} | Рядків: ${lines}`;
+}
+
+textarea.addEventListener('input', updateStats);
+
+updateStats();
+
+editor.appendChild(textarea);
+editor.appendChild(stats);
+document.body.appendChild(editor);
+
+console.log('Текстовий редактор створено!');</textarea>
+                            <button class="run-button" onclick="runHTML(this)">▶ Запустити HTML</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Події клавіатури</h2>
+                        <div class="code-block">
+                            <pre><code>// keydown - клавіша натиснута
+// keyup - клавіша відпущена
+// keypress - застарілий, не використовуйте
+
+const input = document.querySelector('input');
+
+input.addEventListener('keydown', (e) => {
+    console.log('Натиснуто:', e.key);
+    
+    // Перевірка конкретних клавіш
+    if (e.key === 'Enter') {
+        console.log('Enter натиснуто!');
+    }
+    
+    if (e.key === 'Escape') {
+        input.value = '';
+        console.log('Очищено!');
+    }
+    
+    // Комбінації клавіш
+    if (e.ctrlKey && e.key === 's') {
+        e.preventDefault();  // запобігти збереженню сторінки
+        console.log('Ctrl+S натиснуто');
+    }
+    
+    // Стрілки
+    if (e.key === 'ArrowUp') console.log('Вгору');
+    if (e.key === 'ArrowDown') console.log('Вниз');
+});
+
+// Приклад: калькулятор
+const calcInput = document.querySelector('#calc');
+
+calcInput.addEventListener('keydown', (e) => {
+    // Дозволити тільки цифри, операції та службові клавіші
+    const allowed = ['0','1','2','3','4','5','6','7','8','9','+','-','*','/','Backspace','Enter','ArrowLeft','ArrowRight'];
+    
+    if (!allowed.includes(e.key)) {
+        e.preventDefault();
+    }
+    
+    if (e.key === 'Enter') {
+        try {
+            const result = eval(calcInput.value);
+            calcInput.value = result;
+        } catch {
+            calcInput.value = 'Помилка';
+        }
+    }
+});
+
+// Гарячі клавіші для всього документа
+document.addEventListener('keydown', (e) => {
+    // Ctrl + K для фокусу на пошуку
+    if (e.ctrlKey && e.key === 'k') {
+        e.preventDefault();
+        document.querySelector('#search').focus();
+    }
+});</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Інтерактивний приклад:</h4>
+                            <textarea class="code-input" rows="24">// Гра: рухай квадрат стрілками
+const game = document.createElement('div');
+game.style.cssText = `
+    padding: 20px; 
+    border: 2px solid #FF5722; 
+    margin: 10px;
+    position: relative;
+    height: 300px;
+    background: #f5f5f5;
+`;
+
+const square = document.createElement('div');
+square.style.cssText = `
+    width: 40px;
+    height: 40px;
+    background: #FF5722;
+    position: absolute;
+    top: 130px;
+    left: 130px;
+    transition: all 0.1s;
+`;
+
+const instructions = document.createElement('p');
+instructions.textContent = 'Використовуйте стрілки для руху. ESC для скидання.';
+
+let posX = 130;
+let posY = 130;
+const step = 10;
+
+document.addEventListener('keydown', (e) => {
+    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Escape'].includes(e.key)) {
+        e.preventDefault();
+        
+        if (e.key === 'ArrowUp') posY -= step;
+        if (e.key === 'ArrowDown') posY += step;
+        if (e.key === 'ArrowLeft') posX -= step;
+        if (e.key === 'ArrowRight') posX += step;
+        if (e.key === 'Escape') { posX = 130; posY = 130; }
+        
+        // Обмеження руху
+        posX = Math.max(0, Math.min(260, posX));
+        posY = Math.max(0, Math.min(260, posY));
+        
+        square.style.left = posX + 'px';
+        square.style.top = posY + 'px';
+    }
+});
+
+game.appendChild(instructions);
+game.appendChild(square);
+document.body.appendChild(game);
+
+console.log('Гра готова! Використовуйте стрілки.');</textarea>
+                            <button class="run-button" onclick="runHTML(this)">▶ Запустити HTML</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Делегування подій (Event Delegation)</h2>
+                        <div class="code-block">
+                            <pre><code>// Проблема: додавання обробників до багатьох елементів
+const buttons = document.querySelectorAll('.item-button');
+buttons.forEach(btn => {
+    btn.addEventListener('click', handleClick);  // багато обробників
+});
+
+// Рішення: делегування - один обробник на батьківському елементі
+const container = document.querySelector('.items-container');
+
+container.addEventListener('click', (e) => {
+    // Перевірити, чи клікнули по кнопці
+    if (e.target.classList.contains('item-button')) {
+        handleClick(e);
+    }
+    
+    // Або використати closest для пошуку батьківського елемента
+    const button = e.target.closest('.item-button');
+    if (button) {
+        handleClick(e);
+    }
+});
+
+// Приклад: список завдань з видаленням
+const todoList = document.querySelector('#todo-list');
+
+todoList.addEventListener('click', (e) => {
+    // Якщо клікнули по кнопці видалення
+    if (e.target.classList.contains('delete-btn')) {
+        const todoItem = e.target.closest('.todo-item');
+        todoItem.remove();
+    }
+    
+    // Якщо клікнули по checkbox
+    if (e.target.classList.contains('todo-checkbox')) {
+        const todoItem = e.target.closest('.todo-item');
+        todoItem.classList.toggle('completed');
+    }
+});
+
+// Переваги делегування:
+// 1. Менше пам'яті (один обробник замість багатьох)
+// 2. Працює з динамічно доданими елементами
+// 3. Простіше керувати кодом
+
+// Приклад з динамічними елементами
+const addButton = document.querySelector('#add-item');
+const itemsContainer = document.querySelector('.items');
+
+// Делегування працює навіть для нових елементів
+itemsContainer.addEventListener('click', (e) => {
+    if (e.target.tagName === 'LI') {
+        e.target.classList.toggle('selected');
+    }
+});
+
+// Додавання нових елементів - обробник працюватиме автоматично
+addButton.addEventListener('click', () => {
+    const li = document.createElement('li');
+    li.textContent = 'Новий елемент';
+    itemsContainer.appendChild(li);
+});</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="28">// Інтерактивний список з делегуванням подій
+const app = document.createElement('div');
+app.style.cssText = 'padding: 20px; border: 2px solid #00BCD4; margin: 10px;';
+
+const input = document.createElement('input');
+input.type = 'text';
+input.placeholder = 'Введіть завдання...';
+input.style.cssText = 'padding: 8px; width: 70%; margin-right: 5px;';
+
+const addBtn = document.createElement('button');
+addBtn.textContent = '➕ Додати';
+addBtn.style.cssText = 'padding: 8px 15px; cursor: pointer;';
+
+const list = document.createElement('ul');
+list.style.cssText = 'list-style: none; padding: 0; margin-top: 15px;';
+
+// Делегування подій - один обробник для всього списку
+list.addEventListener('click', (e) => {
+    const target = e.target;
+    
+    // Видалення елемента
+    if (target.classList.contains('delete')) {
+        target.parentElement.remove();
+        console.log('Елемент видалено');
+    }
+    
+    // Перемикання виконаного/невиконаного
+    if (target.tagName === 'LI' && !target.classList.contains('delete')) {
+        target.classList.toggle('done');
+        target.style.textDecoration = target.classList.contains('done') ? 'line-through' : 'none';
+        target.style.color = target.classList.contains('done') ? '#999' : '#000';
+    }
+});
+
+// Додавання нового завдання
+function addTask() {
+    if (input.value.trim()) {
+        const li = document.createElement('li');
+        li.innerHTML = `${input.value} <span class="delete" style="color: red; cursor: pointer; margin-left: 10px;">❌</span>`;
+        li.style.cssText = 'padding: 8px; margin: 5px 0; background: #f9f9f9; cursor: pointer;';
+        list.appendChild(li);
+        input.value = '';
+        console.log('Завдання додано');
+    }
+}
+
+addBtn.addEventListener('click', addTask);
+input.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') addTask();
+});
+
+app.appendChild(input);
+app.appendChild(addBtn);
+app.appendChild(list);
+document.body.appendChild(app);
+
+console.log('Список завдань готовий! Клікайте по елементах щоб позначити виконаними.');</textarea>
+                            <button class="run-button" onclick="runHTML(this)">▶ Запустити HTML</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Події миші (Mouse Events)</h2>
+                        <div class="code-block">
+                            <pre><code>const element = document.querySelector('.box');
+
+// Основні події миші
+element.addEventListener('click', () => {
+    console.log('Клік');
+});
+
+element.addEventListener('dblclick', () => {
+    console.log('Подвійний клік');
+});
+
+element.addEventListener('contextmenu', (e) => {
+    e.preventDefault();  // заборонити контекстне меню
+    console.log('Правий клік');
+});
+
+// Події наведення
+element.addEventListener('mouseenter', () => {
+    console.log('Миша увійшла');
+});
+
+element.addEventListener('mouseleave', () => {
+    console.log('Миша вийшла');
+});
+
+element.addEventListener('mouseover', () => {
+    console.log('Наведено (спливає)');
+});
+
+element.addEventListener('mouseout', () => {
+    console.log('Знято (спливає)');
+});
+
+// Рух миші
+element.addEventListener('mousemove', (e) => {
+    console.log('X:', e.clientX, 'Y:', e.clientY);
+});
+
+// События кнопок миші
+element.addEventListener('mousedown', () => {
+    console.log('Кнопку натиснуто');
+});
+
+element.addEventListener('mouseup', () => {
+    console.log('Кнопку відпущено');
+});
+
+// Практичний приклад: ефект підсвічування
+const cards = document.querySelectorAll('.card');
+
+cards.forEach(card => {
+    card.addEventListener('mouseenter', function() {
+        this.style.transform = 'scale(1.05)';
+        this.style.boxShadow = '0 10px 20px rgba(0,0,0,0.2)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+        this.style.transform = 'scale(1)';
+        this.style.boxShadow = 'none';
+    });
+});</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Інтерактивний приклад:</h4>
+                            <textarea class="code-input" rows="26">// Інтерактивні картки з різними ефектами
+const cardsContainer = document.createElement('div');
+cardsContainer.style.cssText = 'padding: 20px; border: 2px solid #673AB7; margin: 10px;';
+
+const cardsGrid = document.createElement('div');
+cardsGrid.style.cssText = 'display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;';
+
+['Клік', 'Подвійний клік', 'Правий клік'].forEach(text => {
+    const card = document.createElement('div');
+    card.style.cssText = `
+        padding: 30px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        text-align: center;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s;
+    `;
+    card.textContent = text;
+    
+    card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-5px)';
+        this.style.boxShadow = '0 10px 20px rgba(0,0,0,0.3)';
+    });
+    
+    card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0)';
+        this.style.boxShadow = 'none';
+    });
+    
+    card.addEventListener('click', () => {
+        console.log(`${text} спрацював!`);
+    });
+    
+    card.addEventListener('dblclick', () => {
+        card.style.background = `hsl(${Math.random() * 360}, 70%, 50%)`;
+    });
+    
+    card.addEventListener('contextmenu', (e) => {
+        e.preventDefault();
+        card.style.transform = 'rotate(5deg)';
+        setTimeout(() => card.style.transform = '', 200);
+    });
+    
+    cardsGrid.appendChild(card);
+});
+
+cardsContainer.appendChild(cardsGrid);
+document.body.appendChild(cardsContainer);
+
+console.log('Картки створено! Спробуйте різні типи кліків.');</textarea>
+                            <button class="run-button" onclick="runHTML(this)">▶ Запустити HTML</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <div class="info-box success">
+                            <h4>Підсумок</h4>
+                            <p>
+                                Ви вивчили роботу з подіями в JavaScript: використання <code>addEventListener</code>, 
+                                роботу з об'єктом події, обробку кліків, введення тексту, клавіатури та миші, 
+                                а також делегування подій для оптимізації. Ці знання дозволять створювати 
+                                повноцінні інтерактивні веб-додатки.
+                            </p>
+                        </div>
+                    </section>
+                    
+                    <button id="complete-lesson" class="complete-button" data-lesson="lesson16">
+                        Позначити урок як пройдений
+                    </button>
+                    
+                    <nav class="lesson-navigation">
+                        <a href="lesson15.html" class="nav-button prev">Попередній урок</a>
+                        <a href="lesson17.html" class="nav-button next">Наступний урок</a>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/app.js"></script>
+</body>
+</html>

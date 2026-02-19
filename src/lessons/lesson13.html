@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 13: Основи JavaScript | HTML та JavaScript</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    
+    <div class="app-container">
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h1>HTML & JS</h1>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <nav>
+                <ul class="lessons-list">
+                    <li class="lesson-item"><a href="lesson01.html" class="lesson-link" data-lesson="lesson01"><span class="lesson-number">01</span><span class="lesson-title">Семантичний HTML5</span></a></li>
+                    <li class="lesson-item"><a href="lesson02.html" class="lesson-link" data-lesson="lesson02"><span class="lesson-number">02</span><span class="lesson-title">Таблиці та списки</span></a></li>
+                    <li class="lesson-item"><a href="lesson03.html" class="lesson-link" data-lesson="lesson03"><span class="lesson-number">03</span><span class="lesson-title">Форми (частина 1)</span></a></li>
+                    <li class="lesson-item"><a href="lesson04.html" class="lesson-link" data-lesson="lesson04"><span class="lesson-number">04</span><span class="lesson-title">Форми (частина 2)</span></a></li>
+                    <li class="lesson-item"><a href="lesson05.html" class="lesson-link" data-lesson="lesson05"><span class="lesson-number">05</span><span class="lesson-title">Мультимедіа</span></a></li>
+                    <li class="lesson-item"><a href="lesson06.html" class="lesson-link" data-lesson="lesson06"><span class="lesson-number">06</span><span class="lesson-title">Meta-теги та SEO</span></a></li>
+                    <li class="lesson-item"><a href="lesson07.html" class="lesson-link" data-lesson="lesson07"><span class="lesson-number">07</span><span class="lesson-title">Посилання та навігація</span></a></li>
+                    <li class="lesson-item"><a href="lesson08.html" class="lesson-link" data-lesson="lesson08"><span class="lesson-number">08</span><span class="lesson-title">Доступність (a11y)</span></a></li>
+                    <li class="lesson-item"><a href="lesson09.html" class="lesson-link" data-lesson="lesson09"><span class="lesson-number">09</span><span class="lesson-title">CSS Flexbox</span></a></li>
+                    <li class="lesson-item"><a href="lesson10.html" class="lesson-link" data-lesson="lesson10"><span class="lesson-number">10</span><span class="lesson-title">CSS Grid</span></a></li>
+                    <li class="lesson-item"><a href="lesson11.html" class="lesson-link" data-lesson="lesson11"><span class="lesson-number">11</span><span class="lesson-title">CSS анімації</span></a></li>
+                    <li class="lesson-item"><a href="lesson12.html" class="lesson-link" data-lesson="lesson12"><span class="lesson-number">12</span><span class="lesson-title">CSS змінні та адаптивність</span></a></li>
+                    <li class="lesson-item"><a href="lesson13.html" class="lesson-link" data-lesson="lesson13"><span class="lesson-number">13</span><span class="lesson-title">Основи JavaScript</span></a></li>
+                    <li class="lesson-item"><a href="lesson14.html" class="lesson-link" data-lesson="lesson14"><span class="lesson-number">14</span><span class="lesson-title">Функції та масиви</span></a></li>
+                    <li class="lesson-item"><a href="lesson15.html" class="lesson-link" data-lesson="lesson15"><span class="lesson-number">15</span><span class="lesson-title">DOM маніпуляції</span></a></li>
+                    <li class="lesson-item"><a href="lesson16.html" class="lesson-link" data-lesson="lesson16"><span class="lesson-number">16</span><span class="lesson-title">Події та обробники</span></a></li>
+                    <li class="lesson-item"><a href="lesson17.html" class="lesson-link" data-lesson="lesson17"><span class="lesson-number">17</span><span class="lesson-title">Робота з формами через JS</span></a></li>
+                    <li class="lesson-item"><a href="lesson18.html" class="lesson-link" data-lesson="lesson18"><span class="lesson-number">18</span><span class="lesson-title">LocalStorage та JSON</span></a></li>
+                    <li class="lesson-item"><a href="lesson19.html" class="lesson-link" data-lesson="lesson19"><span class="lesson-number">19</span><span class="lesson-title">Fetch API та асинхронність</span></a></li>
+                    <li class="lesson-item"><a href="lesson20.html" class="lesson-link" data-lesson="lesson20"><span class="lesson-number">20</span><span class="lesson-title">Фінальний проєкт: TODO</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <div class="lesson-container">
+                <header class="lesson-header">
+                    <h1>Урок 13: Основи JavaScript</h1>
+                    <p class="lesson-meta">Змінні, типи даних, оператори та базовий синтаксис</p>
+                </header>
+                
+                <div class="lesson-content">
+                    <section>
+                        <h2>Що таке JavaScript?</h2>
+                        <p>
+                            JavaScript - це мова програмування, яка дозволяє створювати інтерактивні веб-сторінки. 
+                            Вона виконується в браузері користувача і може змінювати HTML, CSS, обробляти події та взаємодіяти з сервером.
+                        </p>
+                        
+                        <div class="info-box">
+                            <h4>Можливості JavaScript</h4>
+                            <ul>
+                                <li>Динамічна зміна контенту сторінки</li>
+                                <li>Обробка подій користувача (клік, введення тексту тощо)</li>
+                                <li>Валідація форм</li>
+                                <li>Анімації та ефекти</li>
+                                <li>Взаємодія з сервером (AJAX, Fetch API)</li>
+                                <li>Зберігання даних локально</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Змінні: let та const</h2>
+                        <p>
+                            Змінні дозволяють зберігати дані. В сучасному JavaScript використовуються <code>let</code> 
+                            для змінних значень та <code>const</code> для констант.
+                        </p>
+                        
+                        <div class="code-block">
+                            <pre><code>// const - для значень, які не змінюються
+const PI = 3.14159;
+const siteName = "Мій сайт";
+
+// let - для значень, які можуть змінюватися
+let age = 25;
+let username = "Іван";
+let isLoggedIn = false;
+
+// Зміна значення
+age = 26;  // OK
+username = "Петро";  // OK
+
+// PI = 3.14;  // Помилка! const не можна перевизначити
+
+// Уникайте var - це застарілий спосіб
+var oldWay = "не рекомендується";</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="8">// Створіть змінні з вашим ім'ям та віком
+const myName = "Іван";
+let myAge = 20;
+
+console.log("Мене звуть " + myName);
+console.log("Мені " + myAge + " років");
+
+// Збільшіть вік на 1
+myAge = myAge + 1;
+console.log("Через рік мені буде " + myAge);</textarea>
+                            <button class="run-button" onclick="runCode(this)">▶ Запустити</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Типи даних</h2>
+                        <p>JavaScript має кілька базових типів даних:</p>
+                        
+                        <div class="code-block">
+                            <pre><code>// Number - числа (цілі та дробові)
+let integer = 42;
+let decimal = 3.14;
+let negative = -10;
+
+// String - рядки (текст)
+let text = "Привіт";
+let text2 = 'Світ';
+let text3 = `Це шаблонний рядок`;
+
+// Boolean - логічний тип (true або false)
+let isActive = true;
+let hasError = false;
+
+// Undefined - не визначено
+let notDefined;
+console.log(notDefined);  // undefined
+
+// Null - пусте значення
+let empty = null;
+
+// Object - об'єкт
+let person = {
+    name: "Іван",
+    age: 25,
+    isStudent: true
+};
+
+// Array - масив
+let numbers = [1, 2, 3, 4, 5];
+let fruits = ["яблуко", "банан", "апельсин"];
+
+// Перевірка типу
+console.log(typeof 42);          // "number"
+console.log(typeof "текст");     // "string"
+console.log(typeof true);        // "boolean"
+console.log(typeof {});          // "object"</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="10">// Створіть різні типи даних
+let myNumber = 100;
+let myText = "JavaScript";
+let myBoolean = true;
+
+console.log("Число:", myNumber, "Тип:", typeof myNumber);
+console.log("Текст:", myText, "Тип:", typeof myText);
+console.log("Boolean:", myBoolean, "Тип:", typeof myBoolean);
+
+let myArray = [1, 2, 3, 4, 5];
+console.log("Масив:", myArray);</textarea>
+                            <button class="run-button" onclick="runCode(this)">▶ Запустити</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Математичні оператори</h2>
+                        <div class="code-block">
+                            <pre><code>// Базові операції
+let a = 10;
+let b = 3;
+
+console.log(a + b);   // 13 - додавання
+console.log(a - b);   // 7  - віднімання
+console.log(a * b);   // 30 - множення
+console.log(a / b);   // 3.333... - ділення
+console.log(a % b);   // 1  - остача від ділення
+console.log(a ** b);  // 1000 - піднесення до степеня
+
+// Скорочені операції
+let x = 10;
+x += 5;  // x = x + 5;  результат: 15
+x -= 3;  // x = x - 3;  результат: 12
+x *= 2;  // x = x * 2;  результат: 24
+x /= 4;  // x = x / 4;  результат: 6
+
+// Інкремент та декремент
+let count = 0;
+count++;  // count = count + 1;  результат: 1
+count--;  // count = count - 1;  результат: 0
+
+// Префіксний та постфіксний інкремент
+let y = 5;
+console.log(y++);  // Виведе 5, потім y стане 6
+console.log(++y);  // Спочатку y стане 7, потім виведе 7</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="10">// Калькулятор
+let num1 = 20;
+let num2 = 5;
+
+console.log("Додавання:", num1 + num2);
+console.log("Віднімання:", num1 - num2);
+console.log("Множення:", num1 * num2);
+console.log("Ділення:", num1 / num2);
+console.log("Остача:", num1 % num2);
+console.log("Степінь:", num1 ** 2);</textarea>
+                            <button class="run-button" onclick="runCode(this)">▶ Запустити</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Робота з рядками (Strings)</h2>
+                        <div class="code-block">
+                            <pre><code>// Конкатенація (об'єднання) рядків
+let firstName = "Іван";
+let lastName = "Петренко";
+let fullName = firstName + " " + lastName;
+console.log(fullName);  // "Іван Петренко"
+
+// Шаблонні рядки (template literals) - сучасний спосіб
+let age = 25;
+let greeting = `Привіт, мене звуть ${firstName} і мені ${age} років`;
+console.log(greeting);
+
+// Багаторядкові рядки
+let poem = `Рядок перший
+Рядок другий
+Рядок третій`;
+
+// Корисні методи рядків
+let text = "JavaScript";
+
+console.log(text.length);           // 10 - довжина рядка
+console.log(text.toLowerCase());    // "javascript" - в нижній регістр
+console.log(text.toUpperCase());    // "JAVASCRIPT" - в верхній регістр
+console.log(text.includes("Script")); // true - чи містить підрядок
+console.log(text.startsWith("Java")); // true - чи починається з
+console.log(text.endsWith("Script")); // true - чи закінчується на
+console.log(text.slice(0, 4));      // "Java" - вирізати частину
+console.log(text.replace("Java", "Type")); // "TypeScript" - замінити
+
+// Перетворення рядка в число
+let strNumber = "123";
+let num = Number(strNumber);  // 123
+let num2 = parseInt("123");   // 123
+let num3 = parseFloat("12.5"); // 12.5
+
+// Перетворення числа в рядок
+let number = 42;
+let str = String(number);     // "42"
+let str2 = number.toString(); // "42"</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="12">// Робота з рядками
+let firstName = "Олена";
+let lastName = "Шевченко";
+let age = 22;
+
+// Використайте шаблонні рядки
+let bio = `Мене звуть ${firstName} ${lastName}. Мені ${age} роки.`;
+console.log(bio);
+
+// Методи рядків
+console.log("Довжина імені:", firstName.length);
+console.log("Великими літерами:", firstName.toUpperCase());
+console.log("Першi 3 літери:", firstName.slice(0, 3));</textarea>
+                            <button class="run-button" onclick="runCode(this)">▶ Запустити</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Оператори порівняння</h2>
+                        <div class="code-block">
+                            <pre><code>// Строге порівняння (рекомендується)
+console.log(5 === 5);      // true
+console.log(5 === "5");    // false (різні типи)
+console.log(5 !== 3);      // true
+console.log(5 !== "5");    // true (різні типи)
+
+// Нестроге порівняння (не рекомендується)
+console.log(5 == "5");     // true (приводить типи)
+console.log(5 != "3");     // true
+
+// Порівняння чисел
+console.log(10 > 5);       // true
+console.log(10 < 5);       // false
+console.log(10 >= 10);     // true
+console.log(10 <= 9);      // false
+
+// Логічні оператори
+let age = 20;
+let hasLicense = true;
+
+// AND (&&) - всі умови мають бути true
+console.log(age >= 18 && hasLicense);  // true
+
+// OR (||) - хоча б одна умова має бути true
+console.log(age < 18 || hasLicense);   // true
+
+// NOT (!) - інвертує значення
+console.log(!hasLicense);  // false
+console.log(!(age < 18));  // true</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="10">// Перевірка умов
+let userAge = 25;
+let isStudent = true;
+let hasDiscount = false;
+
+console.log("Повнолітній?", userAge >= 18);
+console.log("Студент АБО має знижку?", isStudent || hasDiscount);
+console.log("Студент І повнолітній?", isStudent && userAge >= 18);
+console.log("НЕ студент?", !isStudent);
+
+console.log("5 === '5':", 5 === "5");  // строге порівняння</textarea>
+                            <button class="run-button" onclick="runCode(this)">▶ Запустити</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Умовні конструкції</h2>
+                        <div class="code-block">
+                            <pre><code>// if - else
+let age = 20;
+
+if (age >= 18) {
+    console.log("Ви повнолітній");
+} else {
+    console.log("Ви неповнолітній");
+}
+
+// if - else if - else
+let score = 85;
+
+if (score >= 90) {
+    console.log("Оцінка: Відмінно");
+} else if (score >= 75) {
+    console.log("Оцінка: Добре");
+} else if (score >= 60) {
+    console.log("Оцінка: Задовільно");
+} else {
+    console.log("Оцінка: Незадовільно");
+}
+
+// Тернарний оператор - коротка форма if-else
+let isAdult = age >= 18 ? "так" : "ні";
+console.log("Повнолітній:", isAdult);
+
+let status = score >= 60 ? "Склав" : "Не склав";
+
+// Switch - для множинного вибору
+let day = 3;
+let dayName;
+
+switch(day) {
+    case 1:
+        dayName = "Понеділок";
+        break;
+    case 2:
+        dayName = "Вівторок";
+        break;
+    case 3:
+        dayName = "Середа";
+        break;
+    case 4:
+        dayName = "Четвер";
+        break;
+    case 5:
+        dayName = "П'ятниця";
+        break;
+    case 6:
+    case 7:
+        dayName = "Вихідний";
+        break;
+    default:
+        dayName = "Невідомий день";
+}</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="12">// Перевірка віку
+let age = 16;
+
+if (age < 13) {
+    console.log("Дитина");
+} else if (age < 18) {
+    console.log("Підліток");
+} else if (age < 65) {
+    console.log("Дорослий");
+} else {
+    console.log("Пенсіонер");
+}
+
+// Тернарний оператор
+let canVote = age >= 18 ? "Може голосувати" : "Не може голосувати";
+console.log(canVote);</textarea>
+                            <button class="run-button" onclick="runCode(this)">▶ Запустити</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Цикли</h2>
+                        <div class="code-block">
+                            <pre><code>// for - класичний цикл
+for (let i = 0; i < 5; i++) {
+    console.log("Ітерація:", i);
+}
+
+// while - виконується поки умова true
+let count = 0;
+while (count < 3) {
+    console.log("Count:", count);
+    count++;
+}
+
+// do-while - виконається мінімум один раз
+let num = 0;
+do {
+    console.log("Number:", num);
+    num++;
+} while (num < 3);
+
+// for...of - для масивів
+let fruits = ["яблуко", "банан", "апельсин"];
+for (let fruit of fruits) {
+    console.log(fruit);
+}
+
+// for...in - для об'єктів
+let person = { name: "Іван", age: 25, city: "Київ" };
+for (let key in person) {
+    console.log(key + ":", person[key]);
+}
+
+// break - вихід з циклу
+for (let i = 0; i < 10; i++) {
+    if (i === 5) break;
+    console.log(i);  // 0, 1, 2, 3, 4
+}
+
+// continue - пропустити ітерацію
+for (let i = 0; i < 5; i++) {
+    if (i === 2) continue;
+    console.log(i);  // 0, 1, 3, 4
+}</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="12">// Цикл for
+console.log("Числа від 1 до 5:");
+for (let i = 1; i <= 5; i++) {
+    console.log(i);
+}
+
+// Сума чисел
+let sum = 0;
+for (let i = 1; i <= 10; i++) {
+    sum += i;
+}
+console.log("Сума від 1 до 10:", sum);
+
+// Цикл по масиву
+let colors = ["червоний", "зелений", "синій"];
+for (let color of colors) {
+    console.log("Колір:", color);
+}</textarea>
+                            <button class="run-button" onclick="runCode(this)">▶ Запустити</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <div class="info-box success">
+                            <h4>Підсумок</h4>
+                            <p>
+                                Ви вивчили основи JavaScript: змінні (<code>let</code>, <code>const</code>), 
+                                типи даних (number, string, boolean), оператори, умовні конструкції та цикли. 
+                                Це фундамент для подальшого вивчення мови. В наступних уроках ми розглянемо 
+                                функції, масиви та роботу з DOM.
+                            </p>
+                        </div>
+                    </section>
+                    
+                    <button id="complete-lesson" class="complete-button" data-lesson="lesson13">
+                        Позначити урок як пройдений
+                    </button>
+                    
+                    <nav class="lesson-navigation">
+                        <a href="lesson12.html" class="nav-button prev">Попередній урок</a>
+                        <a href="lesson14.html" class="nav-button next">Наступний урок</a>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/app.js"></script>
+</body>
+</html>
