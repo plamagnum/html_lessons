@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 3: Форми (частина 1) | HTML та JavaScript</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    
+    <div class="app-container">
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h1>HTML & JS</h1>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <nav>
+                <ul class="lessons-list">
+                    <li class="lesson-item"><a href="lesson01.html" class="lesson-link" data-lesson="lesson01"><span class="lesson-number">01</span><span class="lesson-title">Семантичний HTML5</span></a></li>
+                    <li class="lesson-item"><a href="lesson02.html" class="lesson-link" data-lesson="lesson02"><span class="lesson-number">02</span><span class="lesson-title">Таблиці та списки</span></a></li>
+                    <li class="lesson-item"><a href="lesson03.html" class="lesson-link" data-lesson="lesson03"><span class="lesson-number">03</span><span class="lesson-title">Форми (частина 1)</span></a></li>
+                    <li class="lesson-item"><a href="lesson04.html" class="lesson-link" data-lesson="lesson04"><span class="lesson-number">04</span><span class="lesson-title">Форми (частина 2)</span></a></li>
+                    <li class="lesson-item"><a href="lesson05.html" class="lesson-link" data-lesson="lesson05"><span class="lesson-number">05</span><span class="lesson-title">Мультимедіа</span></a></li>
+                    <li class="lesson-item"><a href="lesson06.html" class="lesson-link" data-lesson="lesson06"><span class="lesson-number">06</span><span class="lesson-title">Meta-теги та SEO</span></a></li>
+                    <li class="lesson-item"><a href="lesson07.html" class="lesson-link" data-lesson="lesson07"><span class="lesson-number">07</span><span class="lesson-title">Посилання та навігація</span></a></li>
+                    <li class="lesson-item"><a href="lesson08.html" class="lesson-link" data-lesson="lesson08"><span class="lesson-number">08</span><span class="lesson-title">Доступність (a11y)</span></a></li>
+                    <li class="lesson-item"><a href="lesson09.html" class="lesson-link" data-lesson="lesson09"><span class="lesson-number">09</span><span class="lesson-title">CSS Flexbox</span></a></li>
+                    <li class="lesson-item"><a href="lesson10.html" class="lesson-link" data-lesson="lesson10"><span class="lesson-number">10</span><span class="lesson-title">CSS Grid</span></a></li>
+                    <li class="lesson-item"><a href="lesson11.html" class="lesson-link" data-lesson="lesson11"><span class="lesson-number">11</span><span class="lesson-title">CSS анімації</span></a></li>
+                    <li class="lesson-item"><a href="lesson12.html" class="lesson-link" data-lesson="lesson12"><span class="lesson-number">12</span><span class="lesson-title">CSS змінні та адаптивність</span></a></li>
+                    <li class="lesson-item"><a href="lesson13.html" class="lesson-link" data-lesson="lesson13"><span class="lesson-number">13</span><span class="lesson-title">Основи JavaScript</span></a></li>
+                    <li class="lesson-item"><a href="lesson14.html" class="lesson-link" data-lesson="lesson14"><span class="lesson-number">14</span><span class="lesson-title">Функції та масиви</span></a></li>
+                    <li class="lesson-item"><a href="lesson15.html" class="lesson-link" data-lesson="lesson15"><span class="lesson-number">15</span><span class="lesson-title">DOM маніпуляції</span></a></li>
+                    <li class="lesson-item"><a href="lesson16.html" class="lesson-link" data-lesson="lesson16"><span class="lesson-number">16</span><span class="lesson-title">Події та обробники</span></a></li>
+                    <li class="lesson-item"><a href="lesson17.html" class="lesson-link" data-lesson="lesson17"><span class="lesson-number">17</span><span class="lesson-title">Робота з формами через JS</span></a></li>
+                    <li class="lesson-item"><a href="lesson18.html" class="lesson-link" data-lesson="lesson18"><span class="lesson-number">18</span><span class="lesson-title">LocalStorage та JSON</span></a></li>
+                    <li class="lesson-item"><a href="lesson19.html" class="lesson-link" data-lesson="lesson19"><span class="lesson-number">19</span><span class="lesson-title">Fetch API та асинхронність</span></a></li>
+                    <li class="lesson-item"><a href="lesson20.html" class="lesson-link" data-lesson="lesson20"><span class="lesson-number">20</span><span class="lesson-title">Фінальний проєкт: TODO</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <div class="lesson-container">
+                <header class="lesson-header">
+                    <h1>Урок 3: Форми (частина 1)</h1>
+                    <p class="lesson-meta">Основні типи полів введення та структура форм</p>
+                </header>
+                
+                <div class="lesson-content">
+                    <section>
+                        <h2>Основи HTML форм</h2>
+                        <p>
+                            Форми - це основний спосіб збору даних від користувачів на веб-сторінках. 
+                            HTML5 додав багато нових типів полів введення, які покращують користувацький досвід 
+                            та автоматично валідують дані.
+                        </p>
+                        
+                        <h3>Базова структура форми</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;form action="/submit" method="POST"&gt;
+    &lt;!-- Поля форми --&gt;
+    &lt;button type="submit"&gt;Надіслати&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                        </div>
+                        
+                        <div class="info-box">
+                            <h4>Атрибути форми</h4>
+                            <ul>
+                                <li><code>action</code> - URL, куди надсилаються дані</li>
+                                <li><code>method</code> - метод HTTP (GET або POST)</li>
+                                <li><code>enctype</code> - тип кодування даних (для файлів: multipart/form-data)</li>
+                                <li><code>novalidate</code> - вимикає стандартну валідацію браузера</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Label та зв'язок з полями</h2>
+                        <p>
+                            Тег <code>&lt;label&gt;</code> створює підпис для поля введення і покращує доступність. 
+                            Клік на label автоматично фокусує відповідне поле.
+                        </p>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Спосіб 1: вкладення --&gt;
+&lt;label&gt;
+    Ім'я:
+    &lt;input type="text" name="username"&gt;
+&lt;/label&gt;
+
+&lt;!-- Спосіб 2: атрибут for (рекомендований) --&gt;
+&lt;label for="email"&gt;Email:&lt;/label&gt;
+&lt;input type="email" id="email" name="email"&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Типи полів введення</h2>
+                        
+                        <h3>Текстові поля</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Звичайний текст --&gt;
+&lt;label for="name"&gt;Ім'я:&lt;/label&gt;
+&lt;input type="text" id="name" name="name" 
+       placeholder="Введіть ваше ім'я"&gt;
+
+&lt;!-- Пароль --&gt;
+&lt;label for="password"&gt;Пароль:&lt;/label&gt;
+&lt;input type="password" id="password" name="password"&gt;
+
+&lt;!-- Email --&gt;
+&lt;label for="email"&gt;Email:&lt;/label&gt;
+&lt;input type="email" id="email" name="email" 
+       placeholder="user@example.com"&gt;
+
+&lt;!-- Телефон --&gt;
+&lt;label for="phone"&gt;Телефон:&lt;/label&gt;
+&lt;input type="tel" id="phone" name="phone" 
+       placeholder="+380 XX XXX XXXX"&gt;
+
+&lt;!-- URL --&gt;
+&lt;label for="website"&gt;Веб-сайт:&lt;/label&gt;
+&lt;input type="url" id="website" name="website" 
+       placeholder="https://example.com"&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Числові поля</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Число --&gt;
+&lt;label for="age"&gt;Вік:&lt;/label&gt;
+&lt;input type="number" id="age" name="age" 
+       min="18" max="100" step="1" value="25"&gt;
+
+&lt;!-- Діапазон (слайдер) --&gt;
+&lt;label for="volume"&gt;Гучність:&lt;/label&gt;
+&lt;input type="range" id="volume" name="volume" 
+       min="0" max="100" value="50" step="5"&gt;
+&lt;output for="volume"&gt;50&lt;/output&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Дати та час</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Дата --&gt;
+&lt;label for="birthdate"&gt;Дата народження:&lt;/label&gt;
+&lt;input type="date" id="birthdate" name="birthdate" 
+       min="1900-01-01" max="2024-12-31"&gt;
+
+&lt;!-- Час --&gt;
+&lt;label for="meeting-time"&gt;Час зустрічі:&lt;/label&gt;
+&lt;input type="time" id="meeting-time" name="meeting-time"&gt;
+
+&lt;!-- Дата та час --&gt;
+&lt;label for="appointment"&gt;Дата та час:&lt;/label&gt;
+&lt;input type="datetime-local" id="appointment" 
+       name="appointment"&gt;
+
+&lt;!-- Місяць --&gt;
+&lt;label for="month"&gt;Оберіть місяць:&lt;/label&gt;
+&lt;input type="month" id="month" name="month"&gt;
+
+&lt;!-- Тиждень --&gt;
+&lt;label for="week"&gt;Оберіть тиждень:&lt;/label&gt;
+&lt;input type="week" id="week" name="week"&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Вибір кольору</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;label for="color"&gt;Улюблений колір:&lt;/label&gt;
+&lt;input type="color" id="color" name="color" 
+       value="#3498db"&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Групування полів: Fieldset та Legend</h2>
+                        <p>
+                            Елементи <code>&lt;fieldset&gt;</code> та <code>&lt;legend&gt;</code> 
+                            використовуються для логічного групування пов'язаних полів форми.
+                        </p>
+                        <div class="code-block">
+                            <pre><code>&lt;form&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;Особисті дані&lt;/legend&gt;
+        
+        &lt;label for="firstname"&gt;Ім'я:&lt;/label&gt;
+        &lt;input type="text" id="firstname" name="firstname"&gt;
+        
+        &lt;label for="lastname"&gt;Прізвище:&lt;/label&gt;
+        &lt;input type="text" id="lastname" name="lastname"&gt;
+        
+        &lt;label for="birthday"&gt;Дата народження:&lt;/label&gt;
+        &lt;input type="date" id="birthday" name="birthday"&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;fieldset&gt;
+        &lt;legend&gt;Контактна інформація&lt;/legend&gt;
+        
+        &lt;label for="email"&gt;Email:&lt;/label&gt;
+        &lt;input type="email" id="email" name="email"&gt;
+        
+        &lt;label for="phone"&gt;Телефон:&lt;/label&gt;
+        &lt;input type="tel" id="phone" name="phone"&gt;
+    &lt;/fieldset&gt;
+    
+    &lt;button type="submit"&gt;Зберегти&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+                        </div>
+                        
+                        <div class="info-box">
+                            <h4>Вимикання fieldset</h4>
+                            <p>
+                                Додавши атрибут <code>disabled</code> до fieldset, ви вимкнете всі поля всередині нього:
+                            </p>
+                            <pre><code>&lt;fieldset disabled&gt;
+    &lt;legend&gt;Недоступна секція&lt;/legend&gt;
+    &lt;!-- Всі поля будуть вимкнені --&gt;
+&lt;/fieldset&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Чекбокси та радіо-кнопки</h2>
+                        
+                        <h3>Чекбокси (множинний вибір)</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;fieldset&gt;
+    &lt;legend&gt;Оберіть улюблені мови програмування:&lt;/legend&gt;
+    
+    &lt;label&gt;
+        &lt;input type="checkbox" name="languages" value="javascript"&gt;
+        JavaScript
+    &lt;/label&gt;
+    
+    &lt;label&gt;
+        &lt;input type="checkbox" name="languages" value="python" checked&gt;
+        Python
+    &lt;/label&gt;
+    
+    &lt;label&gt;
+        &lt;input type="checkbox" name="languages" value="java"&gt;
+        Java
+    &lt;/label&gt;
+&lt;/fieldset&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Радіо-кнопки (одиночний вибір)</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;fieldset&gt;
+    &lt;legend&gt;Оберіть рівень досвіду:&lt;/legend&gt;
+    
+    &lt;label&gt;
+        &lt;input type="radio" name="experience" value="beginner"&gt;
+        Початківець
+    &lt;/label&gt;
+    
+    &lt;label&gt;
+        &lt;input type="radio" name="experience" value="intermediate" checked&gt;
+        Середній
+    &lt;/label&gt;
+    
+    &lt;label&gt;
+        &lt;input type="radio" name="experience" value="advanced"&gt;
+        Просунутий
+    &lt;/label&gt;
+&lt;/fieldset&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Повний приклад форми реєстрації</h2>
+                        <div class="code-block">
+                            <pre><code>&lt;form action="/register" method="POST"&gt;
+    &lt;fieldset&gt;
+        &lt;legend&gt;Реєстрація користувача&lt;/legend&gt;
+        
+        &lt;div&gt;
+            &lt;label for="reg-username"&gt;Ім'я користувача:&lt;/label&gt;
+            &lt;input type="text" id="reg-username" name="username" 
+                   placeholder="Мінімум 3 символи"&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label for="reg-email"&gt;Email:&lt;/label&gt;
+            &lt;input type="email" id="reg-email" name="email" 
+                   placeholder="user@example.com"&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label for="reg-password"&gt;Пароль:&lt;/label&gt;
+            &lt;input type="password" id="reg-password" name="password"&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label for="reg-age"&gt;Вік:&lt;/label&gt;
+            &lt;input type="number" id="reg-age" name="age" 
+                   min="13" max="120"&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label for="reg-birthdate"&gt;Дата народження:&lt;/label&gt;
+            &lt;input type="date" id="reg-birthdate" name="birthdate"&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label for="reg-color"&gt;Тема оформлення:&lt;/label&gt;
+            &lt;input type="color" id="reg-color" name="theme-color" 
+                   value="#3498db"&gt;
+        &lt;/div&gt;
+        
+        &lt;fieldset&gt;
+            &lt;legend&gt;Стать&lt;/legend&gt;
+            &lt;label&gt;
+                &lt;input type="radio" name="gender" value="male"&gt;
+                Чоловік
+            &lt;/label&gt;
+            &lt;label&gt;
+                &lt;input type="radio" name="gender" value="female"&gt;
+                Жінка
+            &lt;/label&gt;
+            &lt;label&gt;
+                &lt;input type="radio" name="gender" value="other"&gt;
+                Інше
+            &lt;/label&gt;
+        &lt;/fieldset&gt;
+        
+        &lt;div&gt;
+            &lt;label&gt;
+                &lt;input type="checkbox" name="newsletter" value="yes"&gt;
+                Підписатися на розсилку
+            &lt;/label&gt;
+        &lt;/div&gt;
+        
+        &lt;div&gt;
+            &lt;label&gt;
+                &lt;input type="checkbox" name="terms" value="accepted" required&gt;
+                Я приймаю умови використання
+            &lt;/label&gt;
+        &lt;/div&gt;
+        
+        &lt;button type="submit"&gt;Зареєструватися&lt;/button&gt;
+        &lt;button type="reset"&gt;Очистити форму&lt;/button&gt;
+    &lt;/fieldset&gt;
+&lt;/form&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Атрибути полів введення</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Атрибут</th>
+                                    <th>Опис</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>placeholder</td>
+                                    <td>Підказка всередині поля</td>
+                                </tr>
+                                <tr>
+                                    <td>value</td>
+                                    <td>Початкове значення</td>
+                                </tr>
+                                <tr>
+                                    <td>readonly</td>
+                                    <td>Тільки для читання</td>
+                                </tr>
+                                <tr>
+                                    <td>disabled</td>
+                                    <td>Вимкнене поле</td>
+                                </tr>
+                                <tr>
+                                    <td>autofocus</td>
+                                    <td>Автоматичний фокус при завантаженні</td>
+                                </tr>
+                                <tr>
+                                    <td>autocomplete</td>
+                                    <td>Вмикає/вимикає автозаповнення</td>
+                                </tr>
+                                <tr>
+                                    <td>name</td>
+                                    <td>Ім'я поля (для відправки даних)</td>
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>Унікальний ідентифікатор</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                    
+                    <section>
+                        <div class="info-box success">
+                            <h4>Підсумок</h4>
+                            <p>
+                                HTML5 надає великий вибір типів полів для створення інтерактивних форм. 
+                                Використання правильних типів полів покращує користувацький досвід, 
+                                надає вбудовану валідацію та оптимізує відображення на мобільних пристроях. 
+                                Завжди використовуйте <code>&lt;label&gt;</code> для кращої доступності 
+                                та групуйте пов'язані поля за допомогою <code>&lt;fieldset&gt;</code>.
+                            </p>
+                        </div>
+                    </section>
+                    
+                    <button id="complete-lesson" class="complete-button" data-lesson="lesson03">
+                        Позначити урок як пройдений
+                    </button>
+                    
+                    <nav class="lesson-navigation">
+                        <a href="lesson02.html" class="nav-button prev">Попередній урок</a>
+                        <a href="lesson04.html" class="nav-button next">Наступний урок</a>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/app.js"></script>
+</body>
+</html>

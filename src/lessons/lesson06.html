@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 6: Meta-теги та SEO | HTML та JavaScript</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    
+    <div class="app-container">
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h1>HTML & JS</h1>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <nav>
+                <ul class="lessons-list">
+                    <li class="lesson-item"><a href="lesson01.html" class="lesson-link" data-lesson="lesson01"><span class="lesson-number">01</span><span class="lesson-title">Семантичний HTML5</span></a></li>
+                    <li class="lesson-item"><a href="lesson02.html" class="lesson-link" data-lesson="lesson02"><span class="lesson-number">02</span><span class="lesson-title">Таблиці та списки</span></a></li>
+                    <li class="lesson-item"><a href="lesson03.html" class="lesson-link" data-lesson="lesson03"><span class="lesson-number">03</span><span class="lesson-title">Форми (частина 1)</span></a></li>
+                    <li class="lesson-item"><a href="lesson04.html" class="lesson-link" data-lesson="lesson04"><span class="lesson-number">04</span><span class="lesson-title">Форми (частина 2)</span></a></li>
+                    <li class="lesson-item"><a href="lesson05.html" class="lesson-link" data-lesson="lesson05"><span class="lesson-number">05</span><span class="lesson-title">Мультимедіа</span></a></li>
+                    <li class="lesson-item"><a href="lesson06.html" class="lesson-link" data-lesson="lesson06"><span class="lesson-number">06</span><span class="lesson-title">Meta-теги та SEO</span></a></li>
+                    <li class="lesson-item"><a href="lesson07.html" class="lesson-link" data-lesson="lesson07"><span class="lesson-number">07</span><span class="lesson-title">Посилання та навігація</span></a></li>
+                    <li class="lesson-item"><a href="lesson08.html" class="lesson-link" data-lesson="lesson08"><span class="lesson-number">08</span><span class="lesson-title">Доступність (a11y)</span></a></li>
+                    <li class="lesson-item"><a href="lesson09.html" class="lesson-link" data-lesson="lesson09"><span class="lesson-number">09</span><span class="lesson-title">CSS Flexbox</span></a></li>
+                    <li class="lesson-item"><a href="lesson10.html" class="lesson-link" data-lesson="lesson10"><span class="lesson-number">10</span><span class="lesson-title">CSS Grid</span></a></li>
+                    <li class="lesson-item"><a href="lesson11.html" class="lesson-link" data-lesson="lesson11"><span class="lesson-number">11</span><span class="lesson-title">CSS анімації</span></a></li>
+                    <li class="lesson-item"><a href="lesson12.html" class="lesson-link" data-lesson="lesson12"><span class="lesson-number">12</span><span class="lesson-title">CSS змінні та адаптивність</span></a></li>
+                    <li class="lesson-item"><a href="lesson13.html" class="lesson-link" data-lesson="lesson13"><span class="lesson-number">13</span><span class="lesson-title">Основи JavaScript</span></a></li>
+                    <li class="lesson-item"><a href="lesson14.html" class="lesson-link" data-lesson="lesson14"><span class="lesson-number">14</span><span class="lesson-title">Функції та масиви</span></a></li>
+                    <li class="lesson-item"><a href="lesson15.html" class="lesson-link" data-lesson="lesson15"><span class="lesson-number">15</span><span class="lesson-title">DOM маніпуляції</span></a></li>
+                    <li class="lesson-item"><a href="lesson16.html" class="lesson-link" data-lesson="lesson16"><span class="lesson-number">16</span><span class="lesson-title">Події та обробники</span></a></li>
+                    <li class="lesson-item"><a href="lesson17.html" class="lesson-link" data-lesson="lesson17"><span class="lesson-number">17</span><span class="lesson-title">Робота з формами через JS</span></a></li>
+                    <li class="lesson-item"><a href="lesson18.html" class="lesson-link" data-lesson="lesson18"><span class="lesson-number">18</span><span class="lesson-title">LocalStorage та JSON</span></a></li>
+                    <li class="lesson-item"><a href="lesson19.html" class="lesson-link" data-lesson="lesson19"><span class="lesson-number">19</span><span class="lesson-title">Fetch API та асинхронність</span></a></li>
+                    <li class="lesson-item"><a href="lesson20.html" class="lesson-link" data-lesson="lesson20"><span class="lesson-number">20</span><span class="lesson-title">Фінальний проєкт: TODO</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <div class="lesson-container">
+                <header class="lesson-header">
+                    <h1>Урок 6: Meta-теги та SEO</h1>
+                    <p class="lesson-meta">Оптимізація для пошукових систем та соціальних мереж</p>
+                </header>
+                
+                <div class="lesson-content">
+                    <section>
+                        <h2>Основні Meta-теги</h2>
+                        <p>
+                            Meta-теги надають інформацію про HTML-документ. Вони розміщуються в 
+                            <code>&lt;head&gt;</code> секції і не відображаються на сторінці, але 
+                            важливі для пошукових систем, браузерів та соціальних мереж.
+                        </p>
+                        
+                        <h3>Базова структура head</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;head&gt;
+    &lt;!-- Кодування --&gt;
+    &lt;meta charset="UTF-8"&gt;
+    
+    &lt;!-- Viewport для адаптивного дизайну --&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    
+    &lt;!-- Заголовок сторінки (найважливіший для SEO) --&gt;
+    &lt;title&gt;Назва вашої сторінки - Назва сайту&lt;/title&gt;
+    
+    &lt;!-- Опис сторінки --&gt;
+    &lt;meta name="description" 
+          content="Короткий опис вашої сторінки (150-160 символів)"&gt;
+    
+    &lt;!-- Ключові слова (менш важливі зараз) --&gt;
+    &lt;meta name="keywords" content="html, css, javascript, навчання"&gt;
+    
+    &lt;!-- Автор --&gt;
+    &lt;meta name="author" content="Ім'я Автора"&gt;
+&lt;/head&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Viewport та адаптивність</h2>
+                        <p>
+                            Meta-тег viewport критично важливий для мобільних пристроїв.
+                        </p>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Стандартний viewport --&gt;
+&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+
+&lt;!-- З обмеженням масштабування --&gt;
+&lt;meta name="viewport" 
+      content="width=device-width, initial-scale=1.0, 
+               maximum-scale=5.0, minimum-scale=1.0"&gt;
+
+&lt;!-- Заборона масштабування (не рекомендується) --&gt;
+&lt;meta name="viewport" 
+      content="width=device-width, initial-scale=1.0, user-scalable=no"&gt;</code></pre>
+                        </div>
+                        
+                        <div class="info-box">
+                            <h4>Параметри viewport</h4>
+                            <ul>
+                                <li><code>width=device-width</code> - ширина відповідає пристрою</li>
+                                <li><code>initial-scale=1.0</code> - початковий масштаб 100%</li>
+                                <li><code>maximum-scale</code> - максимальний масштаб</li>
+                                <li><code>minimum-scale</code> - мінімальний масштаб</li>
+                                <li><code>user-scalable</code> - дозвіл масштабування (yes/no)</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>SEO Meta-теги</h2>
+                        
+                        <h3>Robots (керування індексацією)</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Дозволити індексацію та переходи по посиланнях --&gt;
+&lt;meta name="robots" content="index, follow"&gt;
+
+&lt;!-- Заборонити індексацію --&gt;
+&lt;meta name="robots" content="noindex, nofollow"&gt;
+
+&lt;!-- Не зберігати кеш --&gt;
+&lt;meta name="robots" content="noarchive"&gt;
+
+&lt;!-- Не показувати сніпет --&gt;
+&lt;meta name="robots" content="nosnippet"&gt;
+
+&lt;!-- Комбінація --&gt;
+&lt;meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large"&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Canonical URL (канонічне посилання)</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Вказує на основну версію сторінки --&gt;
+&lt;link rel="canonical" href="https://example.com/original-page"&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Альтернативні мови</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Мова документа --&gt;
+&lt;html lang="uk"&gt;
+
+&lt;!-- Альтернативні мовні версії --&gt;
+&lt;link rel="alternate" hreflang="uk" href="https://example.com/uk/"&gt;
+&lt;link rel="alternate" hreflang="en" href="https://example.com/en/"&gt;
+&lt;link rel="alternate" hreflang="pl" href="https://example.com/pl/"&gt;
+&lt;link rel="alternate" hreflang="x-default" href="https://example.com/"&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Open Graph (Facebook, LinkedIn)</h2>
+                        <p>
+                            Open Graph теги контролюють, як ваша сторінка відображається при 
+                            поширенні в соціальних мережах.
+                        </p>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Базові OG теги --&gt;
+&lt;meta property="og:title" content="Назва вашої сторінки"&gt;
+&lt;meta property="og:description" content="Опис для соціальних мереж"&gt;
+&lt;meta property="og:image" content="https://example.com/image.jpg"&gt;
+&lt;meta property="og:url" content="https://example.com/page"&gt;
+&lt;meta property="og:type" content="website"&gt;
+
+&lt;!-- Додаткові OG теги --&gt;
+&lt;meta property="og:site_name" content="Назва вашого сайту"&gt;
+&lt;meta property="og:locale" content="uk_UA"&gt;
+&lt;meta property="og:locale:alternate" content="en_US"&gt;
+
+&lt;!-- Розміри зображення --&gt;
+&lt;meta property="og:image:width" content="1200"&gt;
+&lt;meta property="og:image:height" content="630"&gt;
+&lt;meta property="og:image:alt" content="Опис зображення"&gt;
+
+&lt;!-- Для статей --&gt;
+&lt;meta property="og:type" content="article"&gt;
+&lt;meta property="article:published_time" content="2024-01-15T10:00:00Z"&gt;
+&lt;meta property="article:author" content="Ім'я Автора"&gt;
+&lt;meta property="article:section" content="Технології"&gt;
+&lt;meta property="article:tag" content="HTML"&gt;
+&lt;meta property="article:tag" content="SEO"&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Twitter Cards</h2>
+                        <p>
+                            Twitter має власні meta-теги для контролю відображення в стрічці.
+                        </p>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Summary Card --&gt;
+&lt;meta name="twitter:card" content="summary"&gt;
+&lt;meta name="twitter:site" content="@username"&gt;
+&lt;meta name="twitter:creator" content="@username"&gt;
+&lt;meta name="twitter:title" content="Назва сторінки"&gt;
+&lt;meta name="twitter:description" content="Опис сторінки"&gt;
+&lt;meta name="twitter:image" content="https://example.com/image.jpg"&gt;
+
+&lt;!-- Large Image Card --&gt;
+&lt;meta name="twitter:card" content="summary_large_image"&gt;
+&lt;meta name="twitter:title" content="Назва"&gt;
+&lt;meta name="twitter:description" content="Опис"&gt;
+&lt;meta name="twitter:image" content="https://example.com/large-image.jpg"&gt;</code></pre>
+                        </div>
+                        
+                        <div class="info-box">
+                            <h4>Типи Twitter Cards</h4>
+                            <ul>
+                                <li><code>summary</code> - маленьке зображення (квадратне)</li>
+                                <li><code>summary_large_image</code> - велике зображення (2:1)</li>
+                                <li><code>app</code> - для мобільних додатків</li>
+                                <li><code>player</code> - для відео/аудіо контенту</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Favicon та іконки</h2>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Стандартний favicon --&gt;
+&lt;link rel="icon" type="image/x-icon" href="/favicon.ico"&gt;
+
+&lt;!-- PNG favicon різних розмірів --&gt;
+&lt;link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"&gt;
+&lt;link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"&gt;
+&lt;link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png"&gt;
+
+&lt;!-- Apple Touch Icon --&gt;
+&lt;link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"&gt;
+
+&lt;!-- Android Chrome --&gt;
+&lt;link rel="manifest" href="/site.webmanifest"&gt;
+
+&lt;!-- Safari Pinned Tab --&gt;
+&lt;link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"&gt;
+
+&lt;!-- Теми браузера --&gt;
+&lt;meta name="theme-color" content="#ffffff"&gt;
+&lt;meta name="msapplication-TileColor" content="#da532c"&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Schema.org Structured Data</h2>
+                        <p>
+                            Структуровані дані допомагають пошуковим системам краще розуміти контент.
+                        </p>
+                        
+                        <h3>JSON-LD для організації</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Моя компанія",
+  "url": "https://example.com",
+  "logo": "https://example.com/logo.png",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+380-XX-XXX-XXXX",
+    "contactType": "customer service",
+    "availableLanguage": ["Ukrainian", "English"]
+  },
+  "sameAs": [
+    "https://facebook.com/mycompany",
+    "https://twitter.com/mycompany",
+    "https://linkedin.com/company/mycompany"
+  ]
+}
+&lt;/script&gt;</code></pre>
+                        </div>
+                        
+                        <h3>JSON-LD для статті</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Заголовок статті",
+  "image": "https://example.com/article-image.jpg",
+  "author": {
+    "@type": "Person",
+    "name": "Іван Іваненко"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Назва сайту",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://example.com/logo.png"
+    }
+  },
+  "datePublished": "2024-01-15",
+  "dateModified": "2024-01-20",
+  "description": "Короткий опис статті"
+}
+&lt;/script&gt;</code></pre>
+                        </div>
+                        
+                        <h3>JSON-LD для продукту</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;script type="application/ld+json"&gt;
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "Назва продукту",
+  "image": "https://example.com/product.jpg",
+  "description": "Опис продукту",
+  "brand": {
+    "@type": "Brand",
+    "name": "Назва бренду"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "999.00",
+    "priceCurrency": "UAH",
+    "availability": "https://schema.org/InStock",
+    "url": "https://example.com/product"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.5",
+    "reviewCount": "89"
+  }
+}
+&lt;/script&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Повний приклад оптимізованого head</h2>
+                        <div class="code-block">
+                            <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="uk"&gt;
+&lt;head&gt;
+    &lt;!-- Базові meta теги --&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    
+    &lt;!-- SEO --&gt;
+    &lt;title&gt;Повний гід по HTML та CSS - WebDev Academy&lt;/title&gt;
+    &lt;meta name="description" 
+          content="Навчіться HTML та CSS з нуля. Повний курс для початківців з практичними прикладами та завданнями."&gt;
+    &lt;meta name="keywords" content="HTML, CSS, навчання, курс, веб-розробка"&gt;
+    &lt;meta name="author" content="WebDev Academy"&gt;
+    &lt;link rel="canonical" href="https://webdev.example.com/html-css-guide"&gt;
+    
+    &lt;!-- Robots --&gt;
+    &lt;meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large"&gt;
+    
+    &lt;!-- Альтернативні мови --&gt;
+    &lt;link rel="alternate" hreflang="uk" href="https://webdev.example.com/uk/html-css-guide"&gt;
+    &lt;link rel="alternate" hreflang="en" href="https://webdev.example.com/en/html-css-guide"&gt;
+    
+    &lt;!-- Open Graph --&gt;
+    &lt;meta property="og:title" content="Повний гід по HTML та CSS"&gt;
+    &lt;meta property="og:description" content="Навчіться веб-розробці з нуля"&gt;
+    &lt;meta property="og:image" content="https://webdev.example.com/og-image.jpg"&gt;
+    &lt;meta property="og:image:width" content="1200"&gt;
+    &lt;meta property="og:image:height" content="630"&gt;
+    &lt;meta property="og:url" content="https://webdev.example.com/html-css-guide"&gt;
+    &lt;meta property="og:type" content="article"&gt;
+    &lt;meta property="og:site_name" content="WebDev Academy"&gt;
+    &lt;meta property="og:locale" content="uk_UA"&gt;
+    
+    &lt;!-- Twitter --&gt;
+    &lt;meta name="twitter:card" content="summary_large_image"&gt;
+    &lt;meta name="twitter:site" content="@webdevacademy"&gt;
+    &lt;meta name="twitter:title" content="Повний гід по HTML та CSS"&gt;
+    &lt;meta name="twitter:description" content="Навчіться веб-розробці з нуля"&gt;
+    &lt;meta name="twitter:image" content="https://webdev.example.com/twitter-image.jpg"&gt;
+    
+    &lt;!-- Favicon --&gt;
+    &lt;link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"&gt;
+    &lt;link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"&gt;
+    &lt;link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"&gt;
+    &lt;link rel="manifest" href="/site.webmanifest"&gt;
+    &lt;meta name="theme-color" content="#3498db"&gt;
+    
+    &lt;!-- Structured Data --&gt;
+    &lt;script type="application/ld+json"&gt;
+    {
+      "@context": "https://schema.org",
+      "@type": "Course",
+      "name": "Повний гід по HTML та CSS",
+      "description": "Навчіться HTML та CSS з нуля",
+      "provider": {
+        "@type": "Organization",
+        "name": "WebDev Academy"
+      }
+    }
+    &lt;/script&gt;
+    
+    &lt;!-- Stylesheets --&gt;
+    &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Контент сторінки --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Інструменти для перевірки SEO</h2>
+                        <div class="info-box">
+                            <h4>Корисні інструменти</h4>
+                            <ul>
+                                <li><strong>Google Search Console</strong> - аналіз присутності в Google</li>
+                                <li><strong>Facebook Sharing Debugger</strong> - перевірка Open Graph</li>
+                                <li><strong>Twitter Card Validator</strong> - перевірка Twitter Cards</li>
+                                <li><strong>Schema.org Validator</strong> - перевірка структурованих даних</li>
+                                <li><strong>PageSpeed Insights</strong> - швидкість завантаження</li>
+                                <li><strong>Mobile-Friendly Test</strong> - тест мобільної версії</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <div class="info-box success">
+                            <h4>Підсумок</h4>
+                            <p>
+                                Правильна конфігурація meta-тегів критично важлива для SEO та присутності 
+                                в соціальних мережах. Завжди додавайте viewport для адаптивності, 
+                                заповнюйте Open Graph та Twitter Cards для красивого відображення при 
+                                поширенні, використовуйте структуровані дані для кращого розуміння 
+                                контенту пошуковими системами. Пам'ятайте про унікальні title та 
+                                description для кожної сторінки.
+                            </p>
+                        </div>
+                    </section>
+                    
+                    <button id="complete-lesson" class="complete-button" data-lesson="lesson06">
+                        Позначити урок як пройдений
+                    </button>
+                    
+                    <nav class="lesson-navigation">
+                        <a href="lesson05.html" class="nav-button prev">Попередній урок</a>
+                        <a href="lesson07.html" class="nav-button next">Наступний урок</a>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/app.js"></script>
+</body>
+</html>

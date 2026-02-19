@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 12: CSS змінні та адаптивний дизайн | HTML та JavaScript</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    
+    <div class="app-container">
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h1>HTML & JS</h1>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <nav>
+                <ul class="lessons-list">
+                    <li class="lesson-item"><a href="lesson01.html" class="lesson-link" data-lesson="lesson01"><span class="lesson-number">01</span><span class="lesson-title">Семантичний HTML5</span></a></li>
+                    <li class="lesson-item"><a href="lesson02.html" class="lesson-link" data-lesson="lesson02"><span class="lesson-number">02</span><span class="lesson-title">Таблиці та списки</span></a></li>
+                    <li class="lesson-item"><a href="lesson03.html" class="lesson-link" data-lesson="lesson03"><span class="lesson-number">03</span><span class="lesson-title">Форми (частина 1)</span></a></li>
+                    <li class="lesson-item"><a href="lesson04.html" class="lesson-link" data-lesson="lesson04"><span class="lesson-number">04</span><span class="lesson-title">Форми (частина 2)</span></a></li>
+                    <li class="lesson-item"><a href="lesson05.html" class="lesson-link" data-lesson="lesson05"><span class="lesson-number">05</span><span class="lesson-title">Мультимедіа</span></a></li>
+                    <li class="lesson-item"><a href="lesson06.html" class="lesson-link" data-lesson="lesson06"><span class="lesson-number">06</span><span class="lesson-title">Meta-теги та SEO</span></a></li>
+                    <li class="lesson-item"><a href="lesson07.html" class="lesson-link" data-lesson="lesson07"><span class="lesson-number">07</span><span class="lesson-title">Посилання та навігація</span></a></li>
+                    <li class="lesson-item"><a href="lesson08.html" class="lesson-link" data-lesson="lesson08"><span class="lesson-number">08</span><span class="lesson-title">Доступність (a11y)</span></a></li>
+                    <li class="lesson-item"><a href="lesson09.html" class="lesson-link" data-lesson="lesson09"><span class="lesson-number">09</span><span class="lesson-title">CSS Flexbox</span></a></li>
+                    <li class="lesson-item"><a href="lesson10.html" class="lesson-link" data-lesson="lesson10"><span class="lesson-number">10</span><span class="lesson-title">CSS Grid</span></a></li>
+                    <li class="lesson-item"><a href="lesson11.html" class="lesson-link" data-lesson="lesson11"><span class="lesson-number">11</span><span class="lesson-title">CSS анімації</span></a></li>
+                    <li class="lesson-item"><a href="lesson12.html" class="lesson-link" data-lesson="lesson12"><span class="lesson-number">12</span><span class="lesson-title">CSS змінні та адаптивність</span></a></li>
+                    <li class="lesson-item"><a href="lesson13.html" class="lesson-link" data-lesson="lesson13"><span class="lesson-number">13</span><span class="lesson-title">Основи JavaScript</span></a></li>
+                    <li class="lesson-item"><a href="lesson14.html" class="lesson-link" data-lesson="lesson14"><span class="lesson-number">14</span><span class="lesson-title">Функції та масиви</span></a></li>
+                    <li class="lesson-item"><a href="lesson15.html" class="lesson-link" data-lesson="lesson15"><span class="lesson-number">15</span><span class="lesson-title">DOM маніпуляції</span></a></li>
+                    <li class="lesson-item"><a href="lesson16.html" class="lesson-link" data-lesson="lesson16"><span class="lesson-number">16</span><span class="lesson-title">Події та обробники</span></a></li>
+                    <li class="lesson-item"><a href="lesson17.html" class="lesson-link" data-lesson="lesson17"><span class="lesson-number">17</span><span class="lesson-title">Робота з формами через JS</span></a></li>
+                    <li class="lesson-item"><a href="lesson18.html" class="lesson-link" data-lesson="lesson18"><span class="lesson-number">18</span><span class="lesson-title">LocalStorage та JSON</span></a></li>
+                    <li class="lesson-item"><a href="lesson19.html" class="lesson-link" data-lesson="lesson19"><span class="lesson-number">19</span><span class="lesson-title">Fetch API та асинхронність</span></a></li>
+                    <li class="lesson-item"><a href="lesson20.html" class="lesson-link" data-lesson="lesson20"><span class="lesson-number">20</span><span class="lesson-title">Фінальний проєкт: TODO</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <div class="lesson-container">
+                <header class="lesson-header">
+                    <h1>Урок 12: CSS змінні та адаптивний дизайн</h1>
+                    <p class="lesson-meta">Використання CSS змінних та створення адаптивних макетів</p>
+                </header>
+                
+                <div class="lesson-content">
+                    <section>
+                        <h2>CSS Custom Properties (Змінні)</h2>
+                        <p>
+                            CSS змінні (Custom Properties) дозволяють зберігати значення для повторного використання. 
+                            Це робить код більш підтримуваним та гнучким.
+                        </p>
+                        
+                        <h3>Оголошення та використання змінних</h3>
+                        <div class="code-block">
+                            <pre><code>/* Оголошуємо глобальні змінні в :root */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --text-color: #333;
+    --background-color: #f5f5f5;
+    --spacing-unit: 8px;
+    --border-radius: 4px;
+    --font-size-base: 16px;
+    --font-family: 'Arial', sans-serif;
+}
+
+/* Використовуємо змінні через var() */
+.button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: calc(var(--spacing-unit) * 2);
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-base);
+    font-family: var(--font-family);
+}
+
+.button:hover {
+    background-color: var(--secondary-color);
+}</code></pre>
+                        </div>
+                        
+                        <h3>Локальні змінні та перевизначення</h3>
+                        <div class="code-block">
+                            <pre><code>/* Глобальні змінні */
+:root {
+    --button-bg: #3498db;
+    --button-padding: 10px 20px;
+}
+
+/* Локальне перевизначення */
+.button-large {
+    --button-padding: 15px 30px;  /* перевизначаємо тільки тут */
+    background-color: var(--button-bg);
+    padding: var(--button-padding);
+}
+
+.button-small {
+    --button-padding: 5px 10px;
+    background-color: var(--button-bg);
+    padding: var(--button-padding);
+}</code></pre>
+                        </div>
+                        
+                        <h3>Fallback значення</h3>
+                        <div class="code-block">
+                            <pre><code>/* Якщо --primary-color не визначена, використається #3498db */
+.element {
+    color: var(--primary-color, #3498db);
+}
+
+/* Вкладені fallback */
+.element {
+    color: var(--text-color, var(--default-color, #000));
+}</code></pre>
+                        </div>
+                        
+                        <h3>Практичний приклад: Тема сайту</h3>
+                        <div class="code-block">
+                            <pre><code>/* Світла тема (за замовчуванням) */
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --border-color: #dee2e6;
+    --accent-color: #007bff;
+}
+
+/* Темна тема */
+[data-theme="dark"] {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --border-color: #404040;
+    --accent-color: #4d94ff;
+}
+
+/* Використання змінних */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+}
+
+.card {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+.link {
+    color: var(--accent-color);
+}</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Адаптивний дизайн (Responsive Design)</h2>
+                        <p>
+                            Адаптивний дизайн забезпечує коректне відображення сайту на пристроях різних розмірів - 
+                            від мобільних телефонів до великих моніторів.
+                        </p>
+                        
+                        <div class="info-box">
+                            <h4>Основні принципи адаптивного дизайну</h4>
+                            <ul>
+                                <li><strong>Mobile First</strong> - спочатку дизайн для мобільних, потім для великих екранів</li>
+                                <li><strong>Гнучкі макети</strong> - використання відносних одиниць (%, em, rem, vh, vw)</li>
+                                <li><strong>Гнучкі зображення</strong> - max-width: 100% для адаптації розмірів</li>
+                                <li><strong>Media Queries</strong> - різні стилі для різних розмірів екранів</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Media Queries</h2>
+                        <p>
+                            Media queries дозволяють застосовувати різні стилі залежно від характеристик пристрою.
+                        </p>
+                        
+                        <h3>Базовий синтаксис</h3>
+                        <div class="code-block">
+                            <pre><code>/* Стилі для всіх екранів */
+.container {
+    width: 100%;
+    padding: 20px;
+}
+
+/* Стилі для екранів шириною від 768px */
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+        margin: 0 auto;
+    }
+}
+
+/* Стилі для екранів шириною від 1024px */
+@media (min-width: 1024px) {
+    .container {
+        width: 960px;
+    }
+}
+
+/* Стилі для екранів шириною від 1200px */
+@media (min-width: 1200px) {
+    .container {
+        width: 1140px;
+    }
+}</code></pre>
+                        </div>
+                        
+                        <h3>Стандартні breakpoints</h3>
+                        <div class="code-block">
+                            <pre><code>/* Extra small devices (phones, less than 576px) */
+/* За замовчуванням, без media query */
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) { }
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) { }
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) { }
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) { }
+
+/* XXL devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) { }</code></pre>
+                        </div>
+                        
+                        <h3>Різні умови в media queries</h3>
+                        <div class="code-block">
+                            <pre><code>/* Ширина екрану */
+@media (min-width: 768px) { }  /* від 768px і більше */
+@media (max-width: 767px) { }  /* до 767px включно */
+@media (min-width: 768px) and (max-width: 1024px) { }  /* діапазон */
+
+/* Орієнтація */
+@media (orientation: portrait) { }   /* вертикальна */
+@media (orientation: landscape) { }  /* горизонтальна */
+
+/* Щільність пікселів (Retina екрани) */
+@media (-webkit-min-device-pixel-ratio: 2),
+       (min-resolution: 192dpi) { }
+
+/* Комбінування умов */
+@media (min-width: 768px) and (orientation: landscape) { }
+
+/* Логічний оператор OR */
+@media (max-width: 767px), (orientation: portrait) { }</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Mobile-First підхід</h2>
+                        <p>
+                            Mobile-First означає, що базові стилі пишуться для мобільних пристроїв, 
+                            а через media queries додаються покращення для більших екранів.
+                        </p>
+                        
+                        <div class="code-block">
+                            <pre><code>/* Базові стилі для мобільних (mobile-first) */
+.grid {
+    display: grid;
+    grid-template-columns: 1fr;  /* 1 колонка на мобільних */
+    gap: 15px;
+    padding: 15px;
+}
+
+.card {
+    padding: 15px;
+    font-size: 14px;
+}
+
+/* Планшети - 2 колонки */
+@media (min-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        padding: 20px;
+    }
+    
+    .card {
+        padding: 20px;
+        font-size: 16px;
+    }
+}
+
+/* Десктопи - 3 колонки */
+@media (min-width: 1024px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        padding: 30px;
+    }
+}
+
+/* Великі екрани - 4 колонки */
+@media (min-width: 1400px) {
+    .grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Адаптивна типографіка</h2>
+                        <div class="code-block">
+                            <pre><code>/* Використання clamp() для плавної зміни розміру */
+h1 {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    /* min: 1.5rem, ideal: 4vw, max: 3rem */
+}
+
+/* Адаптивний розмір через media queries */
+body {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    body { font-size: 16px; }
+}
+
+@media (min-width: 1024px) {
+    body { font-size: 18px; }
+}
+
+/* Використання rem з адаптивним базовим розміром */
+html {
+    font-size: 14px;  /* 1rem = 14px */
+}
+
+@media (min-width: 768px) {
+    html { font-size: 16px; }  /* 1rem = 16px */
+}
+
+h1 { font-size: 2rem; }    /* 28px на мобільних, 32px на десктопі */
+h2 { font-size: 1.5rem; }  /* 21px на мобільних, 24px на десктопі */</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Адаптивні зображення</h2>
+                        <div class="code-block">
+                            <pre><code>/* Базове адаптивне зображення */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Різні зображення для різних розмірів */
+&lt;picture&gt;
+    &lt;source media="(min-width: 1024px)" srcset="image-large.jpg"&gt;
+    &lt;source media="(min-width: 768px)" srcset="image-medium.jpg"&gt;
+    &lt;img src="image-small.jpg" alt="Опис"&gt;
+&lt;/picture&gt;
+
+/* Використання srcset для різної щільності пікселів */
+&lt;img 
+    src="image-1x.jpg" 
+    srcset="image-1x.jpg 1x, image-2x.jpg 2x, image-3x.jpg 3x"
+    alt="Опис"
+&gt;
+
+/* CSS для адаптивних фонових зображень */
+.hero {
+    background-image: url('hero-small.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+@media (min-width: 768px) {
+    .hero {
+        background-image: url('hero-medium.jpg');
+    }
+}
+
+@media (min-width: 1024px) {
+    .hero {
+        background-image: url('hero-large.jpg');
+    }
+}</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Комплексний приклад: Адаптивна навігація</h2>
+                        <div class="code-block">
+                            <pre><code>&lt;style&gt;
+:root {
+    --nav-bg: #2c3e50;
+    --nav-text: #ecf0f1;
+    --nav-hover: #3498db;
+}
+
+/* Мобільна навігація */
+.navbar {
+    background-color: var(--nav-bg);
+    padding: 1rem;
+}
+
+.nav-toggle {
+    display: block;
+    background: none;
+    border: none;
+    color: var(--nav-text);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.nav-menu {
+    display: none;  /* приховано на мобільних */
+    flex-direction: column;
+    gap: 0;
+}
+
+.nav-menu.active {
+    display: flex;
+}
+
+.nav-link {
+    display: block;
+    color: var(--nav-text);
+    padding: 1rem;
+    text-decoration: none;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.nav-link:hover {
+    background-color: var(--nav-hover);
+}
+
+/* Планшети та десктопи */
+@media (min-width: 768px) {
+    .nav-toggle {
+        display: none;  /* приховуємо кнопку меню */
+    }
+    
+    .nav-menu {
+        display: flex !important;  /* завжди видиме */
+        flex-direction: row;
+        gap: 1rem;
+    }
+    
+    .nav-link {
+        border-top: none;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+    }
+}
+&lt;/style&gt;
+
+&lt;nav class="navbar"&gt;
+    &lt;button class="nav-toggle"&gt;☰&lt;/button&gt;
+    &lt;ul class="nav-menu"&gt;
+        &lt;li&gt;&lt;a href="#" class="nav-link"&gt;Головна&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" class="nav-link"&gt;Про нас&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" class="nav-link"&gt;Послуги&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" class="nav-link"&gt;Контакти&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Сучасні CSS одиниці виміру</h2>
+                        <div class="code-block">
+                            <pre><code>/* Viewport одиниці */
+.full-height {
+    height: 100vh;  /* 100% висоти viewport */
+    width: 100vw;   /* 100% ширини viewport */
+}
+
+.hero {
+    min-height: 50vh;  /* мінімум 50% висоти екрану */
+}
+
+/* Container Query Units (нові!) */
+.card {
+    font-size: 2cqw;  /* 2% від ширини контейнера */
+}
+
+/* Відносні одиниці */
+.element {
+    font-size: 1rem;      /* відносно root font-size */
+    padding: 2em;         /* відносно власного font-size */
+    margin: 5%;           /* відносно ширини батьківського елемента */
+}
+
+/* Calc для обчислень */
+.sidebar {
+    width: calc(100% - 300px);
+    height: calc(100vh - 80px);
+}
+
+/* Min/Max функції */
+.container {
+    width: min(90%, 1200px);  /* менше з двох значень */
+    padding: max(20px, 3vw);  /* більше з двох значень */
+}
+
+/* Clamp - комбінація min, ideal, max */
+.title {
+    font-size: clamp(1.5rem, 5vw, 3rem);
+    /* не менше 1.5rem, не більше 3rem, в ідеалі 5vw */
+}</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Container Queries (Нова можливість!)</h2>
+                        <div class="code-block">
+                            <pre><code>/* Визначаємо контейнер */
+.sidebar {
+    container-type: inline-size;
+    container-name: sidebar;
+}
+
+/* Стилі залежно від розміру контейнера, а не viewport */
+.card {
+    padding: 1rem;
+}
+
+@container sidebar (min-width: 400px) {
+    .card {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        padding: 2rem;
+    }
+}
+
+/* Це краще ніж media queries для компонентів! */</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <div class="info-box success">
+                            <h4>Підсумок</h4>
+                            <p>
+                                <strong>CSS змінні</strong> роблять ваш код гнучким та легким у підтримці. 
+                                <strong>Адаптивний дизайн</strong> з mobile-first підходом та media queries 
+                                забезпечує відмінний досвід на всіх пристроях. Використовуйте сучасні одиниці 
+                                виміру (vw, vh, clamp) та нові можливості як container queries для створення 
+                                справді адаптивних інтерфейсів.
+                            </p>
+                        </div>
+                    </section>
+                    
+                    <button id="complete-lesson" class="complete-button" data-lesson="lesson12">
+                        Позначити урок як пройдений
+                    </button>
+                    
+                    <nav class="lesson-navigation">
+                        <a href="lesson11.html" class="nav-button prev">Попередній урок</a>
+                        <a href="lesson13.html" class="nav-button next">Наступний урок</a>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/app.js"></script>
+</body>
+</html>

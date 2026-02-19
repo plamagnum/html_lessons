@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 10: CSS Grid | HTML та JavaScript</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    
+    <div class="app-container">
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h1>HTML & JS</h1>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <nav>
+                <ul class="lessons-list">
+                    <li class="lesson-item"><a href="lesson01.html" class="lesson-link" data-lesson="lesson01"><span class="lesson-number">01</span><span class="lesson-title">Семантичний HTML5</span></a></li>
+                    <li class="lesson-item"><a href="lesson02.html" class="lesson-link" data-lesson="lesson02"><span class="lesson-number">02</span><span class="lesson-title">Таблиці та списки</span></a></li>
+                    <li class="lesson-item"><a href="lesson03.html" class="lesson-link" data-lesson="lesson03"><span class="lesson-number">03</span><span class="lesson-title">Форми (частина 1)</span></a></li>
+                    <li class="lesson-item"><a href="lesson04.html" class="lesson-link" data-lesson="lesson04"><span class="lesson-number">04</span><span class="lesson-title">Форми (частина 2)</span></a></li>
+                    <li class="lesson-item"><a href="lesson05.html" class="lesson-link" data-lesson="lesson05"><span class="lesson-number">05</span><span class="lesson-title">Мультимедіа</span></a></li>
+                    <li class="lesson-item"><a href="lesson06.html" class="lesson-link" data-lesson="lesson06"><span class="lesson-number">06</span><span class="lesson-title">Meta-теги та SEO</span></a></li>
+                    <li class="lesson-item"><a href="lesson07.html" class="lesson-link" data-lesson="lesson07"><span class="lesson-number">07</span><span class="lesson-title">Посилання та навігація</span></a></li>
+                    <li class="lesson-item"><a href="lesson08.html" class="lesson-link" data-lesson="lesson08"><span class="lesson-number">08</span><span class="lesson-title">Доступність (a11y)</span></a></li>
+                    <li class="lesson-item"><a href="lesson09.html" class="lesson-link" data-lesson="lesson09"><span class="lesson-number">09</span><span class="lesson-title">CSS Flexbox</span></a></li>
+                    <li class="lesson-item"><a href="lesson10.html" class="lesson-link" data-lesson="lesson10"><span class="lesson-number">10</span><span class="lesson-title">CSS Grid</span></a></li>
+                    <li class="lesson-item"><a href="lesson11.html" class="lesson-link" data-lesson="lesson11"><span class="lesson-number">11</span><span class="lesson-title">CSS анімації</span></a></li>
+                    <li class="lesson-item"><a href="lesson12.html" class="lesson-link" data-lesson="lesson12"><span class="lesson-number">12</span><span class="lesson-title">CSS змінні та адаптивність</span></a></li>
+                    <li class="lesson-item"><a href="lesson13.html" class="lesson-link" data-lesson="lesson13"><span class="lesson-number">13</span><span class="lesson-title">Основи JavaScript</span></a></li>
+                    <li class="lesson-item"><a href="lesson14.html" class="lesson-link" data-lesson="lesson14"><span class="lesson-number">14</span><span class="lesson-title">Функції та масиви</span></a></li>
+                    <li class="lesson-item"><a href="lesson15.html" class="lesson-link" data-lesson="lesson15"><span class="lesson-number">15</span><span class="lesson-title">DOM маніпуляції</span></a></li>
+                    <li class="lesson-item"><a href="lesson16.html" class="lesson-link" data-lesson="lesson16"><span class="lesson-number">16</span><span class="lesson-title">Події та обробники</span></a></li>
+                    <li class="lesson-item"><a href="lesson17.html" class="lesson-link" data-lesson="lesson17"><span class="lesson-number">17</span><span class="lesson-title">Робота з формами через JS</span></a></li>
+                    <li class="lesson-item"><a href="lesson18.html" class="lesson-link" data-lesson="lesson18"><span class="lesson-number">18</span><span class="lesson-title">LocalStorage та JSON</span></a></li>
+                    <li class="lesson-item"><a href="lesson19.html" class="lesson-link" data-lesson="lesson19"><span class="lesson-number">19</span><span class="lesson-title">Fetch API та асинхронність</span></a></li>
+                    <li class="lesson-item"><a href="lesson20.html" class="lesson-link" data-lesson="lesson20"><span class="lesson-number">20</span><span class="lesson-title">Фінальний проєкт: TODO</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <div class="lesson-container">
+                <header class="lesson-header">
+                    <h1>Урок 10: CSS Grid</h1>
+                    <p class="lesson-meta">Потужна двовимірна система компонування</p>
+                </header>
+                
+                <div class="lesson-content">
+                    <section>
+                        <h2>Що таке CSS Grid?</h2>
+                        <p>
+                            CSS Grid Layout - це двовимірна система компонування, яка дозволяє створювати складні 
+                            макети одночасно в рядках і колонках. На відміну від Flexbox (одновимірного), 
+                            Grid працює з обома вимірами одразу, що робить його ідеальним для створення 
+                            повноцінних макетів сторінок.
+                        </p>
+                        
+                        <div class="info-box">
+                            <h4>Основні поняття Grid</h4>
+                            <ul>
+                                <li><strong>Grid контейнер</strong> - батьківський елемент з display: grid</li>
+                                <li><strong>Grid елементи</strong> - безпосередні діти контейнера</li>
+                                <li><strong>Grid лінії</strong> - розділові лінії між комірками</li>
+                                <li><strong>Grid треки</strong> - рядки та колонки</li>
+                                <li><strong>Grid комірки</strong> - перетин рядка і колонки</li>
+                                <li><strong>Grid області</strong> - прямокутник з кількох комірок</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Створення Grid</h2>
+                        
+                        <h3>display: grid</h3>
+                        <div class="code-block">
+                            <pre><code>.container {
+    display: grid; /* або inline-grid */
+}
+
+/* HTML */
+&lt;div class="container"&gt;
+    &lt;div&gt;1&lt;/div&gt;
+    &lt;div&gt;2&lt;/div&gt;
+    &lt;div&gt;3&lt;/div&gt;
+    &lt;div&gt;4&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Визначення колонок і рядків</h2>
+                        
+                        <h3>grid-template-columns</h3>
+                        <p>Визначає ширину колонок.</p>
+                        <div class="code-block">
+                            <pre><code>.container {
+    display: grid;
+    
+    /* Три колонки фіксованої ширини */
+    grid-template-columns: 200px 300px 200px;
+    
+    /* Відсоткові значення */
+    grid-template-columns: 25% 50% 25%;
+    
+    /* Одиниці fr (fractional) - гнучкі частки */
+    grid-template-columns: 1fr 2fr 1fr;
+    
+    /* Комбінація різних одиниць */
+    grid-template-columns: 200px 1fr 200px;
+    
+    /* Функція repeat() */
+    grid-template-columns: repeat(3, 1fr);
+    
+    /* Мінімум і максимум */
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+}
+
+/* Поширені патерни */
+
+/* Дві колонки: sidebar + content */
+.layout {
+    grid-template-columns: 250px 1fr;
+}
+
+/* Три рівні колонки */
+.three-columns {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+/* 12-колонкова сітка */
+.grid-12 {
+    grid-template-columns: repeat(12, 1fr);
+}</code></pre>
+                        </div>
+                        
+                        <h3>grid-template-rows</h3>
+                        <p>Визначає висоту рядків.</p>
+                        <div class="code-block">
+                            <pre><code>.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    
+    /* Явні рядки */
+    grid-template-rows: 100px 200px 100px;
+    
+    /* Використання repeat */
+    grid-template-rows: repeat(3, 100px);
+    
+    /* Мінімум і максимум */
+    grid-template-rows: repeat(3, minmax(100px, auto));
+    
+    /* Автоматична висота */
+    grid-template-rows: auto auto auto;
+}</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Відступи між елементами</h2>
+                        
+                        <h3>gap (row-gap, column-gap)</h3>
+                        <div class="code-block">
+                            <pre><code>.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    
+    /* Відступ між всіма комірками */
+    gap: 20px;
+    
+    /* Різні відступи для рядків і колонок */
+    gap: 20px 10px; /* row-gap column-gap */
+    
+    /* Або окремо */
+    row-gap: 20px;
+    column-gap: 10px;
+}</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Розміщення елементів</h2>
+                        
+                        <h3>grid-column та grid-row</h3>
+                        <p>Визначає, які лінії займає елемент.</p>
+                        <div class="code-block">
+                            <pre><code>.container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(3, 100px);
+    gap: 10px;
+}
+
+/* Елемент займає від лінії 1 до лінії 3 (2 колонки) */
+.item-1 {
+    grid-column: 1 / 3;
+    /* або */
+    grid-column-start: 1;
+    grid-column-end: 3;
+}
+
+/* Займає 2 колонки, починаючи з другої */
+.item-2 {
+    grid-column: 2 / 4;
+}
+
+/* Займає весь рядок (4 колонки) */
+.item-3 {
+    grid-column: 1 / 5; /* або -1 */
+    grid-column: 1 / -1; /* до останньої лінії */
+}
+
+/* Span синтаксис (займає X комірок) */
+.item-4 {
+    grid-column: span 2; /* Займає 2 колонки */
+}
+
+/* Рядки */
+.item-5 {
+    grid-row: 1 / 3; /* Займає 2 рядки */
+}
+
+/* Скорочення grid-area */
+.item-6 {
+    /* row-start / column-start / row-end / column-end */
+    grid-area: 1 / 1 / 3 / 3;
+}</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Іменовані Grid Lines</h2>
+                        <div class="code-block">
+                            <pre><code>.container {
+    display: grid;
+    grid-template-columns: 
+        [sidebar-start] 250px 
+        [sidebar-end content-start] 1fr 
+        [content-end];
+    grid-template-rows:
+        [header-start] 80px 
+        [header-end main-start] 1fr 
+        [main-end footer-start] 60px 
+        [footer-end];
+}
+
+/* Використання іменованих ліній */
+.header {
+    grid-column: sidebar-start / content-end;
+    grid-row: header-start / header-end;
+}
+
+.sidebar {
+    grid-column: sidebar-start / sidebar-end;
+    grid-row: main-start / main-end;
+}
+
+.content {
+    grid-column: content-start / content-end;
+    grid-row: main-start / main-end;
+}</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Grid Template Areas</h2>
+                        <p>Візуальний спосіб визначення макету.</p>
+                        <div class="code-block">
+                            <pre><code>.container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 80px 1fr 60px;
+    grid-template-areas:
+        "header header"
+        "sidebar content"
+        "footer footer";
+    gap: 10px;
+    height: 100vh;
+}
+
+.header {
+    grid-area: header;
+}
+
+.sidebar {
+    grid-area: sidebar;
+}
+
+.content {
+    grid-area: content;
+}
+
+.footer {
+    grid-area: footer;
+}
+
+/* HTML */
+&lt;div class="container"&gt;
+    &lt;header class="header"&gt;Header&lt;/header&gt;
+    &lt;aside class="sidebar"&gt;Sidebar&lt;/aside&gt;
+    &lt;main class="content"&gt;Content&lt;/main&gt;
+    &lt;footer class="footer"&gt;Footer&lt;/footer&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Складніший приклад з Grid Areas</h3>
+                        <div class="code-block">
+                            <pre><code>.page-layout {
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "header  header  header"
+        "sidebar content aside"
+        "footer  footer  footer";
+    gap: 15px;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.header { grid-area: header; }
+.sidebar { grid-area: sidebar; }
+.content { grid-area: content; }
+.aside { grid-area: aside; }
+.footer { grid-area: footer; }
+
+/* Адаптивність */
+@media (max-width: 768px) {
+    .page-layout {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "content"
+            "sidebar"
+            "aside"
+            "footer";
+    }
+}</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Вирівнювання</h2>
+                        
+                        <h3>justify-items та align-items</h3>
+                        <p>Вирівнювання всіх елементів всередині їх комірок.</p>
+                        <div class="code-block">
+                            <pre><code>.container {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    grid-template-rows: repeat(3, 100px);
+    
+    /* Горизонтальне вирівнювання */
+    justify-items: start;   /* за замовчуванням: stretch */
+    justify-items: end;
+    justify-items: center;
+    justify-items: stretch;
+    
+    /* Вертикальне вирівнювання */
+    align-items: start;     /* за замовчуванням: stretch */
+    align-items: end;
+    align-items: center;
+    align-items: stretch;
+    
+    /* Скорочення */
+    place-items: center;    /* align-items justify-items */
+    place-items: center start;
+}</code></pre>
+                        </div>
+                        
+                        <h3>justify-self та align-self</h3>
+                        <p>Вирівнювання окремого елемента.</p>
+                        <div class="code-block">
+                            <pre><code>.item {
+    justify-self: center; /* Горизонтально */
+    align-self: center;   /* Вертикально */
+    
+    /* Скорочення */
+    place-self: center;   /* align-self justify-self */
+}</code></pre>
+                        </div>
+                        
+                        <h3>justify-content та align-content</h3>
+                        <p>Вирівнювання всієї сітки всередині контейнера.</p>
+                        <div class="code-block">
+                            <pre><code>.container {
+    display: grid;
+    grid-template-columns: repeat(3, 200px);
+    width: 800px; /* Більше, ніж потрібно */
+    height: 500px;
+    
+    /* Горизонтальне вирівнювання сітки */
+    justify-content: start;
+    justify-content: end;
+    justify-content: center;
+    justify-content: space-between;
+    justify-content: space-around;
+    justify-content: space-evenly;
+    
+    /* Вертикальне вирівнювання сітки */
+    align-content: start;
+    align-content: end;
+    align-content: center;
+    align-content: space-between;
+    align-content: space-around;
+    align-content: space-evenly;
+    
+    /* Скорочення */
+    place-content: center; /* align-content justify-content */
+}</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>auto-fit та auto-fill</h2>
+                        <p>Автоматичне створення колонок залежно від доступного простору.</p>
+                        
+                        <h3>auto-fill</h3>
+                        <p>Створює максимальну кількість колонок, навіть якщо вони порожні.</p>
+                        <div class="code-block">
+                            <pre><code>.container {
+    display: grid;
+    /* Створює стільки колонок по 200px, скільки поміститься */
+    grid-template-columns: repeat(auto-fill, 200px);
+    gap: 20px;
+}
+
+/* З minmax для адаптивності */
+.responsive-grid {
+    display: grid;
+    /* Мінімум 250px, але може рости */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}</code></pre>
+                        </div>
+                        
+                        <h3>auto-fit</h3>
+                        <p>Розширює колонки для заповнення доступного простору.</p>
+                        <div class="code-block">
+                            <pre><code>.container {
+    display: grid;
+    /* Колонки автоматично розширюються */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* Різниця між auto-fill і auto-fit:
+   - auto-fill: додає порожні треки
+   - auto-fit: розширює існуючі треки
+*/</code></pre>
+                        </div>
+                        
+                        <h3>Адаптивна сітка без media queries</h3>
+                        <div class="code-block">
+                            <pre><code>/* Магія адаптивності! */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Карки автоматично підлаштовуються:
+   - Широкий екран: 4+ карток в рядку
+   - Середній екран: 2-3 картки
+   - Вузький екран: 1 картка
+   Все автоматично!
+*/</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Неявна сітка (Implicit Grid)</h2>
+                        <div class="code-block">
+                            <pre><code>.container {
+    display: grid;
+    /* Явні колонки */
+    grid-template-columns: repeat(3, 1fr);
+    
+    /* Явні рядки (перші 2) */
+    grid-template-rows: 100px 100px;
+    
+    /* Висота автоматичних рядків (3-го, 4-го...) */
+    grid-auto-rows: 150px;
+    
+    /* Або мінімум/максимум */
+    grid-auto-rows: minmax(100px, auto);
+    
+    /* Напрямок автоматичних елементів */
+    grid-auto-flow: row;     /* за замовчуванням */
+    grid-auto-flow: column;  /* горизонтально */
+    grid-auto-flow: dense;   /* щільна упаковка */
+}</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Практичні приклади</h2>
+                        
+                        <h3>1. Базовий макет сторінки</h3>
+                        <div class="code-block">
+                            <pre><code>.page {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    min-height: 100vh;
+}
+
+.header {
+    padding: 20px;
+    background-color: #333;
+}
+
+.main {
+    padding: 20px;
+}
+
+.footer {
+    padding: 20px;
+    background-color: #333;
+}
+
+/* HTML */
+&lt;div class="page"&gt;
+    &lt;header class="header"&gt;Header&lt;/header&gt;
+    &lt;main class="main"&gt;Content&lt;/main&gt;
+    &lt;footer class="footer"&gt;Footer&lt;/footer&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                        
+                        <h3>2. Dashboard Layout</h3>
+                        <div class="code-block">
+                            <pre><code>.dashboard {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: 70px 1fr;
+    grid-template-areas:
+        "sidebar header"
+        "sidebar main";
+    height: 100vh;
+    gap: 0;
+}
+
+.sidebar {
+    grid-area: sidebar;
+    background-color: #2c3e50;
+}
+
+.header {
+    grid-area: header;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.main {
+    grid-area: main;
+    padding: 20px;
+    overflow-y: auto;
+}</code></pre>
+                        </div>
+                        
+                        <h3>3. Галерея зображень</h3>
+                        <div class="code-block">
+                            <pre><code>.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+
+.gallery-item {
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* HTML */
+&lt;div class="gallery"&gt;
+    &lt;div class="gallery-item"&gt;&lt;img src="1.jpg" alt=""&gt;&lt;/div&gt;
+    &lt;div class="gallery-item"&gt;&lt;img src="2.jpg" alt=""&gt;&lt;/div&gt;
+    &lt;!-- ... --&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                        
+                        <h3>4. Складна галерея (різні розміри)</h3>
+                        <div class="code-block">
+                            <pre><code>.masonry-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-auto-rows: 200px;
+    gap: 10px;
+}
+
+/* Деякі елементи більші */
+.item-wide {
+    grid-column: span 2;
+}
+
+.item-tall {
+    grid-row: span 2;
+}
+
+.item-large {
+    grid-column: span 2;
+    grid-row: span 2;
+}
+
+/* HTML */
+&lt;div class="masonry-grid"&gt;
+    &lt;div class="item"&gt;1&lt;/div&gt;
+    &lt;div class="item item-wide"&gt;2&lt;/div&gt;
+    &lt;div class="item item-tall"&gt;3&lt;/div&gt;
+    &lt;div class="item item-large"&gt;4&lt;/div&gt;
+    &lt;div class="item"&gt;5&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                        
+                        <h3>5. Форма з Grid</h3>
+                        <div class="code-block">
+                            <pre><code>.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+/* HTML */
+&lt;form class="form-grid"&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label&gt;Ім'я&lt;/label&gt;
+        &lt;input type="text"&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group"&gt;
+        &lt;label&gt;Прізвище&lt;/label&gt;
+        &lt;input type="text"&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group full-width"&gt;
+        &lt;label&gt;Email&lt;/label&gt;
+        &lt;input type="email"&gt;
+    &lt;/div&gt;
+    &lt;div class="form-group full-width"&gt;
+        &lt;label&gt;Повідомлення&lt;/label&gt;
+        &lt;textarea&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+                        </div>
+                        
+                        <h3>6. Pricing Cards</h3>
+                        <div class="code-block">
+                            <pre><code>.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 40px;
+}
+
+.pricing-card {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    padding: 30px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.pricing-card.featured {
+    border-color: #3498db;
+    transform: scale(1.05);
+}
+
+/* HTML */
+&lt;div class="pricing-grid"&gt;
+    &lt;div class="pricing-card"&gt;
+        &lt;h3&gt;Basic&lt;/h3&gt;
+        &lt;div class="price"&gt;$9/міс&lt;/div&gt;
+        &lt;ul class="features"&gt;...&lt;/ul&gt;
+        &lt;button&gt;Обрати&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="pricing-card featured"&gt;
+        &lt;h3&gt;Pro&lt;/h3&gt;
+        &lt;div class="price"&gt;$29/міс&lt;/div&gt;
+        &lt;ul class="features"&gt;...&lt;/ul&gt;
+        &lt;button&gt;Обрати&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="pricing-card"&gt;
+        &lt;h3&gt;Enterprise&lt;/h3&gt;
+        &lt;div class="price"&gt;$99/міс&lt;/div&gt;
+        &lt;ul class="features"&gt;...&lt;/ul&gt;
+        &lt;button&gt;Обрати&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Grid vs Flexbox</h2>
+                        <div class="info-box">
+                            <h4>Коли використовувати Grid?</h4>
+                            <ul>
+                                <li>Двовимірні макети (рядки + колонки)</li>
+                                <li>Повні макети сторінок</li>
+                                <li>Складні сітки з різними розмірами</li>
+                                <li>Потреба в точному контролі над розміщенням</li>
+                            </ul>
+                            
+                            <h4>Коли використовувати Flexbox?</h4>
+                            <ul>
+                                <li>Одновимірні макети (тільки рядок або колонка)</li>
+                                <li>Компоненти інтерфейсу</li>
+                                <li>Навігаційні меню</li>
+                                <li>Вирівнювання контенту</li>
+                            </ul>
+                            
+                            <h4>Комбінуйте обидва!</h4>
+                            <p>
+                                Часто найкращий підхід - використовувати Grid для загального макету 
+                                і Flexbox для окремих компонентів.
+                            </p>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Grid Cheat Sheet</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Властивість</th>
+                                    <th>Застосування</th>
+                                    <th>Опис</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>display</td>
+                                    <td>Контейнер</td>
+                                    <td>grid | inline-grid</td>
+                                </tr>
+                                <tr>
+                                    <td>grid-template-columns</td>
+                                    <td>Контейнер</td>
+                                    <td>Визначає колонки</td>
+                                </tr>
+                                <tr>
+                                    <td>grid-template-rows</td>
+                                    <td>Контейнер</td>
+                                    <td>Визначає рядки</td>
+                                </tr>
+                                <tr>
+                                    <td>grid-template-areas</td>
+                                    <td>Контейнер</td>
+                                    <td>Іменовані області</td>
+                                </tr>
+                                <tr>
+                                    <td>gap</td>
+                                    <td>Контейнер</td>
+                                    <td>Відступи між комірками</td>
+                                </tr>
+                                <tr>
+                                    <td>justify-items</td>
+                                    <td>Контейнер</td>
+                                    <td>Горизонтальне вирівнювання всіх</td>
+                                </tr>
+                                <tr>
+                                    <td>align-items</td>
+                                    <td>Контейнер</td>
+                                    <td>Вертикальне вирівнювання всіх</td>
+                                </tr>
+                                <tr>
+                                    <td>justify-content</td>
+                                    <td>Контейнер</td>
+                                    <td>Вирівнювання сітки горизонтально</td>
+                                </tr>
+                                <tr>
+                                    <td>align-content</td>
+                                    <td>Контейнер</td>
+                                    <td>Вирівнювання сітки вертикально</td>
+                                </tr>
+                                <tr>
+                                    <td>grid-auto-rows</td>
+                                    <td>Контейнер</td>
+                                    <td>Розмір неявних рядків</td>
+                                </tr>
+                                <tr>
+                                    <td>grid-auto-columns</td>
+                                    <td>Контейнер</td>
+                                    <td>Розмір неявних колонок</td>
+                                </tr>
+                                <tr>
+                                    <td>grid-auto-flow</td>
+                                    <td>Контейнер</td>
+                                    <td>Напрямок автоматичного розміщення</td>
+                                </tr>
+                                <tr>
+                                    <td>grid-column</td>
+                                    <td>Елемент</td>
+                                    <td>Розміщення по колонках</td>
+                                </tr>
+                                <tr>
+                                    <td>grid-row</td>
+                                    <td>Елемент</td>
+                                    <td>Розміщення по рядках</td>
+                                </tr>
+                                <tr>
+                                    <td>grid-area</td>
+                                    <td>Елемент</td>
+                                    <td>Іменована область або позиція</td>
+                                </tr>
+                                <tr>
+                                    <td>justify-self</td>
+                                    <td>Елемент</td>
+                                    <td>Горизонтальне вирівнювання</td>
+                                </tr>
+                                <tr>
+                                    <td>align-self</td>
+                                    <td>Елемент</td>
+                                    <td>Вертикальне вирівнювання</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                    
+                    <section>
+                        <h2>Корисні Grid функції</h2>
+                        <div class="code-block">
+                            <pre><code>/* repeat() */
+grid-template-columns: repeat(4, 1fr);
+grid-template-columns: repeat(auto-fit, 200px);
+
+/* minmax() */
+grid-template-columns: repeat(3, minmax(200px, 1fr));
+
+/* fit-content() */
+grid-template-columns: fit-content(300px) 1fr;
+
+/* min() та max() */
+grid-template-columns: min(300px, 100%) 1fr;
+
+/* clamp() */
+grid-template-columns: repeat(auto-fit, minmax(clamp(250px, 30%, 350px), 1fr));</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <div class="info-box success">
+                            <h4>Підсумок</h4>
+                            <p>
+                                CSS Grid - найпотужніший інструмент для створення двовимірних макетів. 
+                                Використовуйте <code>grid-template-columns/rows</code> для визначення структури, 
+                                <code>grid-template-areas</code> для візуального оголошення макету, 
+                                <code>auto-fit/auto-fill</code> з <code>minmax()</code> для адаптивних сіток 
+                                без media queries. Grid ідеальний для повних макетів сторінок, а Flexbox - 
+                                для компонентів. Комбінуйте обидві технології для максимальної потужності!
+                            </p>
+                        </div>
+                    </section>
+                    
+                    <button id="complete-lesson" class="complete-button" data-lesson="lesson10">
+                        Позначити урок як пройдений
+                    </button>
+                    
+                    <nav class="lesson-navigation">
+                        <a href="lesson09.html" class="nav-button prev">Попередній урок</a>
+                        <a href="lesson11.html" class="nav-button next">Наступний урок</a>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/app.js"></script>
+</body>
+</html>

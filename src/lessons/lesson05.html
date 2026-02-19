@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 5: Мультимедіа | HTML та JavaScript</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    
+    <div class="app-container">
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h1>HTML & JS</h1>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <nav>
+                <ul class="lessons-list">
+                    <li class="lesson-item"><a href="lesson01.html" class="lesson-link" data-lesson="lesson01"><span class="lesson-number">01</span><span class="lesson-title">Семантичний HTML5</span></a></li>
+                    <li class="lesson-item"><a href="lesson02.html" class="lesson-link" data-lesson="lesson02"><span class="lesson-number">02</span><span class="lesson-title">Таблиці та списки</span></a></li>
+                    <li class="lesson-item"><a href="lesson03.html" class="lesson-link" data-lesson="lesson03"><span class="lesson-number">03</span><span class="lesson-title">Форми (частина 1)</span></a></li>
+                    <li class="lesson-item"><a href="lesson04.html" class="lesson-link" data-lesson="lesson04"><span class="lesson-number">04</span><span class="lesson-title">Форми (частина 2)</span></a></li>
+                    <li class="lesson-item"><a href="lesson05.html" class="lesson-link" data-lesson="lesson05"><span class="lesson-number">05</span><span class="lesson-title">Мультимедіа</span></a></li>
+                    <li class="lesson-item"><a href="lesson06.html" class="lesson-link" data-lesson="lesson06"><span class="lesson-number">06</span><span class="lesson-title">Meta-теги та SEO</span></a></li>
+                    <li class="lesson-item"><a href="lesson07.html" class="lesson-link" data-lesson="lesson07"><span class="lesson-number">07</span><span class="lesson-title">Посилання та навігація</span></a></li>
+                    <li class="lesson-item"><a href="lesson08.html" class="lesson-link" data-lesson="lesson08"><span class="lesson-number">08</span><span class="lesson-title">Доступність (a11y)</span></a></li>
+                    <li class="lesson-item"><a href="lesson09.html" class="lesson-link" data-lesson="lesson09"><span class="lesson-number">09</span><span class="lesson-title">CSS Flexbox</span></a></li>
+                    <li class="lesson-item"><a href="lesson10.html" class="lesson-link" data-lesson="lesson10"><span class="lesson-number">10</span><span class="lesson-title">CSS Grid</span></a></li>
+                    <li class="lesson-item"><a href="lesson11.html" class="lesson-link" data-lesson="lesson11"><span class="lesson-number">11</span><span class="lesson-title">CSS анімації</span></a></li>
+                    <li class="lesson-item"><a href="lesson12.html" class="lesson-link" data-lesson="lesson12"><span class="lesson-number">12</span><span class="lesson-title">CSS змінні та адаптивність</span></a></li>
+                    <li class="lesson-item"><a href="lesson13.html" class="lesson-link" data-lesson="lesson13"><span class="lesson-number">13</span><span class="lesson-title">Основи JavaScript</span></a></li>
+                    <li class="lesson-item"><a href="lesson14.html" class="lesson-link" data-lesson="lesson14"><span class="lesson-number">14</span><span class="lesson-title">Функції та масиви</span></a></li>
+                    <li class="lesson-item"><a href="lesson15.html" class="lesson-link" data-lesson="lesson15"><span class="lesson-number">15</span><span class="lesson-title">DOM маніпуляції</span></a></li>
+                    <li class="lesson-item"><a href="lesson16.html" class="lesson-link" data-lesson="lesson16"><span class="lesson-number">16</span><span class="lesson-title">Події та обробники</span></a></li>
+                    <li class="lesson-item"><a href="lesson17.html" class="lesson-link" data-lesson="lesson17"><span class="lesson-number">17</span><span class="lesson-title">Робота з формами через JS</span></a></li>
+                    <li class="lesson-item"><a href="lesson18.html" class="lesson-link" data-lesson="lesson18"><span class="lesson-number">18</span><span class="lesson-title">LocalStorage та JSON</span></a></li>
+                    <li class="lesson-item"><a href="lesson19.html" class="lesson-link" data-lesson="lesson19"><span class="lesson-number">19</span><span class="lesson-title">Fetch API та асинхронність</span></a></li>
+                    <li class="lesson-item"><a href="lesson20.html" class="lesson-link" data-lesson="lesson20"><span class="lesson-number">20</span><span class="lesson-title">Фінальний проєкт: TODO</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <div class="lesson-container">
+                <header class="lesson-header">
+                    <h1>Урок 5: Мультимедіа</h1>
+                    <p class="lesson-meta">Робота з відео, аудіо, зображеннями та iframe</p>
+                </header>
+                
+                <div class="lesson-content">
+                    <section>
+                        <h2>Аудіо в HTML5</h2>
+                        <p>
+                            HTML5 надає нативний елемент <code>&lt;audio&gt;</code> для вбудовування 
+                            аудіо-контенту без необхідності використання плагінів.
+                        </p>
+                        
+                        <h3>Базове використання</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;audio controls&gt;
+    &lt;source src="audio/song.mp3" type="audio/mpeg"&gt;
+    &lt;source src="audio/song.ogg" type="audio/ogg"&gt;
+    Ваш браузер не підтримує аудіо елемент.
+&lt;/audio&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Атрибути аудіо</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;audio controls autoplay loop muted preload="auto"&gt;
+    &lt;source src="audio/background.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;</code></pre>
+                        </div>
+                        
+                        <div class="info-box">
+                            <h4>Атрибути елемента audio</h4>
+                            <ul>
+                                <li><code>controls</code> - показує елементи керування (play, pause, volume)</li>
+                                <li><code>autoplay</code> - автоматичне відтворення (може блокуватись браузером)</li>
+                                <li><code>loop</code> - зациклює відтворення</li>
+                                <li><code>muted</code> - початково без звуку</li>
+                                <li><code>preload</code> - попереднє завантаження: none, metadata, auto</li>
+                            </ul>
+                        </div>
+                        
+                        <h3>Аудіо з JavaScript керуванням</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;audio id="myAudio"&gt;
+    &lt;source src="audio/track.mp3" type="audio/mpeg"&gt;
+&lt;/audio&gt;
+
+&lt;button onclick="document.getElementById('myAudio').play()"&gt;Play&lt;/button&gt;
+&lt;button onclick="document.getElementById('myAudio').pause()"&gt;Pause&lt;/button&gt;
+&lt;button onclick="document.getElementById('myAudio').volume += 0.1"&gt;+&lt;/button&gt;
+&lt;button onclick="document.getElementById('myAudio').volume -= 0.1"&gt;-&lt;/button&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Відео в HTML5</h2>
+                        <p>
+                            Елемент <code>&lt;video&gt;</code> дозволяє вбудовувати відео-контент 
+                            безпосередньо у веб-сторінку.
+                        </p>
+                        
+                        <h3>Базове відео</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;video controls width="640" height="360"&gt;
+    &lt;source src="video/movie.mp4" type="video/mp4"&gt;
+    &lt;source src="video/movie.webm" type="video/webm"&gt;
+    &lt;source src="video/movie.ogg" type="video/ogg"&gt;
+    Ваш браузер не підтримує відео.
+&lt;/video&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Відео з постером та субтитрами</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;video controls width="800" poster="images/video-poster.jpg"&gt;
+    &lt;source src="video/tutorial.mp4" type="video/mp4"&gt;
+    
+    &lt;!-- Субтитри --&gt;
+    &lt;track kind="subtitles" src="subtitles/uk.vtt" 
+           srclang="uk" label="Українська" default&gt;
+    &lt;track kind="subtitles" src="subtitles/en.vtt" 
+           srclang="en" label="English"&gt;
+    
+    &lt;!-- Описи для доступності --&gt;
+    &lt;track kind="descriptions" src="descriptions/uk.vtt" 
+           srclang="uk" label="Аудіо-опис"&gt;
+&lt;/video&gt;</code></pre>
+                        </div>
+                        
+                        <div class="info-box">
+                            <h4>Атрибути елемента video</h4>
+                            <ul>
+                                <li><code>poster</code> - зображення, яке показується до початку відтворення</li>
+                                <li><code>width/height</code> - розміри відео</li>
+                                <li><code>controls</code> - показує панель керування</li>
+                                <li><code>autoplay</code> - автозапуск</li>
+                                <li><code>loop</code> - зациклення</li>
+                                <li><code>muted</code> - без звуку</li>
+                                <li><code>playsinline</code> - відтворення inline на мобільних</li>
+                            </ul>
+                        </div>
+                        
+                        <h3>Формати відео</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Формат</th>
+                                    <th>MIME-тип</th>
+                                    <th>Підтримка</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>MP4 (H.264)</td>
+                                    <td>video/mp4</td>
+                                    <td>Найкраща підтримка</td>
+                                </tr>
+                                <tr>
+                                    <td>WebM</td>
+                                    <td>video/webm</td>
+                                    <td>Chrome, Firefox, Opera</td>
+                                </tr>
+                                <tr>
+                                    <td>Ogg</td>
+                                    <td>video/ogg</td>
+                                    <td>Firefox, Chrome, Opera</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </section>
+                    
+                    <section>
+                        <h2>Адаптивні зображення: Picture</h2>
+                        <p>
+                            Елемент <code>&lt;picture&gt;</code> дозволяє задавати різні зображення 
+                            для різних розмірів екрану або роздільної здатності.
+                        </p>
+                        
+                        <h3>Art Direction (різні зображення)</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;picture&gt;
+    &lt;!-- Для широких екранів (мінімум 1200px) --&gt;
+    &lt;source media="(min-width: 1200px)" 
+            srcset="images/banner-large.jpg"&gt;
+    
+    &lt;!-- Для середніх екранів (768px - 1199px) --&gt;
+    &lt;source media="(min-width: 768px)" 
+            srcset="images/banner-medium.jpg"&gt;
+    
+    &lt;!-- Для малих екранів (за замовчуванням) --&gt;
+    &lt;img src="images/banner-small.jpg" alt="Банер сайту"&gt;
+&lt;/picture&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Підтримка різних форматів</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;picture&gt;
+    &lt;!-- Сучасний формат AVIF --&gt;
+    &lt;source srcset="images/photo.avif" type="image/avif"&gt;
+    
+    &lt;!-- Формат WebP --&gt;
+    &lt;source srcset="images/photo.webp" type="image/webp"&gt;
+    
+    &lt;!-- Запасний варіант - JPEG --&gt;
+    &lt;img src="images/photo.jpg" alt="Фото"&gt;
+&lt;/picture&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Різна роздільна здатність (1x, 2x, 3x)</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;picture&gt;
+    &lt;source srcset="images/logo.png 1x,
+                    images/logo@2x.png 2x,
+                    images/logo@3x.png 3x"&gt;
+    &lt;img src="images/logo.png" alt="Логотип"&gt;
+&lt;/picture&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Figure та Figcaption</h2>
+                        <p>
+                            Елементи <code>&lt;figure&gt;</code> та <code>&lt;figcaption&gt;</code> 
+                            використовуються для семантичного групування зображень з підписами.
+                        </p>
+                        <div class="code-block">
+                            <pre><code>&lt;figure&gt;
+    &lt;img src="images/chart.png" alt="Графік продажів"&gt;
+    &lt;figcaption&gt;
+        Рис. 1: Динаміка продажів за 2024 рік
+    &lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;!-- З кількома зображеннями --&gt;
+&lt;figure&gt;
+    &lt;img src="images/product1.jpg" alt="Продукт 1"&gt;
+    &lt;img src="images/product2.jpg" alt="Продукт 2"&gt;
+    &lt;img src="images/product3.jpg" alt="Продукт 3"&gt;
+    &lt;figcaption&gt;Наша колекція продуктів&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;!-- З кодом --&gt;
+&lt;figure&gt;
+    &lt;pre&gt;&lt;code&gt;
+function greet(name) {
+    console.log(`Hello, ${name}!`);
+}
+    &lt;/code&gt;&lt;/pre&gt;
+    &lt;figcaption&gt;Приклад 1: Проста функція привітання&lt;/figcaption&gt;
+&lt;/figure&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Iframe - вбудовування зовнішнього контенту</h2>
+                        <p>
+                            Елемент <code>&lt;iframe&gt;</code> дозволяє вбудовувати інші HTML-сторінки, 
+                            карти, відео з YouTube тощо.
+                        </p>
+                        
+                        <h3>Базове використання</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;iframe src="https://www.example.com" 
+        width="800" height="600"
+        title="Зовнішня сторінка"&gt;
+&lt;/iframe&gt;</code></pre>
+                        </div>
+                        
+                        <h3>YouTube відео</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;iframe width="560" height="315"
+        src="https://www.youtube.com/embed/VIDEO_ID"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen&gt;
+&lt;/iframe&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Google Maps</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;iframe 
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12..."
+    width="600" 
+    height="450"
+    style="border:0;"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"&gt;
+&lt;/iframe&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Адаптивний iframe</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- HTML --&gt;
+&lt;div class="video-container"&gt;
+    &lt;iframe src="https://www.youtube.com/embed/VIDEO_ID"
+            allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+
+&lt;!-- CSS --&gt;
+&lt;style&gt;
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+&lt;/style&gt;</code></pre>
+                        </div>
+                        
+                        <div class="info-box">
+                            <h4>Важливі атрибути iframe</h4>
+                            <ul>
+                                <li><code>sandbox</code> - обмежує можливості iframe (безпека)</li>
+                                <li><code>loading="lazy"</code> - відкладене завантаження</li>
+                                <li><code>allow</code> - дозволені функції (camera, microphone тощо)</li>
+                                <li><code>referrerpolicy</code> - політика referrer</li>
+                                <li><code>allowfullscreen</code> - дозволяє повноекранний режим</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>SVG - векторна графіка</h2>
+                        <p>SVG можна вбудовувати безпосередньо в HTML або як зовнішній файл.</p>
+                        
+                        <h3>Вбудований SVG</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;svg width="200" height="200" xmlns="http://www.w3.org/2000/svg"&gt;
+    &lt;!-- Коло --&gt;
+    &lt;circle cx="100" cy="100" r="80" 
+            fill="#3498db" stroke="#2980b9" stroke-width="3" /&gt;
+    
+    &lt;!-- Текст --&gt;
+    &lt;text x="100" y="110" text-anchor="middle" 
+          fill="white" font-size="24" font-weight="bold"&gt;
+        SVG
+    &lt;/text&gt;
+&lt;/svg&gt;</code></pre>
+                        </div>
+                        
+                        <h3>SVG як зображення</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;img src="images/logo.svg" alt="Логотип" width="200"&gt;
+
+&lt;!-- Або як фонове зображення в CSS --&gt;
+&lt;div style="background-image: url('images/pattern.svg');"&gt;
+    Контент з SVG фоном
+&lt;/div&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Оптимізація мультимедіа</h2>
+                        
+                        <h3>Lazy Loading (відкладене завантаження)</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;!-- Зображення --&gt;
+&lt;img src="images/large-photo.jpg" 
+     alt="Велике фото" 
+     loading="lazy"&gt;
+
+&lt;!-- Iframe --&gt;
+&lt;iframe src="https://example.com" loading="lazy"&gt;&lt;/iframe&gt;
+
+&lt;!-- Також працює з picture --&gt;
+&lt;picture&gt;
+    &lt;source srcset="images/photo.webp" type="image/webp"&gt;
+    &lt;img src="images/photo.jpg" alt="Фото" loading="lazy"&gt;
+&lt;/picture&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Preload для критичних ресурсів</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;head&gt;
+    &lt;!-- Попереднє завантаження критичних зображень --&gt;
+    &lt;link rel="preload" as="image" href="images/hero.jpg"&gt;
+    
+    &lt;!-- Попереднє завантаження відео --&gt;
+    &lt;link rel="preload" as="video" href="video/intro.mp4"&gt;
+    
+    &lt;!-- Попереднє завантаження шрифтів --&gt;
+    &lt;link rel="preload" as="font" 
+          href="fonts/roboto.woff2" 
+          type="font/woff2" crossorigin&gt;
+&lt;/head&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Повний приклад галереї</h2>
+                        <div class="code-block">
+                            <pre><code>&lt;section class="gallery"&gt;
+    &lt;h2&gt;Фотогалерея&lt;/h2&gt;
+    
+    &lt;!-- Відео презентація --&gt;
+    &lt;figure&gt;
+        &lt;video controls width="100%" poster="images/video-poster.jpg"&gt;
+            &lt;source src="video/presentation.mp4" type="video/mp4"&gt;
+            &lt;source src="video/presentation.webm" type="video/webm"&gt;
+            &lt;track kind="subtitles" src="subtitles/uk.vtt" 
+                   srclang="uk" label="Українська" default&gt;
+        &lt;/video&gt;
+        &lt;figcaption&gt;Відео презентація проєкту&lt;/figcaption&gt;
+    &lt;/figure&gt;
+    
+    &lt;!-- Адаптивні зображення --&gt;
+    &lt;figure&gt;
+        &lt;picture&gt;
+            &lt;source media="(min-width: 1200px)" 
+                    srcset="images/landscape-large.webp" 
+                    type="image/webp"&gt;
+            &lt;source media="(min-width: 768px)" 
+                    srcset="images/landscape-medium.webp" 
+                    type="image/webp"&gt;
+            &lt;source srcset="images/landscape-small.webp" 
+                    type="image/webp"&gt;
+            &lt;img src="images/landscape.jpg" 
+                 alt="Гірський пейзаж" 
+                 loading="lazy"&gt;
+        &lt;/picture&gt;
+        &lt;figcaption&gt;Карпатські гори восени&lt;/figcaption&gt;
+    &lt;/figure&gt;
+    
+    &lt;!-- Аудіо файл --&gt;
+    &lt;figure&gt;
+        &lt;figcaption&gt;Послухайте наш подкаст:&lt;/figcaption&gt;
+        &lt;audio controls&gt;
+            &lt;source src="audio/podcast-episode-1.mp3" type="audio/mpeg"&gt;
+            &lt;source src="audio/podcast-episode-1.ogg" type="audio/ogg"&gt;
+        &lt;/audio&gt;
+    &lt;/figure&gt;
+    
+    &lt;!-- Вбудована карта --&gt;
+    &lt;figure&gt;
+        &lt;iframe src="https://www.google.com/maps/embed?pb=..."
+                width="100%" height="400" 
+                style="border:0;" 
+                loading="lazy"&gt;&lt;/iframe&gt;
+        &lt;figcaption&gt;Наше місцезнаходження&lt;/figcaption&gt;
+    &lt;/figure&gt;
+&lt;/section&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <div class="info-box success">
+                            <h4>Підсумок</h4>
+                            <p>
+                                HTML5 надає потужні інструменти для роботи з мультимедіа: нативні елементи 
+                                <code>&lt;audio&gt;</code> та <code>&lt;video&gt;</code>, адаптивні зображення 
+                                через <code>&lt;picture&gt;</code>, семантичне групування з 
+                                <code>&lt;figure&gt;</code>, та вбудовування зовнішнього контенту через 
+                                <code>&lt;iframe&gt;</code>. Використовуйте lazy loading для оптимізації 
+                                завантаження та надавайте різні формати для максимальної сумісності.
+                            </p>
+                        </div>
+                    </section>
+                    
+                    <button id="complete-lesson" class="complete-button" data-lesson="lesson05">
+                        Позначити урок як пройдений
+                    </button>
+                    
+                    <nav class="lesson-navigation">
+                        <a href="lesson04.html" class="nav-button prev">Попередній урок</a>
+                        <a href="lesson06.html" class="nav-button next">Наступний урок</a>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/app.js"></script>
+</body>
+</html>

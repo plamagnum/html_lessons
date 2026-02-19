@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 2: Таблиці та списки | HTML та JavaScript</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    
+    <div class="app-container">
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h1>HTML & JS</h1>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <nav>
+                <ul class="lessons-list">
+                    <li class="lesson-item"><a href="lesson01.html" class="lesson-link" data-lesson="lesson01"><span class="lesson-number">01</span><span class="lesson-title">Семантичний HTML5</span></a></li>
+                    <li class="lesson-item"><a href="lesson02.html" class="lesson-link" data-lesson="lesson02"><span class="lesson-number">02</span><span class="lesson-title">Таблиці та списки</span></a></li>
+                    <li class="lesson-item"><a href="lesson03.html" class="lesson-link" data-lesson="lesson03"><span class="lesson-number">03</span><span class="lesson-title">Форми (частина 1)</span></a></li>
+                    <li class="lesson-item"><a href="lesson04.html" class="lesson-link" data-lesson="lesson04"><span class="lesson-number">04</span><span class="lesson-title">Форми (частина 2)</span></a></li>
+                    <li class="lesson-item"><a href="lesson05.html" class="lesson-link" data-lesson="lesson05"><span class="lesson-number">05</span><span class="lesson-title">Мультимедіа</span></a></li>
+                    <li class="lesson-item"><a href="lesson06.html" class="lesson-link" data-lesson="lesson06"><span class="lesson-number">06</span><span class="lesson-title">Meta-теги та SEO</span></a></li>
+                    <li class="lesson-item"><a href="lesson07.html" class="lesson-link" data-lesson="lesson07"><span class="lesson-number">07</span><span class="lesson-title">Посилання та навігація</span></a></li>
+                    <li class="lesson-item"><a href="lesson08.html" class="lesson-link" data-lesson="lesson08"><span class="lesson-number">08</span><span class="lesson-title">Доступність (a11y)</span></a></li>
+                    <li class="lesson-item"><a href="lesson09.html" class="lesson-link" data-lesson="lesson09"><span class="lesson-number">09</span><span class="lesson-title">CSS Flexbox</span></a></li>
+                    <li class="lesson-item"><a href="lesson10.html" class="lesson-link" data-lesson="lesson10"><span class="lesson-number">10</span><span class="lesson-title">CSS Grid</span></a></li>
+                    <li class="lesson-item"><a href="lesson11.html" class="lesson-link" data-lesson="lesson11"><span class="lesson-number">11</span><span class="lesson-title">CSS анімації</span></a></li>
+                    <li class="lesson-item"><a href="lesson12.html" class="lesson-link" data-lesson="lesson12"><span class="lesson-number">12</span><span class="lesson-title">CSS змінні та адаптивність</span></a></li>
+                    <li class="lesson-item"><a href="lesson13.html" class="lesson-link" data-lesson="lesson13"><span class="lesson-number">13</span><span class="lesson-title">Основи JavaScript</span></a></li>
+                    <li class="lesson-item"><a href="lesson14.html" class="lesson-link" data-lesson="lesson14"><span class="lesson-number">14</span><span class="lesson-title">Функції та масиви</span></a></li>
+                    <li class="lesson-item"><a href="lesson15.html" class="lesson-link" data-lesson="lesson15"><span class="lesson-number">15</span><span class="lesson-title">DOM маніпуляції</span></a></li>
+                    <li class="lesson-item"><a href="lesson16.html" class="lesson-link" data-lesson="lesson16"><span class="lesson-number">16</span><span class="lesson-title">Події та обробники</span></a></li>
+                    <li class="lesson-item"><a href="lesson17.html" class="lesson-link" data-lesson="lesson17"><span class="lesson-number">17</span><span class="lesson-title">Робота з формами через JS</span></a></li>
+                    <li class="lesson-item"><a href="lesson18.html" class="lesson-link" data-lesson="lesson18"><span class="lesson-number">18</span><span class="lesson-title">LocalStorage та JSON</span></a></li>
+                    <li class="lesson-item"><a href="lesson19.html" class="lesson-link" data-lesson="lesson19"><span class="lesson-number">19</span><span class="lesson-title">Fetch API та асинхронність</span></a></li>
+                    <li class="lesson-item"><a href="lesson20.html" class="lesson-link" data-lesson="lesson20"><span class="lesson-number">20</span><span class="lesson-title">Фінальний проєкт: TODO</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <div class="lesson-container">
+                <header class="lesson-header">
+                    <h1>Урок 2: Таблиці та списки</h1>
+                    <p class="lesson-meta">Створення складних таблиць та різних типів списків</p>
+                </header>
+                
+                <div class="lesson-content">
+                    <section>
+                        <h2>Списки в HTML</h2>
+                        <p>
+                            HTML підтримує три основних типи списків: нумеровані, ненумеровані та списки визначень. 
+                            Кожен тип має своє призначення та особливості використання.
+                        </p>
+                        
+                        <h3>Ненумерований список (Unordered List)</h3>
+                        <p>Використовується для елементів без певного порядку. Позначається маркерами.</p>
+                        <div class="code-block">
+                            <pre><code>&lt;ul&gt;
+    &lt;li&gt;Яблука&lt;/li&gt;
+    &lt;li&gt;Банани&lt;/li&gt;
+    &lt;li&gt;Апельсини&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Нумерований список (Ordered List)</h3>
+                        <p>Використовується для елементів з певним порядком. Позначається числами.</p>
+                        <div class="code-block">
+                            <pre><code>&lt;ol&gt;
+    &lt;li&gt;Розігрійте духовку до 180°C&lt;/li&gt;
+    &lt;li&gt;Змішайте інгредієнти&lt;/li&gt;
+    &lt;li&gt;Випікайте 30 хвилин&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- Список з іншим типом нумерації --&gt;
+&lt;ol type="A"&gt;
+    &lt;li&gt;Пункт A&lt;/li&gt;
+    &lt;li&gt;Пункт B&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;!-- Початок з певного числа --&gt;
+&lt;ol start="5"&gt;
+    &lt;li&gt;Пункт 5&lt;/li&gt;
+    &lt;li&gt;Пункт 6&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Вкладені списки</h3>
+                        <p>Списки можна вкладати один в одного для створення ієрархічної структури.</p>
+                        <div class="code-block">
+                            <pre><code>&lt;ul&gt;
+    &lt;li&gt;Фрукти
+        &lt;ul&gt;
+            &lt;li&gt;Яблука
+                &lt;ul&gt;
+                    &lt;li&gt;Зелені&lt;/li&gt;
+                    &lt;li&gt;Червоні&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/li&gt;
+            &lt;li&gt;Банани&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;Овочі
+        &lt;ul&gt;
+            &lt;li&gt;Помідори&lt;/li&gt;
+            &lt;li&gt;Огірки&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Список визначень (Description List)</h2>
+                        <p>
+                            Використовується для пар термін-визначення, як у словнику або глосарії. 
+                            Складається з <code>&lt;dl&gt;</code> (description list), <code>&lt;dt&gt;</code> (term) 
+                            та <code>&lt;dd&gt;</code> (definition).
+                        </p>
+                        <div class="code-block">
+                            <pre><code>&lt;dl&gt;
+    &lt;dt&gt;HTML&lt;/dt&gt;
+    &lt;dd&gt;HyperText Markup Language - мова розмітки гіпертексту&lt;/dd&gt;
+    
+    &lt;dt&gt;CSS&lt;/dt&gt;
+    &lt;dd&gt;Cascading Style Sheets - каскадні таблиці стилів&lt;/dd&gt;
+    
+    &lt;dt&gt;JavaScript&lt;/dt&gt;
+    &lt;dd&gt;Мова програмування для веб-розробки&lt;/dd&gt;
+    &lt;dd&gt;Працює у браузері та на сервері (Node.js)&lt;/dd&gt;
+&lt;/dl&gt;</code></pre>
+                        </div>
+                        
+                        <div class="info-box">
+                            <h4>Практичне застосування списків визначень</h4>
+                            <ul>
+                                <li>Глосарії та словники</li>
+                                <li>Метадані та властивості об'єктів</li>
+                                <li>FAQ секції</li>
+                                <li>Описи продуктів</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Таблиці в HTML</h2>
+                        <p>
+                            Таблиці використовуються для представлення табличних даних. Основні теги: 
+                            <code>&lt;table&gt;</code>, <code>&lt;tr&gt;</code> (рядок), 
+                            <code>&lt;th&gt;</code> (заголовок), <code>&lt;td&gt;</code> (комірка).
+                        </p>
+                        
+                        <h3>Проста таблиця</h3>
+                        <div class="code-block">
+                            <pre><code>&lt;table&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Ім'я&lt;/th&gt;
+            &lt;th&gt;Вік&lt;/th&gt;
+            &lt;th&gt;Місто&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Іван&lt;/td&gt;
+            &lt;td&gt;25&lt;/td&gt;
+            &lt;td&gt;Київ&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Марія&lt;/td&gt;
+            &lt;td&gt;30&lt;/td&gt;
+            &lt;td&gt;Львів&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                        </div>
+                        
+                        <h3>Об'єднання комірок: colspan та rowspan</h3>
+                        <p>
+                            Атрибут <code>colspan</code> об'єднує комірки по горизонталі, 
+                            а <code>rowspan</code> - по вертикалі.
+                        </p>
+                        <div class="code-block">
+                            <pre><code>&lt;table border="1"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th colspan="3"&gt;Розклад занять&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Час&lt;/th&gt;
+            &lt;th&gt;Понеділок&lt;/th&gt;
+            &lt;th&gt;Вівторок&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;9:00&lt;/td&gt;
+            &lt;td rowspan="2"&gt;Математика&lt;/td&gt;
+            &lt;td&gt;Фізика&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;10:00&lt;/td&gt;
+            &lt;td&gt;Хімія&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;11:00&lt;/td&gt;
+            &lt;td colspan="2"&gt;Перерва&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Структура складної таблиці</h2>
+                        <p>
+                            Правильна структура таблиці включає <code>&lt;thead&gt;</code>, 
+                            <code>&lt;tbody&gt;</code>, та <code>&lt;tfoot&gt;</code> для кращої семантики 
+                            та доступності.
+                        </p>
+                        <div class="code-block">
+                            <pre><code>&lt;table&gt;
+    &lt;caption&gt;Квартальний звіт продажів&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th scope="col"&gt;Місяць&lt;/th&gt;
+            &lt;th scope="col"&gt;Продажі&lt;/th&gt;
+            &lt;th scope="col"&gt;Прибуток&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;th scope="row"&gt;Січень&lt;/th&gt;
+            &lt;td&gt;100 000 грн&lt;/td&gt;
+            &lt;td&gt;25 000 грн&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;th scope="row"&gt;Лютий&lt;/th&gt;
+            &lt;td&gt;120 000 грн&lt;/td&gt;
+            &lt;td&gt;30 000 грн&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;th scope="row"&gt;Березень&lt;/th&gt;
+            &lt;td&gt;150 000 грн&lt;/td&gt;
+            &lt;td&gt;37 500 грн&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+    &lt;tfoot&gt;
+        &lt;tr&gt;
+            &lt;th scope="row"&gt;Всього&lt;/th&gt;
+            &lt;td&gt;370 000 грн&lt;/td&gt;
+            &lt;td&gt;92 500 грн&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tfoot&gt;
+&lt;/table&gt;</code></pre>
+                        </div>
+                        
+                        <div class="info-box">
+                            <h4>Важливі атрибути таблиць</h4>
+                            <ul>
+                                <li><code>scope="col"</code> або <code>scope="row"</code> - вказує область дії заголовка</li>
+                                <li><code>&lt;caption&gt;</code> - надає заголовок таблиці</li>
+                                <li><code>colspan</code> - кількість колонок для об'єднання</li>
+                                <li><code>rowspan</code> - кількість рядків для об'єднання</li>
+                            </ul>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Практичний приклад: Складна таблиця</h2>
+                        <div class="code-block">
+                            <pre><code>&lt;table&gt;
+    &lt;caption&gt;Порівняння тарифних планів&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th rowspan="2"&gt;Функція&lt;/th&gt;
+            &lt;th colspan="3"&gt;Тарифні плани&lt;/th&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Базовий&lt;/th&gt;
+            &lt;th&gt;Стандарт&lt;/th&gt;
+            &lt;th&gt;Преміум&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;th scope="row"&gt;Вартість/міс&lt;/th&gt;
+            &lt;td&gt;99 грн&lt;/td&gt;
+            &lt;td&gt;199 грн&lt;/td&gt;
+            &lt;td&gt;399 грн&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;th scope="row"&gt;Користувачі&lt;/th&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;5&lt;/td&gt;
+            &lt;td&gt;Необмежено&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;th scope="row"&gt;Сховище&lt;/th&gt;
+            &lt;td&gt;10 GB&lt;/td&gt;
+            &lt;td&gt;100 GB&lt;/td&gt;
+            &lt;td&gt;1 TB&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;th scope="row"&gt;Підтримка&lt;/th&gt;
+            &lt;td&gt;Email&lt;/td&gt;
+            &lt;td colspan="2"&gt;Email + Телефон 24/7&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Групування колонок: colgroup</h2>
+                        <p>
+                            Елемент <code>&lt;colgroup&gt;</code> дозволяє застосовувати стилі до цілих колонок.
+                        </p>
+                        <div class="code-block">
+                            <pre><code>&lt;table&gt;
+    &lt;colgroup&gt;
+        &lt;col style="background-color: #f0f0f0;"&gt;
+        &lt;col span="2" style="background-color: #e0f7fa;"&gt;
+        &lt;col style="background-color: #fff3e0;"&gt;
+    &lt;/colgroup&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;Назва&lt;/th&gt;
+            &lt;th&gt;Q1&lt;/th&gt;
+            &lt;th&gt;Q2&lt;/th&gt;
+            &lt;th&gt;Всього&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;Продукт A&lt;/td&gt;
+            &lt;td&gt;1000&lt;/td&gt;
+            &lt;td&gt;1200&lt;/td&gt;
+            &lt;td&gt;2200&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <div class="info-box success">
+                            <h4>Підсумок</h4>
+                            <p>
+                                Списки та таблиці - фундаментальні елементи HTML для структурування інформації. 
+                                Використовуйте відповідний тип списку для кожної ситуації, а для табличних даних 
+                                створюйте семантично правильні таблиці з заголовками, підписами та правильною структурою. 
+                                Це покращує доступність та SEO вашого сайту.
+                            </p>
+                        </div>
+                    </section>
+                    
+                    <button id="complete-lesson" class="complete-button" data-lesson="lesson02">
+                        Позначити урок як пройдений
+                    </button>
+                    
+                    <nav class="lesson-navigation">
+                        <a href="lesson01.html" class="nav-button prev">Попередній урок</a>
+                        <a href="lesson03.html" class="nav-button next">Наступний урок</a>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/app.js"></script>
+</body>
+</html>

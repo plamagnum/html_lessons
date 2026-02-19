@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 14: Функції та масиви | HTML та JavaScript</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+    <div id="sidebar-overlay" class="sidebar-overlay"></div>
+    
+    <div class="app-container">
+        <aside id="sidebar" class="sidebar">
+            <div class="sidebar-header">
+                <h1>HTML & JS</h1>
+                <button id="theme-toggle" class="theme-toggle">🌙</button>
+            </div>
+            <div class="progress-bar">
+                <div id="progress-fill" class="progress-fill"></div>
+            </div>
+            <nav>
+                <ul class="lessons-list">
+                    <li class="lesson-item"><a href="lesson01.html" class="lesson-link" data-lesson="lesson01"><span class="lesson-number">01</span><span class="lesson-title">Семантичний HTML5</span></a></li>
+                    <li class="lesson-item"><a href="lesson02.html" class="lesson-link" data-lesson="lesson02"><span class="lesson-number">02</span><span class="lesson-title">Таблиці та списки</span></a></li>
+                    <li class="lesson-item"><a href="lesson03.html" class="lesson-link" data-lesson="lesson03"><span class="lesson-number">03</span><span class="lesson-title">Форми (частина 1)</span></a></li>
+                    <li class="lesson-item"><a href="lesson04.html" class="lesson-link" data-lesson="lesson04"><span class="lesson-number">04</span><span class="lesson-title">Форми (частина 2)</span></a></li>
+                    <li class="lesson-item"><a href="lesson05.html" class="lesson-link" data-lesson="lesson05"><span class="lesson-number">05</span><span class="lesson-title">Мультимедіа</span></a></li>
+                    <li class="lesson-item"><a href="lesson06.html" class="lesson-link" data-lesson="lesson06"><span class="lesson-number">06</span><span class="lesson-title">Meta-теги та SEO</span></a></li>
+                    <li class="lesson-item"><a href="lesson07.html" class="lesson-link" data-lesson="lesson07"><span class="lesson-number">07</span><span class="lesson-title">Посилання та навігація</span></a></li>
+                    <li class="lesson-item"><a href="lesson08.html" class="lesson-link" data-lesson="lesson08"><span class="lesson-number">08</span><span class="lesson-title">Доступність (a11y)</span></a></li>
+                    <li class="lesson-item"><a href="lesson09.html" class="lesson-link" data-lesson="lesson09"><span class="lesson-number">09</span><span class="lesson-title">CSS Flexbox</span></a></li>
+                    <li class="lesson-item"><a href="lesson10.html" class="lesson-link" data-lesson="lesson10"><span class="lesson-number">10</span><span class="lesson-title">CSS Grid</span></a></li>
+                    <li class="lesson-item"><a href="lesson11.html" class="lesson-link" data-lesson="lesson11"><span class="lesson-number">11</span><span class="lesson-title">CSS анімації</span></a></li>
+                    <li class="lesson-item"><a href="lesson12.html" class="lesson-link" data-lesson="lesson12"><span class="lesson-number">12</span><span class="lesson-title">CSS змінні та адаптивність</span></a></li>
+                    <li class="lesson-item"><a href="lesson13.html" class="lesson-link" data-lesson="lesson13"><span class="lesson-number">13</span><span class="lesson-title">Основи JavaScript</span></a></li>
+                    <li class="lesson-item"><a href="lesson14.html" class="lesson-link" data-lesson="lesson14"><span class="lesson-number">14</span><span class="lesson-title">Функції та масиви</span></a></li>
+                    <li class="lesson-item"><a href="lesson15.html" class="lesson-link" data-lesson="lesson15"><span class="lesson-number">15</span><span class="lesson-title">DOM маніпуляції</span></a></li>
+                    <li class="lesson-item"><a href="lesson16.html" class="lesson-link" data-lesson="lesson16"><span class="lesson-number">16</span><span class="lesson-title">Події та обробники</span></a></li>
+                    <li class="lesson-item"><a href="lesson17.html" class="lesson-link" data-lesson="lesson17"><span class="lesson-number">17</span><span class="lesson-title">Робота з формами через JS</span></a></li>
+                    <li class="lesson-item"><a href="lesson18.html" class="lesson-link" data-lesson="lesson18"><span class="lesson-number">18</span><span class="lesson-title">LocalStorage та JSON</span></a></li>
+                    <li class="lesson-item"><a href="lesson19.html" class="lesson-link" data-lesson="lesson19"><span class="lesson-number">19</span><span class="lesson-title">Fetch API та асинхронність</span></a></li>
+                    <li class="lesson-item"><a href="lesson20.html" class="lesson-link" data-lesson="lesson20"><span class="lesson-number">20</span><span class="lesson-title">Фінальний проєкт: TODO</span></a></li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <main class="main-content">
+            <div class="lesson-container">
+                <header class="lesson-header">
+                    <h1>Урок 14: Функції та масиви</h1>
+                    <p class="lesson-meta">Створення функцій та робота з масивами даних</p>
+                </header>
+                
+                <div class="lesson-content">
+                    <section>
+                        <h2>Функції в JavaScript</h2>
+                        <p>
+                            Функції - це блоки коду, які можна викликати багато разів. Вони допомагають 
+                            організувати код та уникнути повторень.
+                        </p>
+                        
+                        <h3>Оголошення функцій</h3>
+                        <div class="code-block">
+                            <pre><code>// Function Declaration - класичне оголошення
+function greet(name) {
+    return `Привіт, ${name}!`;
+}
+
+console.log(greet("Іван"));  // "Привіт, Іван!"
+
+// Function Expression - функція як змінна
+const sayHello = function(name) {
+    return `Вітаю, ${name}!`;
+};
+
+console.log(sayHello("Марія"));  // "Вітаю, Марія!"
+
+// Arrow Function - сучасний синтаксис (ES6)
+const add = (a, b) => {
+    return a + b;
+};
+
+// Скорочена форма (якщо одна інструкція)
+const multiply = (a, b) => a * b;
+
+// Один параметр - дужки можна опустити
+const square = x => x * x;
+
+// Без параметрів
+const getRandomNumber = () => Math.random();
+
+console.log(add(5, 3));        // 8
+console.log(multiply(4, 2));   // 8
+console.log(square(5));        // 25</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="12">// Створіть функцію для обчислення площі прямокутника
+function rectangleArea(width, height) {
+    return width * height;
+}
+
+console.log("Площа 5x3:", rectangleArea(5, 3));
+
+// Arrow function для обчислення кола
+const circleArea = radius => Math.PI * radius ** 2;
+
+console.log("Площа кола (r=5):", circleArea(5).toFixed(2));
+
+// Функція з умовою
+const isEven = num => num % 2 === 0;
+console.log("10 парне?", isEven(10));
+console.log("7 парне?", isEven(7));</textarea>
+                            <button class="run-button" onclick="runCode(this)">▶ Запустити</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Параметри та аргументи функцій</h2>
+                        <div class="code-block">
+                            <pre><code>// Параметри за замовчуванням
+function greet(name = "Гість", greeting = "Привіт") {
+    return `${greeting}, ${name}!`;
+}
+
+console.log(greet());                    // "Привіт, Гість!"
+console.log(greet("Іван"));              // "Привіт, Іван!"
+console.log(greet("Марія", "Вітаю"));    // "Вітаю, Марія!"
+
+// Rest параметри - збирає решту аргументів у масив
+function sum(...numbers) {
+    let total = 0;
+    for (let num of numbers) {
+        total += num;
+    }
+    return total;
+}
+
+console.log(sum(1, 2, 3));           // 6
+console.log(sum(1, 2, 3, 4, 5));     // 15
+
+// Деструктуризація параметрів
+function printPerson({ name, age, city }) {
+    console.log(`${name}, ${age} років, ${city}`);
+}
+
+const person = { name: "Іван", age: 25, city: "Київ" };
+printPerson(person);</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="10">// Функція з параметрами за замовчуванням
+const createUser = (name, role = "user", isActive = true) => {
+    return `${name} - ${role} (${isActive ? "активний" : "неактивний"})`;
+};
+
+console.log(createUser("Олена"));
+console.log(createUser("Петро", "admin"));
+console.log(createUser("Марія", "moderator", false));
+
+// Rest параметри
+const getMax = (...nums) => Math.max(...nums);
+console.log("Максимум:", getMax(5, 12, 3, 45, 23));</textarea>
+                            <button class="run-button" onclick="runCode(this)">▶ Запустити</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Масиви (Arrays)</h2>
+                        <p>
+                            Масиви дозволяють зберігати колекції значень. Кожен елемент має індекс (починаючи з 0).
+                        </p>
+                        
+                        <div class="code-block">
+                            <pre><code>// Створення масивів
+const fruits = ["яблуко", "банан", "апельсин"];
+const numbers = [1, 2, 3, 4, 5];
+const mixed = [1, "текст", true, { name: "Іван" }];
+const empty = [];
+
+// Доступ до елементів
+console.log(fruits[0]);     // "яблуко"
+console.log(fruits[1]);     // "банан"
+console.log(fruits[2]);     // "апельсин"
+
+// Довжина масиву
+console.log(fruits.length); // 3
+
+// Зміна елементів
+fruits[1] = "груша";
+console.log(fruits);        // ["яблуко", "груша", "апельсин"]
+
+// Додавання елементів
+fruits.push("кавун");       // додає в кінець
+fruits.unshift("манго");    // додає на початок
+
+// Видалення елементів
+fruits.pop();               // видаляє останній
+fruits.shift();             // видаляє перший
+
+// Перебір масиву
+for (let i = 0; i < fruits.length; i++) {
+    console.log(fruits[i]);
+}
+
+// Сучасний спосіб
+fruits.forEach(function(fruit, index) {
+    console.log(index, fruit);
+});
+
+// Arrow function
+fruits.forEach((fruit, index) => {
+    console.log(`${index}: ${fruit}`);
+});</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="12">// Робота з масивом
+const colors = ["червоний", "зелений", "синій"];
+
+console.log("Масив:", colors);
+console.log("Довжина:", colors.length);
+console.log("Перший елемент:", colors[0]);
+console.log("Останній елемент:", colors[colors.length - 1]);
+
+// Додавання елементів
+colors.push("жовтий");
+console.log("Після push:", colors);
+
+// Перебір масиву
+colors.forEach((color, i) => {
+    console.log(`${i + 1}. ${color}`);
+});</textarea>
+                            <button class="run-button" onclick="runCode(this)">▶ Запустити</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Методи масивів: map, filter, reduce</h2>
+                        <p>
+                            Це потужні методи для роботи з масивами, які дозволяють трансформувати, 
+                            фільтрувати та агрегувати дані.
+                        </p>
+                        
+                        <h3>map() - трансформація елементів</h3>
+                        <div class="code-block">
+                            <pre><code>// map створює новий масив, застосовуючи функцію до кожного елемента
+const numbers = [1, 2, 3, 4, 5];
+
+// Подвоїти кожне число
+const doubled = numbers.map(num => num * 2);
+console.log(doubled);  // [2, 4, 6, 8, 10]
+
+// Піднести до квадрата
+const squared = numbers.map(num => num ** 2);
+console.log(squared);  // [1, 4, 9, 16, 25]
+
+// Перетворення масиву об'єктів
+const users = [
+    { name: "Іван", age: 25 },
+    { name: "Марія", age: 30 },
+    { name: "Петро", age: 22 }
+];
+
+const names = users.map(user => user.name);
+console.log(names);  // ["Іван", "Марія", "Петро"]
+
+const descriptions = users.map(user => `${user.name} - ${user.age} років`);
+console.log(descriptions);</code></pre>
+                        </div>
+                        
+                        <h3>filter() - фільтрація елементів</h3>
+                        <div class="code-block">
+                            <pre><code>// filter створює новий масив з елементів, що задовольняють умову
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+// Тільки парні числа
+const even = numbers.filter(num => num % 2 === 0);
+console.log(even);  // [2, 4, 6, 8, 10]
+
+// Тільки числа більше 5
+const greaterThanFive = numbers.filter(num => num > 5);
+console.log(greaterThanFive);  // [6, 7, 8, 9, 10]
+
+// Фільтрація об'єктів
+const users = [
+    { name: "Іван", age: 25, isActive: true },
+    { name: "Марія", age: 17, isActive: false },
+    { name: "Петро", age: 30, isActive: true }
+];
+
+const adults = users.filter(user => user.age >= 18);
+console.log(adults);
+
+const activeUsers = users.filter(user => user.isActive);
+console.log(activeUsers);</code></pre>
+                        </div>
+                        
+                        <h3>reduce() - агрегація даних</h3>
+                        <div class="code-block">
+                            <pre><code>// reduce зводить масив до одного значення
+const numbers = [1, 2, 3, 4, 5];
+
+// Сума всіх чисел
+const sum = numbers.reduce((total, num) => total + num, 0);
+console.log(sum);  // 15
+
+// Добуток всіх чисел
+const product = numbers.reduce((total, num) => total * num, 1);
+console.log(product);  // 120
+
+// Найбільше число
+const max = numbers.reduce((max, num) => num > max ? num : max);
+console.log(max);  // 5
+
+// Підрахунок суми цін
+const cart = [
+    { name: "Товар 1", price: 100 },
+    { name: "Товар 2", price: 250 },
+    { name: "Товар 3", price: 75 }
+];
+
+const total = cart.reduce((sum, item) => sum + item.price, 0);
+console.log("Загальна сума:", total);  // 425</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="16">const students = [
+    { name: "Олена", grade: 85 },
+    { name: "Петро", grade: 92 },
+    { name: "Марія", grade: 78 },
+    { name: "Іван", grade: 95 },
+    { name: "Анна", grade: 65 }
+];
+
+// map - імена студентів
+const studentNames = students.map(s => s.name);
+console.log("Студенти:", studentNames);
+
+// filter - тільки ті, хто склав (>= 75)
+const passed = students.filter(s => s.grade >= 75);
+console.log("Склали:", passed);
+
+// reduce - середній бал
+const avgGrade = students.reduce((sum, s) => sum + s.grade, 0) / students.length;
+console.log("Середній бал:", avgGrade.toFixed(2));</textarea>
+                            <button class="run-button" onclick="runCode(this)">▶ Запустити</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Інші корисні методи масивів</h2>
+                        <div class="code-block">
+                            <pre><code>const numbers = [1, 2, 3, 4, 5];
+
+// find - знайти перший елемент, що відповідає умові
+const firstEven = numbers.find(num => num % 2 === 0);
+console.log(firstEven);  // 2
+
+// findIndex - знайти індекс першого елемента
+const index = numbers.findIndex(num => num > 3);
+console.log(index);  // 3 (елемент 4 на позиції 3)
+
+// some - чи є хоча б один елемент, що відповідає умові
+const hasEven = numbers.some(num => num % 2 === 0);
+console.log(hasEven);  // true
+
+// every - чи всі елементи відповідають умові
+const allPositive = numbers.every(num => num > 0);
+console.log(allPositive);  // true
+
+// includes - чи містить масив значення
+console.log(numbers.includes(3));  // true
+console.log(numbers.includes(10)); // false
+
+// slice - створити копію частини масиву
+const sliced = numbers.slice(1, 4);  // з індексу 1 до 4 (не включаючи)
+console.log(sliced);  // [2, 3, 4]
+
+// concat - об'єднати масиви
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+const combined = arr1.concat(arr2);
+console.log(combined);  // [1, 2, 3, 4, 5, 6]
+
+// Spread operator - сучасний спосіб
+const combined2 = [...arr1, ...arr2];
+
+// sort - сортування
+const unsorted = [3, 1, 4, 1, 5, 9, 2, 6];
+const sorted = [...unsorted].sort((a, b) => a - b);
+console.log(sorted);  // [1, 1, 2, 3, 4, 5, 6, 9]
+
+// reverse - реверс масиву
+const reversed = [...numbers].reverse();
+console.log(reversed);  // [5, 4, 3, 2, 1]</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="14">const products = [
+    { name: "Ноутбук", price: 25000 },
+    { name: "Мишка", price: 300 },
+    { name: "Клавіатура", price: 800 },
+    { name: "Монітор", price: 8000 }
+];
+
+// find - знайти товар
+const mouse = products.find(p => p.name === "Мишка");
+console.log("Знайдено:", mouse);
+
+// some - чи є дешеві товари (<500)
+const hasCheap = products.some(p => p.price < 500);
+console.log("Є дешеві товари?", hasCheap);
+
+// sort - сортувати за ціною
+const sorted = [...products].sort((a, b) => a.price - b.price);
+console.log("Від дешевих:", sorted.map(p => p.name));</textarea>
+                            <button class="run-button" onclick="runCode(this)">▶ Запустити</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <h2>Ланцюжки методів (Method Chaining)</h2>
+                        <div class="code-block">
+                            <pre><code>// Можна комбінувати методи в ланцюжок
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+const result = numbers
+    .filter(num => num % 2 === 0)     // [2, 4, 6, 8, 10]
+    .map(num => num * 2)              // [4, 8, 12, 16, 20]
+    .reduce((sum, num) => sum + num, 0); // 60
+
+console.log(result);
+
+// Приклад з об'єктами
+const users = [
+    { name: "Іван", age: 25, salary: 30000 },
+    { name: "Марія", age: 30, salary: 45000 },
+    { name: "Петро", age: 22, salary: 25000 },
+    { name: "Олена", age: 35, salary: 55000 }
+];
+
+// Знайти середню зарплату працівників старше 25
+const avgSalary = users
+    .filter(user => user.age > 25)
+    .map(user => user.salary)
+    .reduce((sum, salary) => sum + salary, 0) / 
+    users.filter(user => user.age > 25).length;
+
+console.log("Середня зарплата:", avgSalary);</code></pre>
+                        </div>
+                        
+                        <div class="try-it">
+                            <h4>Спробуйте самі:</h4>
+                            <textarea class="code-input" rows="14">const scores = [45, 87, 92, 65, 78, 55, 94, 88, 72, 90];
+
+// Знайти середній бал для тих, хто склав (>= 75)
+const avgPassedScore = scores
+    .filter(score => score >= 75)
+    .reduce((sum, score) => sum + score, 0) /
+    scores.filter(score => score >= 75).length;
+
+console.log("Середній бал (склали):", avgPassedScore.toFixed(2));
+
+// Подвоїти парні числа і знайти їх суму
+const sumDoubledEven = scores
+    .filter(num => num % 2 === 0)
+    .map(num => num * 2)
+    .reduce((sum, num) => sum + num, 0);
+
+console.log("Сума подвоєних парних:", sumDoubledEven);</textarea>
+                            <button class="run-button" onclick="runCode(this)">▶ Запустити</button>
+                            <div class="output"></div>
+                        </div>
+                    </section>
+                    
+                    <section>
+                        <div class="info-box success">
+                            <h4>Підсумок</h4>
+                            <p>
+                                Функції дозволяють організувати код у повторно використовувані блоки. 
+                                Arrow functions - сучасний та лаконічний синтаксис. Методи масивів 
+                                (<code>map</code>, <code>filter</code>, <code>reduce</code>) - потужні 
+                                інструменти для роботи з даними. Вони роблять код більш виразним та функціональним.
+                            </p>
+                        </div>
+                    </section>
+                    
+                    <button id="complete-lesson" class="complete-button" data-lesson="lesson14">
+                        Позначити урок як пройдений
+                    </button>
+                    
+                    <nav class="lesson-navigation">
+                        <a href="lesson13.html" class="nav-button prev">Попередній урок</a>
+                        <a href="lesson15.html" class="nav-button next">Наступний урок</a>
+                    </nav>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/app.js"></script>
+</body>
+</html>
